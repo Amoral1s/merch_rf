@@ -1,0 +1,476 @@
+@import "../reset/_vars"
+
+.single .comments
+  margin-top: 60px
+  #comments
+    margin: 0
+    #wpdcom
+      margin: 0
+      padding: 0
+      max-width: 100%
+      width: 100%
+      font-family: $font
+      i
+        display: none
+      *
+        font-family: $font
+        letter-spacing: -0.3px
+        font-size: 16px
+      .wc_social_plugin_wrapper,
+      .wpd-form-head,
+      .wpdiscuz-subscribe-bar
+        display: none
+      .wpd-form
+        margin-bottom: 40px
+        display: block
+        .wpd-form-foot
+          margin: 0
+          width: 100%
+          display: block!important
+          max-width: 100%
+          transition: 0
+          .wpdiscuz-textarea-foot
+            display: none
+          .wpd-form-row
+            display: flex!important
+            justify-content: flex-start
+            align-items: center
+            flex-direction: row
+            .wpd-form-col-full
+              margin-top: 10px
+              .wpd-field-captcha.wpdiscuz-item
+                width: max-content
+                display: flex
+                flex-direction: row
+                justify-content: flex-start
+                align-items: center
+                margin: 0
+                .wpdiscuz-recaptcha
+                  margin: 0
+                  padding: 0
+                  width: max-content
+                  transform-origin: left!important
+            .wpd-form-col-left
+              width: max-content!important
+              display: flex
+              justify-content: flex-start
+              align-items: center
+              .wc_website-wrapper
+                display: none
+              .wpdiscuz-item
+                margin-right: 10px
+                padding: 0
+                .wpd-field-icon
+                  display: none
+                input
+                  height: 56px
+                  background-color: $gray_50
+                  border: none
+                  border-radius: 12px
+                  padding-left: 16px
+                  color: $text
+                  box-shadow: none
+                  &::placeholder
+                    font-size: 16px
+                    color: $gray_450
+            .wpd-form-col-right
+              width: max-content!important
+              display: flex
+              flex-direction: row-reverse
+              align-items: center
+              justify-content: flex-end
+              .wpd-field-captcha
+                width: max-content
+                margin: 0
+                padding: 0
+              .wc-field-submit
+                padding: 0
+                display: flex
+                justify-content: flex-start
+                align-items: center
+                .wpd_label
+                  display: none
+                .wc_comm_submit
+                  margin: 0
+                  padding: 0
+                  height: 56px
+                  border-radius: 12px
+                  border: none
+                  box-shadow: none
+                  background-color: $violet
+                  color: #fff
+                  transition: .2s
+                  cursor: pointer
+                  font-weight: 500
+                  display: flex
+                  justify-content: center
+                  align-items: center
+                  width: max-content
+                  padding: 0 24px
+        .wpd-field-comment
+          .wpdiscuz-item
+            .wpd-editor-buttons-right
+              display: none!important
+            .wpdiscuz-textarea-wrap, .wpd-textarea-wrap
+              padding: 0
+              margin-bottom: 16px
+              width: 100%
+              max-width: 100%
+              height: 200px
+              flex-basis: 100%!important
+              textarea
+                height: 200px!important
+                box-shadow: none
+                border: none
+                padding: 16px
+                border-radius: 16px
+                color: $text
+                max-height: 200px
+                &::placeholder
+                  font-size: 16px
+                  font-style: normal
+                  color: $gray_450
+              div
+                border-radius: 16px
+                border: none
+                background-color: $gray_50
+                .ql-toolbar
+                  display: none
+                .ql-container
+                  .ql-editor
+                    height: 200px
+                    padding: 16px
+                    p
+                      font-size: 16px
+                      color: $text
+                    &:before
+                      font-size: 16px
+                      font-family: $font
+                      letter-spacing: -0.3px
+                      font-style: normal
+                      color: $gray_450
+              .wpd-avatar
+                display: none
+    #wpd-threads
+      margin: 0
+      .wpd-thread-head,
+      .wpd-comment-info-bar,
+      .wpdiscuz-comment-pagination
+        display: none
+      .wpd-thread-list
+        padding: 0
+        margin: 0
+        .comment
+          .wpd-comment-wrap
+            border-radius: 24px
+            background-color: $gray_50
+            padding: 30px
+            margin: 0 0 20px 0
+            position: relative
+            .wpd-comment-left
+              position: absolute
+              margin: 0
+              padding: 0
+              border-radius: 100%
+              height: 64px
+              width: 64px
+              background-repeat: no-repeat
+              background-size: 24px 24px
+              background-position: center
+              background-image: url(../img/icons/user.svg)
+              background-color: $violet
+              left: 30px
+              top: 30px
+              .wpd-avatar,
+              .wpd-comment-label
+                display: none
+            .wpd-comment-right
+              padding: 0
+              margin: 0
+              padding-left: calc(16px + 64px)
+              .wpd-comment-footer,
+              .wpd-reply-to
+                display: none
+              .wpd-comment-header
+                min-height: 64px
+                display: flex
+                flex-direction: column
+                align-items: flex-start
+                justify-content: center
+                padding: 0
+                margin: 0
+                margin-bottom: 24px
+                .wpd-comment-share,
+                .wpd-space,
+                .wpd-comment-link,
+                .wpd-comment-status
+                  display: none
+                .wpd-comment-author, a
+                  font-size: 20px
+                  pointer-events: none
+                  font-weight: 500
+                  letter-spacing: -1.2px
+                  color: $text
+                  display: block
+                  margin-bottom: 4px
+
+                .wpd-comment-date
+                  padding: 0
+                  font-size: 16px
+                  font-weight: 400
+                  color: $gray_400
+                  display: block
+                  i
+                    display: none
+              .wpd-comment-text
+                margin: 0
+                padding: 0
+                position: relative
+                left: calc(-64px - 16px)
+                min-width: calc(100% + 64px + 16px)
+                p
+                  color: $text
+                  display: block
+                  line-height: 1.5
+                  font-size: 16px
+                  margin-bottom: 15px
+                  &:last-child
+                    margin-bottom: 0
+
+
+@media (max-width: 767px)
+  .single .comments
+    margin-top: 40px
+    #comments
+      #wpdcom
+        .wpd-form
+          .wpd-form-foot
+            .wpdiscuz-textarea-foot
+              display: none
+            .wpd-form-row
+              display: block!important
+              .wpd-form-col-left
+                width: 100%!important
+                display: block
+                .wpdiscuz-item
+                  margin-right: 0
+                  width: 100%
+                  margin-bottom: 10px
+              .wpd-form-col-right
+                width: 100%!important
+                display: flex
+                flex-direction: row-reverse
+                align-items: center
+                justify-content: flex-end
+                .wc-field-submit
+                  width: 100%
+                  .wc_comm_submit
+                    font-size: 14px
+                    width: 100%!important
+                    max-width: 100%
+          .wpd-field-comment
+            .wpdiscuz-item
+              .wpdiscuz-textarea-wrap, .wpd-textarea-wrap
+                margin-bottom: 10px
+      #wpd-threads
+        .wpd-thread-list
+          .comment
+            .wpd-comment-wrap
+              padding: 20px
+              margin: 0 0 8px 0
+              .wpd-comment-left
+                height: 54px
+                width: 54px
+                left: 20px
+                top: 20px
+              .wpd-comment-right
+                padding-left: calc(16px + 54px)
+                .wpd-comment-header
+                  min-height: 54px
+                  margin-bottom: 16px
+                  .wpd-comment-author, a
+                    font-size: 16px
+                    letter-spacing: -1px
+                  .wpd-comment-date
+                    font-size: 12px
+                .wpd-comment-text
+                  margin: 0
+                  padding: 0
+                  position: relative
+                  left: calc(-54px - 16px)
+                  min-width: calc(100% + 54px + 16px)
+                  p
+                    font-size: 14px
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+

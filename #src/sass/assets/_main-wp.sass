@@ -1,0 +1,366 @@
+@import "../reset/_vars"
+
+address
+  font-style: normal
+
+.lg-container
+  .lg-next,
+  .lg-prev,
+  .lg-close
+    height: 24px
+    width: 24px
+    background-repeat: no-repeat
+    background-size: contain
+    display: block!important
+    &:after, &:before
+      display: none
+  .lg-prev
+    background-image: url(../img/lightgallery/prev.svg)
+  .lg-next
+    background-image: url(../img/lightgallery/next.svg)
+  .lg-close
+    background-image: url(../img/lightgallery/close.svg)
+    margin-top: 10px
+    margin-right: 10px
+  .lg-sub-html
+    display: none
+
+@media (max-width: 992px)
+  .lg-container
+    .lg-content
+      margin-bottom: 30px
+    .lg-components
+      display: none
+
+.grecaptcha-badge
+  display: none
+  visibility: hidden
+  opacity: 0
+
+.button, a.button
+  display: flex
+  text-align: center
+  justify-content: center
+  align-items: center
+  white-space: nowrap
+  height: 64px
+  border-radius: 15px
+  width: max-content
+  max-width: 100%
+  padding: 0 26px
+  cursor: pointer
+  background-color: $button
+  color: #fff
+  font-size: 16px
+  font-family: "Roboto Flex", sans-serif
+  font-weight: 800
+  font-stretch: 151%
+  letter-spacing: -3%
+  font-optical-sizing: auto
+  font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+
+@media (min-width: 992px)
+  .button, a.button
+    transition: .2s
+    &:hover
+      transition: .2s
+      background-color: $button_hover
+
+.icon
+  display: flex
+  align-items: center
+  justify-content: center
+  width: max-content
+
+.title
+  font-weight: 900
+  font-size: 48px
+  color: $text
+  display: block
+  text-align: left
+  line-height: 1
+  margin-bottom: 40px
+  letter-spacing: -1.44px
+  &.center
+    text-align: center
+  &.sub
+    margin-bottom: 14px
+  span
+    font-weight: 500
+    color: $main
+  &-row
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 40px
+    .title
+      margin-bottom: 0
+      width: 100%
+    
+    .subtitle
+      margin-bottom: 0
+      width: calc(100% - 610px - 125px)
+
+@media (min-width: 992px)
+  a.link-all
+    &:hover
+      .icon
+        transform: rotate(45deg)
+      span
+        color: $link_hover
+        
+a.link-all
+  width: max-content
+  white-space: nowrap
+  display: flex
+  justify-content: center
+  align-items: center
+  .icon
+    margin-left: 8px
+  span
+    transition: .2s
+    color: $main
+    font-size: 16px
+    font-weight: 500
+    letter-spacing: -0.32px
+
+.page-top
+  padding-top: 219px
+
+.page-title
+  font-size: 64px
+  display: block
+  font-weight: 500
+  font-family: $font
+  letter-spacing: -3.84px
+  line-height: 1
+  margin-bottom: 50px
+  &.sub
+    font-size: 64px
+    margin-bottom: 30px
+
+.breadcrumbs
+  color: $gray_450
+  font-size: 16px
+  line-height: 1.2
+  font-weight: 400
+  margin-bottom: 35px
+  span, a
+    color: $gray_400
+    font-size: 16px
+    line-height: 1.2
+    font-weight: 400
+    letter-spacing: -0.3px
+
+.subtitle
+  font-size: 18px
+  line-height: 1.2
+  display: block
+  font-weight: 400
+  color: $gray_500
+  margin-bottom: 40px
+  &.center
+    text-align: center
+
+.hidden
+  display: none!important
+
+.slider-wrap
+  position: relative
+  z-index: 5
+  flex-wrap: nowrap!important
+  .arr
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    border-radius: 100%
+    background-color: #fff
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: .2s
+    cursor: pointer
+    width: 60px
+    height: 60px
+    z-index: 15
+    box-shadow: 0px 4px 40px 0px rgba(17, 17, 17, 0.10)
+    &-prev
+      left: -80px
+    &-next
+      right: -80px
+    &.swiper-button-disabled
+      opacity: 0
+      pointer-events: none
+
+@media (min-width: 992px)
+  .slider-wrap
+    .arr
+      &:hover
+        transition: .2s
+        background-color: $brand_main
+        
+
+.disabled-slider
+  .arr
+    display: none
+  .dots
+    display: none
+
+.dots
+  display: flex
+  .swiper-pagination-bullet
+    border-radius: 100%
+    height: 10px
+    width: 10px
+    margin: 0 5px
+    background-color: $white_15
+    &.swiper-pagination-bullet-active
+      background-color: $main
+
+.swiper
+  width: 100%
+
+.wrap
+  display: flex
+  flex-wrap: wrap
+  align-items: stretch
+  .swiper-wrapper
+    flex-wrap: nowrap
+
+.wp-pagenavi, .woocommerce-pagination ul
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 0px
+  span, a
+    height: 54px
+    width: 54px
+    border-radius: 100%
+    font-size: 18px
+    font-weight: 500
+    margin: 0 3px
+    display: flex
+    justify-content: center
+    align-items: center
+    border: none
+  a
+    color: $text
+    &:hover
+      background-color: #fff
+  span.current
+    background-color: $gray_50
+    color: $text
+  a.nextpostslink, .next, .prev,
+  a.previouspostslink
+    border-radius: 12px
+    padding: 0 30px
+    margin-left: 10px
+    font-size: 16px
+    color: #fff
+    background-color: $main
+    width: max-content
+    &:hover
+      color: #fff
+      background-color: $button_hover
+  a.previouspostslink
+    margin-left: 0
+    margin-right: 10px
+  .pages
+    display: none
+
+@media (max-width: 992px)
+  .title
+    font-size: 40px
+    letter-spacing: -1.5px
+    &-row
+      .subtitle
+        font-size: 16px
+        span
+          font-size: 16px
+  .subtitle
+    font-size: 16px
+    span
+      font-size: 16px
+  .page-top
+    padding-top: 80px
+  .page-title
+    font-size: 42px
+    letter-spacing: -1.7px
+    &.sub
+      margin-bottom: 20px
+      font-size: 42px
+  .breadcrumbs
+    font-size: 12px
+    margin-bottom: 15px
+    span, a
+      font-size: 12px
+
+.back-btn
+  display: none
+  justify-content: flex-start
+  align-items: center
+  margin-bottom: 15px
+  .icon
+    margin-right: 4px
+  span
+    color: $text
+    font-size: 14px
+    font-weight: 500
+
+@media (max-width: 767px)
+  .page-title
+    font-size: 32px
+    font-weight: 500
+    &.sub
+      margin-bottom: 20px
+  .button
+    height: 50px!important
+    font-size: 14px!important
+  .title
+    font-size: 26px
+    line-height: 1
+    margin-bottom: 20px
+    max-width: 100%
+    width: 100%
+    &.sub
+      margin-bottom: 16px
+  .subtitle
+    font-size: 12px
+    margin-bottom: 20px
+    line-height: 1.2
+    max-width: 100%
+    width: 100%
+
+@media (max-width: 578px)
+  .wp-pagenavi, .woocommerce-pagination ul
+    margin-top: 0px
+    span, a
+      height: 40px
+      width: 40px
+      font-size: 14px
+      margin: 0
+    a.nextpostslink,
+    a.previouspostslink,
+    .next, .prev
+      padding: 0 20px
+      margin-left: 5px
+      font-size: 12px
+    a.previouspostslink
+      margin-right: 5px
+  .breadcrumbs
+    overflow: hidden
+    white-space: nowrap
+  .page-title
+    font-size: 28px
+    margin-bottom: 20px
+    &.sub
+      font-size: 28px
+      margin-bottom: 12px
+
+
+
+
+
+
+
+

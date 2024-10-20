@@ -1,0 +1,32 @@
+.load-circle {
+  visibility: hidden;
+  display: inline-block;
+  background-color: #0C0C0C;
+  opacity: 0.75;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 100%;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.load-circle::after {
+  content: "";
+  position: absolute;
+  background-color: #fbfbfc;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border: none;
+  border-radius: 100%;
+  transform-origin: 8px 8px;
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

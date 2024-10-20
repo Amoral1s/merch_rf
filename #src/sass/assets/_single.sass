@@ -1,0 +1,243 @@
+@import "../reset/_vars"
+
+.only-single-page.single
+  .single-top
+    .page-title
+      margin-bottom: 30px
+    .subtitle
+      max-width: 100%
+      margin-bottom: 30px
+      font-size: 16px
+    .thumb
+      display: block
+      margin-bottom: 20px
+      img
+        width: 100%
+        border-radius: 24px
+        aspect-ratio: 1240 / 600
+        object-fit: cover
+        display: block
+    .meta-wrap
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin-bottom: 30px
+      .left
+        display: flex
+        align-items: center
+        justify-content: flex-start
+      &-items
+        display: flex
+        align-items: center
+        justify-content: flex-start
+      .item
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        margin-right: 35px
+        .icon
+          margin-right: 10px
+        .value
+          display: block
+          line-height: 1.2
+          font-size: 16px
+          font-weight: 400
+          color: $text
+          white-space: nowrap
+    .author
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      margin-right: 80px
+      .name
+        display: block
+        p
+          font-weight: 500
+          font-size: 20px
+          color: $text
+          line-height: 1.2
+          white-space: nowrap
+          margin-bottom: 6px
+          letter-spacing: -1.2px
+        span
+          display: block
+          color: $text
+          font-size: 16px
+          line-height: 1.2
+          font-weight: 400
+      .avatar
+        overflow: hidden
+        border-radius: 100%
+        height: 70px
+        width: 70px
+        margin-right: 15px
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $gray_50
+        svg
+          width: 40px
+          height: 40px
+        img
+          width: 100%
+          aspect-ratio: 1 / 1
+          border-radius: 100%
+          object-fit: cover
+    .share
+      .row
+        display: flex
+        justify-content: flex-end
+      .ya-share2__list.ya-share2__list_direction_horizontal 
+        &> .ya-share2__item
+          margin: 0
+          a
+            margin-right: 10px
+            height: 44px
+            width: 44px
+            border-radius: 100%
+            background-color: $gray_50
+            display: flex
+            justify-content: center
+            align-items: center
+            span
+              height: 44px
+              width: 44px
+              background-repeat: no-repeat
+              background-size: 30px 30px
+      .share-link
+        height: 44px
+        width: 44px
+        border-radius: 100%
+        background-color: $gray_50
+        cursor: pointer
+        display: flex
+        justify-content: center
+        align-items: center
+.single-nav
+  border-radius: 24px 
+  margin-bottom: 60px
+  display: block
+  background-color: #fff
+  padding: 30px
+  backdrop-filter: blur(25px)
+  border: 1px solid $gray_200
+  b
+    font-size: 22px
+    display: block
+    margin-bottom: 15px
+    color: $text
+  a
+    display: block
+    font-size: 16px
+    color: $gray_500
+    margin-bottom: 10px
+    &:hover
+      color: $main
+    &:last-child
+      margin-bottom: 0
+ 
+@media (max-width: 992px)
+  .only-single-page.single 
+    .single-top 
+      .meta-wrap
+        display: block
+        margin-bottom: 30px
+        .left
+          display: block
+          .meta-wrap-items
+            margin-top: 16px
+        .share
+          margin-top: 16px
+          .row
+            justify-content: flex-start
+      .subtitle
+        font-size: 14px
+        margin-bottom: 25px
+      .meta-wrap
+        .author
+          .name
+            p
+              font-size: 16px
+            span
+              font-size: 12px
+        &-items
+          display: flex
+          flex-wrap: wrap
+          margin-bottom: 5px
+          .item
+            margin-bottom: 10px
+            margin-right: 15px
+            .value
+              font-size: 14px
+      .thumb
+        margin-bottom: 30px
+        img
+          aspect-ratio: 328 / 220
+    .single-nav
+      padding: 20px
+      margin-bottom: 30px
+      b
+        font-size: 16px
+      a
+        font-size: 14px
+        margin-bottom: 10px
+        &:hover
+          color: $text
+        &:last-child
+          margin-bottom: 0
+
+@media (max-width: 767px)
+  .only-single-page.single 
+    .single-top 
+      .page-title
+        font-size: 26px
+        font-weight: 500
+        margin-bottom: 10px
+        letter-spacing: -0.8px
+      .subtitle
+        font-size: 14px
+        line-height: 1.6
+        margin-bottom: 20px
+      .meta-wrap
+        margin-bottom: 30px
+        .meta-wrap-items
+          .rating
+            margin-bottom: 0
+            .votes
+              font-size: 14px
+              line-height: 1
+          .item
+            margin-right: 20px
+            margin-bottom: 15px
+            .icon
+              margin-right: 6px
+              svg
+                width: 16px
+            time, .value
+              font-size: 14px
+              margin: 0
+              white-space: nowrap
+
+        .avatar
+          width: 55px
+          height: 55px
+          margin-right: 15px
+          img
+            width: 55px
+            height: 55px
+          svg
+            width: 45px
+            height: 45px
+
+@media (max-width: 578px)
+  .only-single-page.single 
+    .thumb
+      min-width: calc(100% + 30px)
+      position: relative
+      left: -15px
+      img
+        border-radius: 0
+  
+
+
+
