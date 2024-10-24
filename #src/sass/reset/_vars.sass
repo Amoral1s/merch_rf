@@ -8,7 +8,7 @@ $border: #E5E7EB
 $green: #12B76A
 $red: #FF0D65
 $accent: rgba(#885C8C, .1)
-$main: #885C8C
+$main: #0C0C0C
 $bright: #8D3595
 $violet_7: rgba(136, 92, 140, 0.07)
 $bright: #8D3595
@@ -31,7 +31,7 @@ $title_color: #212121
 
 //link
 $link: #0C0C0C
-$link_hover: rgba(12, 12, 12, 0.80)
+$link_hover: #71E69B
 
 //input
 $input_bg: #F6F8FA
@@ -58,3 +58,29 @@ $sky: #009EC7
 $gray_450: #818793
 $gray_400: #9CA3AF
 $gray_200: #E5E7EB
+
+//variable значения
+$brad24-pc: 24px // значение для ПК (больше 992px)
+$brad24-992: 20px // значение для max-width: 992px
+$brad24-767: 20px // значение для max-width: 767px
+$brad24-578: 20px // значение для max-width: 578px
+
+@function responsive-brad($base, $max992, $max767, $max578)
+  @if (max-width: 578px)
+    @return $max578
+  @else if (max-width: 767px)
+    @return $max767
+  @else if (max-width: 992px)
+    @return $max992
+  @else
+    @return $base
+      
+$brad24: responsive-brad($brad24-pc, $brad24-992, $brad24-767, $brad24-578)
+
+
+
+
+
+
+
+

@@ -36,18 +36,6 @@
         max-width: 100%
         &::after
           display: none
-body
-  min-height: 5000px
-
-.roboto
-  display: block
-  font-family: "Roboto Flex", sans-serif
-  font-style: normal
-  font-weight: 800
-  font-stretch: 151%
-  letter-spacing: -3%
-  font-optical-sizing: auto
-  font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
 
 @keyframes header
   0%
@@ -55,7 +43,452 @@ body
   100%
     transform: translateY(0)
 
-@media (min-width: 992px)
+//mob version
+
+@media (max-width: 992px)
+  .mob-header
+    position: absolute
+    z-index: 10
+    left: 0
+    top: 0
+    background-color: transparent
+    padding: 17px 0
+    width: 100%
+    .wrap
+      justify-content: space-between
+      width: 100%
+      .burger
+        display: flex
+        justify-content: center
+        align-items: center
+      .logo
+        width: max-content
+        img
+          display: block
+          width: 112px
+          height: auto
+  .home-offer
+    position: relative
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    margin-bottom: 40px
+    padding-top: 20px
+    padding-bottom: 60px
+    .text-line
+      display: flex
+      align-items: center
+      justify-content: center
+      overflow: hidden
+      white-space: nowrap
+      background-color: $text
+      padding-top: 12px
+      padding-bottom: 12px
+      position: absolute
+      top: 320px
+      left: 50%
+      transform: translateX(-50%) rotate(2.2deg)
+      .marquee
+        display: flex
+        animation: marquee 120s linear infinite
+        width: max-content
+        div
+          display: flex
+          flex-shrink: 0 // предотвращает сжатие содержимого
+      .icon
+        display: inline-block
+        margin-right: 10px
+        margin-left: 10px
+        svg
+          width: 14px
+          height: 14px
+      span
+        display: inline-block
+        color: #fff
+        font-family: "Roboto Flex", sans-serif
+        font-weight: 800
+        font-stretch: 151%
+        letter-spacing: -0.7px
+        line-height: 1
+        font-size: 16px
+        text-transform: uppercase
+        font-optical-sizing: auto
+        font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+      @keyframes marquee
+        0%
+          transform: translateX(0)
+        100%
+          transform: translateX(-50%)
+      &.text-line-pc
+        display: none!important
+      &.text-line-mob
+        display: flex
+    @keyframes marquee
+      0%
+        transform: translateX(0)
+      100%
+        transform: translateX(-50%)
+    .btns
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      .button
+        margin-right: 30px
+    .feat
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      .icon
+        margin-right: 10px
+      span
+        font-size: 16px
+        font-weight: 400
+        line-height: 1.2
+        display: block
+    .wrap
+      display: flex
+      flex-direction: column
+      h1
+        font-size: 38px
+        letter-spacing: -1.14px
+        text-transform: uppercase
+        font-weight: 800
+        line-height: 1
+        margin-bottom: 16px
+    .photo
+      position: static
+      display: flex
+      justify-content: center
+      align-items: flex-start
+      width: 100%
+      order: -5
+      margin-bottom: 52px
+      max-height: 322px
+      height: 322px
+      img
+        display: block
+        margin: auto
+        height: auto
+        width: 100%
+        max-width: 355px
+        min-width: 355px
+    .subtitle
+      font-size: 16px
+      margin-bottom: 16px
+      color: $text
+      line-height: 1.2
+      font-weight: 400
+      max-width: 400px
+      
+@media (max-width: 578px)
+  .home-offer
+    padding-bottom: 30px
+    .btns
+      display: block
+      .button
+        margin-right: 0
+        width: 100%
+        margin-bottom: 16px
+    .feat
+      span
+        font-size: 14px
+
+
+@media (max-width: 992px)
+  .mob-menu
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 30
+    background-color: #fff
+    overflow-y: auto
+    padding-bottom: 40px
+    .menu
+      width: 100%
+    .top
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 14Dpx 0
+      position: relative
+      z-index: 5
+      .logo
+        width: max-content
+        img
+          display: block
+          width: 112px
+          height: auto
+    &-contacts
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      margin-top: 30px
+      width: 100%
+      .row-right
+        width: max-content
+        a
+          height: 40px
+          width: 40px
+          display: flex
+          justify-content: center
+          align-items: center
+          border-radius: 12px
+          background-color: #000
+          margin-bottom: 10px
+      .row-left
+        width: max-content
+        display: block
+        .meta
+          display: block
+          margin-bottom: 16px
+          b, a
+            font-size: 18px
+            letter-spacing: -0.5px
+            margin-bottom: 4px
+          span
+            color: $gray_500
+            display: block
+            font-weight: 40
+            font-size: 16px
+    .mob-catalog-toggle
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 14px 0 
+      border-bottom: 1px solid $gray_200
+      margin: 0
+      font-size: 16px
+      font-weight: 500
+      color: $text
+    .menu
+      ul
+        display: block
+        li
+          display: block
+          &>a, &>span
+            width: 100%
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 14px 0 
+            border-bottom: 1px solid $gray_200
+            margin: 0
+            font-size: 16px
+            font-weight: 500
+            color: $text
+          &.menu-item-has-children
+            &>a, &>span
+              position: relative
+              &::after
+                position: absolute
+                content: ''
+                height: 24px
+                width: 24px
+                background-repeat: no-repeat
+                background-size: contain
+                background-image: url(../img/icons/menu-arr.svg)
+                right: 0
+                top: 50%
+                transform: translateY(-50%) rotate(-90deg)
+            ul
+              display: none
+              position: fixed
+              top: 0
+              right: 0
+              bottom: 0
+              left: 0
+              width: 100%
+              height: 100%
+              background-color: #fff
+              z-index: 40
+              padding: 15px 0
+              overflow-y: auto
+              padding-bottom: 40px
+              li
+                width: 100%
+                max-width: 740px
+                margin-left: auto
+                margin-right: auto
+                padding: 0 15px
+                a, span
+                  font-size: 16px
+                  font-weight: 400
+                  padding: 0
+                  border: none
+                  display: block
+                  margin-bottom: 16px
+                &.sub-menu-top
+                  width: 100%
+                  display: flex
+                  justify-content: space-between
+                  align-items: center
+                  margin-bottom: 30px
+                .back-sub-menu
+                  display: flex
+                  justify-content: flex-start
+                  align-items: center
+                  width: max-content
+                  .icon
+                    margin-right: 8px
+                  b
+                    font-size: 20px
+                    line-height: 1
+                    letter-spacing: -1.6px
+  .mob-catalog
+    display: none
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    overflow-y: auto
+    padding-bottom: 40px
+    padding-top: 15px
+    background-color: #fff
+    z-index: 50
+    .top
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin-bottom: 20px
+      .mob-catalog-back
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        .icon
+          margin-right: 8px
+        b
+          font-size: 20px
+          line-height: 1
+          display: block
+    .sub-wrappers
+      display: none
+    .wrap
+      display: block
+      .sub-cat-menu
+        position: fixed
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: #fff
+        padding: 0 15px
+        max-width: 740px
+        margin-left: auto
+        margin-right: auto
+        overflow-y: auto
+        padding-bottom: 40px
+        display: none
+        .all-link-main
+          width: 100%
+          border-top: 1px solid $gray_200
+          padding-top: 10px
+          padding-bottom: 10px
+          position: relative
+          &::after
+            position: absolute
+            content: ''
+            height: 24px
+            width: 24px
+            top: 50%
+            transform: translateY(-50%) rotate(-90deg)
+            right: 0
+            background-repeat: no-repeat
+            background-size: contain
+            background-image: url(../img/icons/menu-arr.svg)
+          b
+            font-size: 16px
+            margin-bottom: 6px
+          span
+            color: $gray_400
+            font-size: 14px
+            display: block
+        .sub-list
+          display: block
+          &-title
+            font-size: 16px
+            margin-bottom: 10px
+          &-menu
+            display: block
+            margin-bottom: 20px
+            a, span
+              display: block
+              margin-bottom: 10px
+        .sub-top
+          width: 100%
+          display: flex
+          justify-content: space-between
+          align-items: center
+          padding-top: 15px
+          padding-bottom: 20px
+          &-back
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            .icon
+              margin-right: 10px
+            b
+              font-size: 20px
+      .item-wrapper
+        .item
+          display: flex
+          justify-content: flex-start
+          align-items: center
+          width: 100%
+          margin-bottom: 14px
+          .icon
+            width: 60px
+            height: 60px
+            min-width: 60px
+            border-radius: 16px
+            overflow: hidden
+            margin-right: 10px
+            display: flex
+            justify-content: center
+            align-items: center
+            background-color: $gray_50
+            img
+              width: 100%
+              object-fit: contain
+              aspect-ratio: 1 / 1
+              object-position: center
+
+
+@media (max-width: 767px)
+  .mob-catalog
+    .wrap
+      .item-wrapper
+        .sub-cat-menu
+          max-width: 540px
+  .mob-menu
+    .menu
+      ul
+        li.menu-item-has-children
+          ul
+            li
+              max-width: 540px
+
+
+
+
+//mob version END
+
+
+//PC version
+@media (min-width: 993px)
+  .mob-header
+    display: none
   .header
     display: block!important
     position: absolute
@@ -65,8 +498,6 @@ body
     top: 0
     padding-top: 40px
     padding-bottom: 40px
-    
-
     nav
       ul
         li
@@ -196,7 +627,9 @@ body
         justify-content: center
         align-items: center
         &:hover
-          background-color: $hover
+          background-color: $link_hover
+          svg path
+            fill: $text
     .phone
       font-size: 16px
       font-weight: 800
@@ -218,6 +651,9 @@ body
       justify-content: center
       position: relative
       padding-right: 26px
+      &:hover
+        .icon
+          transform: translateY(-50%) rotate(-90deg)
       &.active
         .icon
           transform: translateY(-50%) rotate(180deg)
@@ -406,8 +842,9 @@ body
     background-size: cover
     background-position: center
     margin-bottom: 120px
+    
     .text-line
-      display: flex
+      display: тщту
       align-items: center
       justify-content: center
       overflow: hidden
@@ -419,6 +856,10 @@ body
       bottom: -37px
       left: 50%
       transform: translateX(-50%) rotate(2.2deg)
+      &.text-line-pc
+        display: flex!important
+      &.text-line-mob
+        display: none!important
       .marquee
         display: flex
         animation: marquee 120s linear infinite
@@ -466,27 +907,31 @@ body
         display: block
     .wrap
       display: block
-      padding-top: 191px
-      padding-bottom: 180px
+      padding-top: 201px
+      padding-bottom: 190px
       position: relative
     .photo
       position: absolute
-      bottom: 0
+      bottom: -0
       right: -100px
     .subtitle
       font-size: 18px
       max-width: 480px
       line-height: 1.2
       margin-bottom: 54px
+      color: $text
     h1
       font-size: 78px
+      text-transform: uppercase
       max-width: 745px
       font-weight: 800
       line-height: 1
       margin-bottom: 16px
 
-
-
+@media (min-width: 2600px)
+  .home-offer
+    .text-line
+      transform: translateX(-50%) rotate(1.5deg)
 
 
 

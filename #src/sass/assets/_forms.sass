@@ -90,13 +90,21 @@
         background-image: url(../img/icons/no-valid.svg)
 
 .form
+  .mini-title
+    font-size: 32px
+    display: block
+    margin-bottom: 8px
+    line-height: 1
+  .mini-subtitle
+    font-size: 16px
+    line-height: 1.5
+    margin-bottom: 16px
   small
     color: $white_70
     font-size: 12px
     font-weight: 400
     display: block
     line-height: 1.2
-    margin-top: 23px
     a
       color: $white_70
       font-size: 12px
@@ -127,12 +135,20 @@
       max-width: 145px
   .submit
     position: relative
+    margin-bottom: 16px
     input
       font-weight: 500
       font-size: $fsz
-      height: 55px
+      height: 64px
       padding: 0 24px
       width: max-content
+      font-size: 16px
+      font-family: "Roboto Flex", sans-serif
+      font-weight: 800
+      font-stretch: 151%
+      letter-spacing: -3%
+      font-optical-sizing: auto
+      font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
       &:hover
         background-color: $button_hover
     .wpcf7-spinner
@@ -143,7 +159,7 @@
       transform: translate(-50%, -50%)
       z-index: 1
   .input
-    margin-bottom: 10px
+    margin-bottom: 16px
     textarea
       border-radius: 12px
       background-color: #fff
@@ -166,7 +182,7 @@
       background-color: #fff
       color: $text
       font-size: $fsz
-      height: 55px
+      height: 64px
       max-width: 100%
       width: 100%
       margin: 0
@@ -204,22 +220,35 @@
 
 @media (max-width: 767px)
   .form
+    .mini-title
+      font-size: 24px
+      margin-bottom: 8px
+    .mini-subtitle
+      font-size: 14px
+      margin-bottom: 16px
+    .input
+      margin-bottom: 8px
     .form-row
       display: block
       .input
         width: 100%
         max-width: 100%
         margin-right: 0
-        margin-bottom: 10px
+        margin-bottom: 8px
+        input
+          height: 54px
     .submit
       width: 100%
       max-width: 100%
+      margin-bottom: 16px
       .button
         width: 100%
         max-width: 100%
+        font-size: 14px
+        border-radius: 15px
+        height: 54px
     small
       font-size: 12px
-      margin-top: 15px
       a
         font-size: 12px
 

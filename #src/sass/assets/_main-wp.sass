@@ -4,8 +4,6 @@ address
   font-style: normal
 
 .lg-container
-  .lg-next,
-  .lg-prev,
   .lg-close
     height: 24px
     width: 24px
@@ -18,6 +16,18 @@ address
     background-image: url(../img/lightgallery/prev.svg)
   .lg-next
     background-image: url(../img/lightgallery/next.svg)
+  .lg-next,
+  .lg-prev
+    height: 50px
+    width: 50px
+    border-radius: 100%
+    background-color: #fff
+    background-size: 24px 24px
+    background-position: center
+    background-repeat: no-repeat
+    display: block!important
+    &:after, &:before
+      display: none
   .lg-close
     background-image: url(../img/lightgallery/close.svg)
     margin-top: 10px
@@ -27,6 +37,18 @@ address
 
 @media (max-width: 992px)
   .lg-container
+    .lg-next,
+    .lg-prev
+      height: 30px
+      width: 30px
+      border-radius: 0
+      background-color: #fff
+      background-size: 20px 20px
+      background-position: center
+    .lg-prev
+      left: 0
+    .lg-next
+      right: 0
     .lg-content
       margin-bottom: 30px
     .lg-components
@@ -64,6 +86,7 @@ address
     transition: .2s
     &:hover
       transition: .2s
+      color: #fff
       background-color: $button_hover
 
 .icon
@@ -73,7 +96,7 @@ address
   width: max-content
 
 .title
-  font-weight: 900
+  font-weight: 800
   font-size: 48px
   color: $text
   display: block
@@ -105,7 +128,7 @@ address
   a.link-all
     &:hover
       .icon
-        transform: rotate(45deg)
+        transform: translateX(20%)
       span
         color: $link_hover
         
@@ -115,14 +138,19 @@ a.link-all
   display: flex
   justify-content: center
   align-items: center
-  .icon
-    margin-left: 8px
   span
     transition: .2s
-    color: $main
+    color: $text
     font-size: 16px
     font-weight: 500
-    letter-spacing: -0.32px
+    line-height: 1.2
+    display: block
+
+@media (max-width: 992px)
+  a.link-all
+    span
+      font-size: 14px
+
 
 .page-top
   padding-top: 219px
@@ -198,7 +226,6 @@ a.link-all
       &:hover
         transition: .2s
         background-color: $brand_main
-        
 
 .disabled-slider
   .arr
@@ -208,14 +235,22 @@ a.link-all
 
 .dots
   display: flex
+  position: static
+  justify-content: center
+  align-items: center
+  width: 100%
+  margin-top: 12px
   .swiper-pagination-bullet
-    border-radius: 100%
-    height: 10px
-    width: 10px
-    margin: 0 5px
-    background-color: $white_15
-    &.swiper-pagination-bullet-active
-      background-color: $main
+    width: 100%
+    max-width: 26px
+    border-radius: 999px
+    transition: .2s
+    background-color: $text
+    margin: 0 3px
+    height: 3px
+    opacity: .1
+    &-active
+      opacity: 1
 
 .swiper
   width: 100%
@@ -269,10 +304,21 @@ a.link-all
     display: none
 
 @media (max-width: 992px)
+  .slider-wrap
+    .arr
+      height: 40px
+      width: 40px
+      svg
+        width: 20px
+        height: 20px
   .title
     font-size: 40px
     letter-spacing: -1.5px
+    margin-bottom: 20px
     &-row
+      display: block
+      .title
+        margin-bottom: 10px
       .subtitle
         font-size: 16px
         span
@@ -313,19 +359,26 @@ a.link-all
     font-weight: 500
     &.sub
       margin-bottom: 20px
-  .button
-    height: 50px!important
-    font-size: 14px!important
+  .button, a.button
+    height: 54px
+    max-height: 54px
+    min-height: 0
+    font-size: 14px
+    letter-spacing: -0.4px
+    padding: 0 20px
   .title
-    font-size: 26px
+    font-size: 32px
     line-height: 1
-    margin-bottom: 20px
+    margin-bottom: 10px
     max-width: 100%
+    letter-spacing: -1px
     width: 100%
+    &-row
+      margin-bottom: 20px
     &.sub
-      margin-bottom: 16px
+      margin-bottom: 10px
   .subtitle
-    font-size: 12px
+    font-size: 14px
     margin-bottom: 20px
     line-height: 1.2
     max-width: 100%

@@ -45,7 +45,28 @@
 
 <body id="top">
 
-
+<div class="mob-header">
+  <div class="container">
+    <div class="wrap">
+      <?php if (is_home()) : ?>
+        <div class="logo">
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Мерч.рф">
+        </div>
+        <?php else : ?>
+        <a href="/" class="logo" title="Вернуться на главную">
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Мерч.рф" >
+        </a>
+      <?php endif; ?> 
+      <div class="burger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4 5H20" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 12H20" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 19H20" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
 
 <header itemscope itemtype="http://schema.org/WPHeader" class="header" style="display: none"> 
   <div class="container"> 

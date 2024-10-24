@@ -45,6 +45,12 @@ jQuery(document).ready(function ($) {
 		$('.overlay').fadeIn(300);
 		$('html').addClass('fixed');
 	});
+	$('.call-order').on('click', function() {
+		$('.popup.popup-order').fadeIn(300);
+		$('.popup').removeClass('popup-thx');
+		$('.overlay').fadeIn(300);
+		$('html').addClass('fixed');
+	});
 	$('.call-review-single').on('click', function() {
 		$('.popup.popup-single-review').fadeIn(300);
 		$('.popup').removeClass('popup-thx');
