@@ -27,7 +27,39 @@ if (window.screen.width > 992) {
       $('.pc-catalog').removeClass('scrolled');
       $('#up-arr').fadeOut(200);
     }
+    const stickyElement = document.querySelectorAll('.sticky-elem');
+    if (stickyElement.length > 0) {
+      const rightElement = document.querySelector('.faq-page .right');
+      const container = document.querySelector('.faq-page .wrap'); // Контейнер родитель
+      const topOffset = 100; // Отступ сверху
+      const scrollPosition = window.scrollY;
+      
+      const containerTop = container.offsetTop;
+      const containerHeight = container.offsetHeight;
+      const rightElementHeight = rightElement.offsetHeight;
+    
+      // Определяем положение контейнера
+      const containerBottom = containerTop + containerHeight;
+    
+      // Если скролл больше чем положение контейнера минус отступ
+      if (scrollPosition > containerTop - topOffset && scrollPosition < (containerBottom - rightElementHeight - topOffset)) {
+        rightElement.style.position = 'fixed';
+        rightElement.classList.add('active');
+        rightElement.style.top = `${topOffset}px`;
+        rightElement.style.bottom = 'auto';
+      } else if (scrollPosition >= (containerBottom - rightElementHeight - topOffset)) {
+        // Останавливаем элемент, если прокрутка доходит до конца контейнера
+        rightElement.style.position = 'absolute';
+        rightElement.style.top = 'auto';
+        rightElement.style.bottom = '0';
+      } else {
+        // Возвращаем элемент к исходному состоянию
+        rightElement.style.position = 'static';
+        rightElement.classList.remove('active');
+      }
+    }
   });
+    
   
   // Функция для открытия подменю с задержкой
   function openSubMenu(_this) {
@@ -158,6 +190,19 @@ if (window.screen.width > 992) {
 
 } else {
 
+  $('#up-arr').on('click', function() {
+    topScroll(500);
+  })
+  $(window).scroll(function() { 
+    if ($(window).scrollTop() > 200) {
+      $('.mob-header').addClass('scrolled');
+      $('#up-arr').fadeIn(200);
+    } else {
+      $('.mob-header').removeClass('scrolled');
+      $('#up-arr').fadeOut(200);
+    }
+  });
+
   $('.mob-header .burger').on('click', function() {
       $('.mob-menu').slideDown(200);
       $('html').addClass('fixed');
@@ -226,7 +271,6 @@ if (window.screen.width > 992) {
       });
     });
   }
-
 
   //mob catalog scripts
   $('.mob-catalog-toggle').on('click', function(ev) {
@@ -5844,6 +5888,88 @@ jQuery(document).ready(function ($) {
         wrapper.classList.add('disabled-slider');
       }
 	}
+  const singlePortfolioSlider = document.querySelector('.portfolio-single');
+	if (singlePortfolioSlider) {
+      const wrapper = singlePortfolioSlider.querySelector('.left');
+      const swiper = singlePortfolioSlider.querySelector('.swiper');
+      const arrNext = singlePortfolioSlider.querySelector('.arr-next');
+      const arrPrev = singlePortfolioSlider.querySelector('.arr-prev');
+      const dots = singlePortfolioSlider.querySelector('.dots');
+      const items = singlePortfolioSlider.querySelectorAll('.swiper-slide');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: true,
+          slidesPerView: 1,
+          spaceBetween: 8,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          pagination: {
+            el: dots,
+            clickable: true,
+          },
+        });
+      }
+      if (items.length > 1) {
+        startSlider();
+      }  else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
+
+  const feedVideos = document.querySelector('.feed-videos');
+	if (feedVideos) {
+      const wrapper = feedVideos.querySelector('.wrap');
+      const swiper = feedVideos.querySelector('.swiper');
+      const arrNext = feedVideos.querySelector('.arr-next');
+      const arrPrev = feedVideos.querySelector('.arr-prev');
+      const items = feedVideos.querySelectorAll('.wrap .item');
+      const pagination = feedVideos.querySelector('.dots');
+
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 15,
+            },
+            578: {
+              spaceBetween: 0,
+              slidesPerView: 1,
+            },  
+            768: {
+              spaceBetween: 10,
+              slidesPerView: 1,
+            },  
+            992: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 2) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 1) {
+        startSlider();
+      } else if (window.screen.width < 768 && items.length > 1) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
 
   const textFeedSlider = document.querySelector('.feed-block-text');
 	if (textFeedSlider) {
@@ -5867,7 +5993,7 @@ jQuery(document).ready(function ($) {
           breakpoints: {
             300: {
               slidesPerView: 1,
-              spaceBetween: 0,
+              spaceBetween: 15,
             }, 
             992: {
               slidesPerView: 2,
@@ -5882,6 +6008,55 @@ jQuery(document).ready(function ($) {
         startSlider();
       } else {
         textFeedSlider.classList.add('disabled-slider');
+      }
+	}
+
+  const equipSlider = document.querySelector('.equip-slider');
+	if (equipSlider) {
+      const swiper = equipSlider.querySelector('.swiper');
+      const arrNext = equipSlider.querySelector('.arr-next');
+      const wrapper = equipSlider.querySelector('.wrap');
+      const arrPrev = equipSlider.querySelector('.arr-prev');
+      const items = equipSlider.querySelectorAll('.item');
+      const pagination = equipSlider.querySelector('.dots');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          pagination: {
+            el: pagination,
+            clickable: true,
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 15,
+              autoHeight: true,
+            }, 
+            578: {
+              slidesPerView: 2,
+              spaceBetween: 8,
+              autoHeight: false,
+            }, 
+            992: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+              autoHeight: false,
+
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 3) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 2) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
       }
 	}
   
@@ -6026,7 +6201,23 @@ jQuery(document).ready(function ($) {
         spaceBetween: 8,
         breakpoints: {
           300: {
-            slidesPerView: 3,
+            slidesPerView: 4,
+          }
+        },
+      });
+    }
+    const colorSlider = document.querySelector('.colors');
+    if (colorSlider) {
+      const swiper = colorSlider.querySelector('.swiper');
+
+      new Swiper(swiper, {
+        lazy: false,
+        autoHeight: false,
+        spaceBetween: 10,
+        breakpoints: {
+          300: {
+            slidesPerView: 4,
+            spaceBetween: 10,
           }
         },
       });
@@ -6069,6 +6260,116 @@ jQuery(document).ready(function ($) {
     }
   }
 
+  const materialSlider = document.querySelector('.material');
+	if (materialSlider) {
+      const wrapper = materialSlider.querySelector('.wrap');
+      const swiper = materialSlider.querySelector('.swiper');
+      const arrNext = materialSlider.querySelector('.arr-next');
+      const arrPrev = materialSlider.querySelector('.arr-prev');
+      const items = materialSlider.querySelectorAll('.item');
+
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          breakpoints: {
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 4) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
+
+  const portfolioSlider = document.querySelector('.portfolio-slider');
+
+  if (portfolioSlider) {
+      const swiperContainer = portfolioSlider.querySelector('.swiper');
+      const swiperWrapper = swiperContainer.querySelector('.swiper-wrapper');
+      const arrNext = portfolioSlider.querySelector('.arr-next');
+      const arrPrev = portfolioSlider.querySelector('.arr-prev');
+      const tabsContainer = portfolioSlider.querySelector('.tabs'); // Контейнер для вкладок
+      const tabs = portfolioSlider.querySelectorAll('.tab');
+      const allSlides = Array.from(swiperWrapper.children); // Сохраняем все слайды
+      let swiperInstance;
+  
+      // Создаем вкладку "Все работы" и добавляем её в начало контейнера вкладок
+      const allTab = document.createElement('div');
+      allTab.classList.add('tab', 'active'); // Устанавливаем как активную вкладку по умолчанию
+      allTab.textContent = 'Все работы';
+      tabsContainer.insertBefore(allTab, tabsContainer.firstChild); // Вставляем в начало
+  
+      function startSlider() {
+          swiperInstance = new Swiper(swiperContainer, {
+              lazy: false,
+              autoHeight: false,
+              navigation: {
+                  nextEl: arrNext,
+                  prevEl: arrPrev,
+              },
+              breakpoints: {
+                  300: {
+                      slidesPerView: 1,
+                      spaceBetween: 8,
+                  },
+                  767: {
+                      slidesPerView: 2,
+                      spaceBetween: 8,
+                  },
+                  992: {
+                      slidesPerView: 3,
+                      spaceBetween: 20,
+                  }
+              },
+          });
+      }
+  
+      function filterSlides(category) {
+          // Очищаем все слайды в слайдере
+          swiperWrapper.innerHTML = '';
+  
+          // Добавляем только те слайды, которые соответствуют категории
+          const filteredSlides = allSlides.filter(slide => {
+              const types = slide.getAttribute('data-type').split(',').map(type => type.trim());
+              return category === 'Все работы' || types.includes(category);
+          });
+  
+          filteredSlides.forEach(slide => {
+              swiperWrapper.appendChild(slide); // Добавляем отфильтрованные слайды в обертку
+          });
+  
+          // Перезапуск слайдера
+          if (swiperInstance) {
+              swiperInstance.destroy(true, true); // Уничтожаем текущий экземпляр
+          }
+          startSlider(); // Перезапускаем слайдер с обновленным набором слайдов
+      }
+  
+      // Инициализация слайдера с фильтром "Все работы"
+      startSlider();
+      filterSlides('Все работы');
+  
+      // Обработка кликов по вкладкам .tab
+      tabsContainer.querySelectorAll('.tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+              tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); // Убираем класс active у всех вкладок
+              tab.classList.add('active'); // Добавляем класс active к текущей вкладке
+              const category = tab.textContent.trim(); // Получаем текст категории
+              filterSlides(category); // Фильтруем и перезапускаем слайдер
+          });
+      });
+  }
+
 }); //end
 jQuery(document).ready(function ($) {
 		
@@ -6081,7 +6382,11 @@ jQuery(document).ready(function ($) {
 		$('.popup').addClass('popup-thx');
 		$('.thanks').removeClass('popup-thx');
 		$('.overlay').fadeIn(300);
-		$('.input.listen').removeClass('listen')
+		$('.input.listen').removeClass('listen');
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
   });
   /* $(".wpcf7").on('wpcf7invalid', function(event){
     alert('Заполните поля правильно и повторите попытку!');
@@ -6149,6 +6454,10 @@ jQuery(document).ready(function ($) {
 		if ($('.popup.popup-video').is(':visible')) {
 			history.forward();
 		}
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
 	});
 	$('.popup .close').on('click', function() {
 		$('.popup').fadeOut(300);
@@ -6221,12 +6530,12 @@ jQuery(document).ready(function ($) {
 	$('input[type="file"]').change(function() {
     var fileInput = $(this);
     var fileName = fileInput.val().split('\\').pop();
-    var fileTextDiv = $(this).closest('.input-file').find('.input-file-text');
+    var fileTextDiv = $(this).closest('.input-file').find('.input-file-meta b');
 		console.log(fileTextDiv)
     if (fileName) {
       fileTextDiv.text(fileName);
     } else {
-      fileTextDiv.text('Файл не выбран');
+      fileTextDiv.text('Прикрепить файл');
     }
   });
 
@@ -6384,26 +6693,35 @@ jQuery(document).ready(function ($) {
 		alert("Ссылка скопирована: " + currentLink);
 	});
 
-	//FAQ PAGE
-	$('.faq-page-offer .answers .answer-title').on('click', function() {
-		$(this).next().slideToggle(200);
-		$(this).toggleClass('active');
-	});
-	$('.faq-page-offer .tabs .item').on('click', function() {
-    $('.faq-page-offer .tabs .item').removeClass('active');
-    $(this).addClass('active');
-    var index = $(this).index(); 
-    $('.faq-page-offer .answers').fadeOut(200, function() {
-			$('.faq-page-offer .answers').eq(index).fadeIn(200);
-    });
-	});
-	 
-	$(".anchor").click(function () {
-		var elementClick = $(this).attr("href");
-		var destination = $(elementClick).offset().top - 100;
-		$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
-		return false;
-	});
+	if (window.screen.width > 992) {
+		$(".anchor").click(function () {
+			var elementClick;
+			$('.anchor').removeClass('active-faq');
+			$(this).addClass('active-faq');
+			if ($(this).attr('data-href')) {
+				elementClick = $(this).attr("data-href");
+			} else {
+				elementClick = $(this).attr("href");
+			}
+			var destination = $(elementClick).offset().top - 100;
+			$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
+			return false;
+		});
+	} else {
+		$(".anchor").click(function () {
+			var elementClick;
+			$('.anchor').removeClass('active-faq');
+			$(this).addClass('active-faq');
+			if ($(this).attr('data-href')) {
+				elementClick = $(this).attr("data-href");
+			} else {
+				elementClick = $(this).attr("href");
+			}
+			var destination = $(elementClick).offset().top - 70;
+			$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
+			return false;
+		});
+	}
 
 	const html = document.querySelector('html');
 	function disableScroll() {
@@ -6509,60 +6827,6 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
-	const pageTextFeed = document.querySelector('.only-feed-text');
-
-	if (pageTextFeed) {
-			const items = pageTextFeed.querySelectorAll('.item');
-			const moarBtn = pageTextFeed.querySelector('.moar-btn');
-			const itemsToShow = 4; // Количество отзывов для показа за один раз
-			let currentItems = itemsToShow; // Текущее количество отображаемых отзывов
-	
-			if (items.length > itemsToShow) {
-					// Скрываем все отзывы
-					items.forEach(item => {
-							item.style.display = 'none';
-					});
-	
-					// Показываем первые 4 отзыва
-					for (let i = 0; i < itemsToShow; i++) {
-							items[i].style.display = 'block';
-					}
-	
-					// Показываем кнопку "Показать еще"
-					moarBtn.style.display = 'flex';
-					moarBtn.textContent = 'Показать еще';
-	
-					// Обработчик события на кнопку
-					moarBtn.addEventListener('click', function() {
-							if (moarBtn.textContent === 'Показать еще') {
-									// Показываем следующие отзывы
-									for (let i = currentItems; i < currentItems + itemsToShow && i < items.length; i++) {
-											items[i].style.display = 'block';
-									}
-									currentItems += itemsToShow;
-	
-									// Если все отзывы показаны, меняем текст кнопки на "Свернуть"
-									if (currentItems >= items.length) {
-											moarBtn.textContent = 'Свернуть';
-									}
-							} else {
-									// Скрываем все отзывы кроме первых 4
-									items.forEach((item, index) => {
-											item.style.display = index < itemsToShow ? 'block' : 'none';
-									});
-									currentItems = itemsToShow;
-									moarBtn.textContent = 'Показать еще';
-							}
-					});
-			} else {
-					// Если отзывов 4 или меньше, показываем все и скрываем кнопку
-					items.forEach(item => {
-							item.style.display = 'block';
-					});
-					moarBtn.style.display = 'none';
-			}
-	}
-
 	if (window.screen.width < 993) {
 		const seoDouble = document.querySelectorAll('.seo-double')
 
@@ -6595,6 +6859,183 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
+	$('.vacancy-page .item .top').on('click', function() {
+		$(this).toggleClass('active');
+		$(this).next().slideToggle(200);
+	});
+
+	$('.actions-page .wrap .item').on('click', function(ev) {
+		if (!ev.target.closest('.popup')) {
+			$(this).find('.popup').fadeIn(300);
+			$('.popup').removeClass('popup-thx');
+			$('.overlay').fadeIn(300);
+			$('html').addClass('fixed');
+		}
+	});
+	if (window.screen.width > 992) {
+		document.querySelectorAll('.all-services-block .item').forEach(item => {
+			const listItems = item.querySelectorAll('ul li');
+			
+			// Проверяем, больше ли 6 элементов <li>
+			if (listItems.length > 6) {
+					// Скрываем все элементы после шестого
+					listItems.forEach((li, index) => {
+							if (index >= 6) {
+									li.style.display = 'none';
+							}
+					});
+	
+					// Создаем кнопку "Смотреть все"
+					const showMoreBtn = document.createElement('div');
+					showMoreBtn.classList.add('show-li');
+					showMoreBtn.textContent = 'Смотреть все';
+	
+					// Добавляем кнопку после списка
+					item.appendChild(showMoreBtn);
+	
+					// Обработчик клика для отображения всех скрытых элементов
+					showMoreBtn.addEventListener('click', () => {
+							listItems.forEach(li => li.style.display = ''); // Показываем все <li>
+							showMoreBtn.style.display = 'none'; // Скрываем кнопку после нажатия
+					});
+			}
+		});
+	} else {
+		$('.all-services-block .item b').on('click', function() {
+			$(this).next().slideToggle(300);
+			$(this).toggleClass('active')
+		})
+	}
+
 
 
 }); //end
+jQuery(document).ready(function($) {
+  const portfolioPage = $('.portfolio-page');
+
+  if (portfolioPage.length) {
+      const wrap = portfolioPage.find('.wrap');
+      const mainCats = portfolioPage.find('.main-cats .item');
+      const subCats = portfolioPage.find('.sub-cats .item');
+      let showMoreBtn = $('<button class="button show-more">Показать еще</button>').insertAfter(wrap);
+      let activeType = '';
+      let activeBrand = '';
+      let postsToShow = 9;
+
+      // Добавляем "Все работы" в каждый блок sub-cats
+      subCats.each(function() {
+          $(this).prepend('<div class="tab all-work active">Все работы</div>');
+      });
+
+      // Инициализация: отображаем только первый .sub-cats с display: flex
+      subCats.hide().first().css('display', 'flex').show();
+
+      // Инициализация показа постов и кнопки
+      showPosts();
+      toggleShowMoreBtn();
+
+      // Переключение вкладок main-cats
+      mainCats.on('click', function() {
+        const index = $(this).index();
+        mainCats.removeClass('active');
+        $(this).addClass('active');
+        subCats.hide().eq(index).css('display', 'flex').show(); // Устанавливаем display: flex для активной вкладки
+
+        // Сброс активных фильтров
+        activeType = '';
+        activeBrand = '';
+        subCats.find('.tab').removeClass('active');
+        subCats.eq(index).find('.all-work').addClass('active');
+        postsToShow = 9; // Сбрасываем количество видимых постов на 9
+        showPosts(); // Показываем посты с учетом сброшенных фильтров
+        toggleShowMoreBtn(); // Перезапускаем отображение кнопки "Показать еще"
+      });
+
+      // Клик по "Все работы" для сброса фильтров
+      subCats.find('.all-work').on('click', function() {
+          activeType = '';
+          activeBrand = '';
+          subCats.find('.tab').removeClass('active');
+          $(this).addClass('active');
+          postsToShow = 9;
+          showPosts();
+          toggleShowMoreBtn();
+      });
+
+      // Клик по фильтрам в sub-cats
+      subCats.find('.tab').not('.all-work').on('click', function() {
+          const parentIndex = $(this).closest('.item').index();
+          const value = $(this).text().trim();
+
+          // Устанавливаем активный фильтр
+          $(this).toggleClass('active').siblings().removeClass('active');
+          subCats.eq(parentIndex).find('.all-work').removeClass('active');
+          if (parentIndex === 0) {
+              activeType = $(this).hasClass('active') ? value : '';
+          } else if (parentIndex === 1) {
+              activeBrand = $(this).hasClass('active') ? value : '';
+          }
+
+          // Сброс количества видимых постов и обновление отображения
+          postsToShow = 9;
+          showPosts();
+          toggleShowMoreBtn();
+      });
+
+      // Показать посты с фильтрацией
+      function showPosts() {
+          let visibleCount = 0;
+
+          wrap.find('.item').each(function() {
+              const item = $(this);
+              const dataType = item.data('type') ? item.data('type').split(',').map(e => e.trim()) : [];
+              const dataBrand = item.data('brand') ? item.data('brand').split(',').map(e => e.trim()) : [];
+
+              // Проверка соответствия фильтрам
+              const matchesType = !activeType || dataType.includes(activeType);
+              const matchesBrand = !activeBrand || dataBrand.includes(activeBrand);
+
+              if (matchesType && matchesBrand && visibleCount < postsToShow) {
+                  item.show();
+                  visibleCount++;
+              } else {
+                  item.hide();
+              }
+          });
+      }
+
+      // Кнопка "Показать еще"
+      showMoreBtn.on('click', function() {
+          if (showMoreBtn.text() === 'Показать еще') {
+              postsToShow += 9;
+          } else {
+              postsToShow = 9; // Сброс к начальным 9 постам при клике на "Свернуть"
+          }
+          showPosts();
+          toggleShowMoreBtn();
+      });
+
+      // Отображение или скрытие кнопки "Показать еще"
+      function toggleShowMoreBtn() {
+          const visibleItems = wrap.find('.item:visible').length;
+          const totalItems = wrap.find('.item').filter(function() {
+              const dataType = $(this).data('type') ? $(this).data('type').split(',').map(e => e.trim()) : [];
+              const dataBrand = $(this).data('brand') ? $(this).data('brand').split(',').map(e => e.trim()) : [];
+
+              const matchesType = !activeType || dataType.includes(activeType);
+              const matchesBrand = !activeBrand || dataBrand.includes(activeBrand);
+
+              return matchesType && matchesBrand;
+          }).length;
+
+          if (totalItems > visibleItems) {
+              showMoreBtn.show().text('Показать еще');
+          } else if (totalItems <= visibleItems && totalItems > 9) {
+              showMoreBtn.show().text('Свернуть');
+          } else {
+              showMoreBtn.hide();
+          }
+      }
+  }
+
+});

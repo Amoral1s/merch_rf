@@ -215,6 +215,17 @@
 <!-- Popups -->
   <div class="overlay" style="display: none"></div>
 
+  <div class="portfolio-popup">
+    <div class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 5L5 19M5 5L19 19" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wrapper">
+      <div class="loader">Загрузка...</div>
+    </div>
+  </div>
+
   <div class="popup popup-video" style="display: none">
     <div class="close">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -273,6 +284,45 @@
           Наш эксперт подготовит смету для вас
         </p>
         <?php echo do_shortcode('[contact-form-7 id="c338e7d" title="Возникли вопросы? (попап)"]'); ?>
+      </div>
+      <div class="data" id="data-product" style="display: none">
+
+      </div>
+      <div class="manager">
+        <div class="left">
+          <div class="avatar">
+            <img src="<?php echo get_field('banner_avatar','options'); ?>" alt="<?php echo get_field('banner_name','options'); ?>">
+          </div>
+          <div class="meta">
+            <b class="roboto"><?php echo get_field('banner_name','options'); ?></b>
+            <p><?php echo get_field('banner_place','options'); ?></p>
+          </div>
+        </div>
+        <div class="right">
+          <a href="tel:<?php echo get_field('phone','options'); ?>" class="roboto phone">
+            <?php echo get_field('phone','options'); ?>
+          </a>
+          <span><?php echo get_field('work_time', 'options'); ?></span>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="popup popup-portfolio" style="display: none">
+    <div class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 5L5 19M5 5L19 19" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wrapper">
+      <div class="form form-white">
+        <b class="roboto">Заказать расчёт</b>
+        <p class="subtitle">
+          Наш эксперт подготовит смету для вас
+        </p>
+        <?php echo do_shortcode('[contact-form-7 id="293efb6" title="Заказ из портфолио"]'); ?>
       </div>
       <div class="data" id="data-product" style="display: none">
 
@@ -582,6 +632,15 @@
 <!-- Filters popup -->
 
 <!-- Filters popup END -->
+
+<div id="up-arr" style="display: none">
+  <div class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+      <path d="M15 6.25L15.0002 25" stroke="#141B34" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21.2502 11.25L15.884 5.88391C15.4674 5.46724 15.259 5.25891 15.0001 5.25891C14.7413 5.25891 14.5329 5.46724 14.1163 5.88391L8.75013 11.25" stroke="#141B34" stroke-width="1.875" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</div>
 
 <?php wp_footer(); ?>
 

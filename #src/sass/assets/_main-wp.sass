@@ -3,56 +3,7 @@
 address
   font-style: normal
 
-.lg-container
-  .lg-close
-    height: 24px
-    width: 24px
-    background-repeat: no-repeat
-    background-size: contain
-    display: block!important
-    &:after, &:before
-      display: none
-  .lg-prev
-    background-image: url(../img/lightgallery/prev.svg)
-  .lg-next
-    background-image: url(../img/lightgallery/next.svg)
-  .lg-next,
-  .lg-prev
-    height: 50px
-    width: 50px
-    border-radius: 100%
-    background-color: #fff
-    background-size: 24px 24px
-    background-position: center
-    background-repeat: no-repeat
-    display: block!important
-    &:after, &:before
-      display: none
-  .lg-close
-    background-image: url(../img/lightgallery/close.svg)
-    margin-top: 10px
-    margin-right: 10px
-  .lg-sub-html
-    display: none
 
-@media (max-width: 992px)
-  .lg-container
-    .lg-next,
-    .lg-prev
-      height: 30px
-      width: 30px
-      border-radius: 0
-      background-color: #fff
-      background-size: 20px 20px
-      background-position: center
-    .lg-prev
-      left: 0
-    .lg-next
-      right: 0
-    .lg-content
-      margin-bottom: 30px
-    .lg-components
-      display: none
 
 .grecaptcha-badge
   display: none
@@ -69,7 +20,7 @@ address
   border-radius: 15px
   width: max-content
   max-width: 100%
-  padding: 0 26px
+  padding: 0 32px
   cursor: pointer
   background-color: $button
   color: #fff
@@ -80,10 +31,20 @@ address
   letter-spacing: -3%
   font-optical-sizing: auto
   font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+  &.btn-arr
+    .icon
+      margin-left: 10px
+  &.button-green
+    background-color: $brand_main
+    color: $text
 
 @media (min-width: 992px)
   .button, a.button
     transition: .2s
+    &.button-green
+      &:hover
+        background-color: $brand_light
+        color: $text
     &:hover
       transition: .2s
       color: #fff
@@ -151,21 +112,24 @@ a.link-all
     span
       font-size: 14px
 
-
 .page-top
-  padding-top: 219px
+  padding-top: 120px
 
 .page-title
-  font-size: 64px
   display: block
-  font-weight: 500
-  font-family: $font
-  letter-spacing: -3.84px
+  font-family: "Roboto Flex", sans-serif
+  font-style: normal
+  font-stretch: 151%
+  letter-spacing: -3%
+  font-optical-sizing: auto
+  font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+  font-size: 54px
   line-height: 1
+  font-weight: 800
   margin-bottom: 50px
   &.sub
-    font-size: 64px
-    margin-bottom: 30px
+    font-size: 54px
+    margin-bottom: 24px
 
 .breadcrumbs
   color: $gray_450
@@ -187,6 +151,9 @@ a.link-all
   font-weight: 400
   color: $gray_500
   margin-bottom: 40px
+  &.dark
+    color: $text
+    font-size: 16px
   &.center
     text-align: center
 
@@ -328,10 +295,11 @@ a.link-all
     span
       font-size: 16px
   .page-top
-    padding-top: 80px
+    padding-top: 66px
   .page-title
     font-size: 42px
     letter-spacing: -1.7px
+    margin-bottom: 24px
     &.sub
       margin-bottom: 20px
       font-size: 42px
@@ -355,10 +323,12 @@ a.link-all
 
 @media (max-width: 767px)
   .page-title
-    font-size: 32px
-    font-weight: 500
+    font-size: 36px
+    margin-bottom: 16px
+    letter-spacing: -1.08px
     &.sub
-      margin-bottom: 20px
+      margin-bottom: 16px
+      font-size: 36px
   .button, a.button
     height: 54px
     max-height: 54px
@@ -369,7 +339,7 @@ a.link-all
   .title
     font-size: 32px
     line-height: 1
-    margin-bottom: 10px
+    margin-bottom: 20px
     max-width: 100%
     letter-spacing: -1px
     width: 100%
@@ -379,7 +349,7 @@ a.link-all
       margin-bottom: 10px
   .subtitle
     font-size: 14px
-    margin-bottom: 20px
+    margin-bottom: 16px
     line-height: 1.2
     max-width: 100%
     width: 100%
@@ -403,17 +373,52 @@ a.link-all
   .breadcrumbs
     overflow: hidden
     white-space: nowrap
+
+@media (max-width: 360px)
   .page-title
-    font-size: 28px
-    margin-bottom: 20px
-    &.sub
-      font-size: 28px
-      margin-bottom: 12px
+    word-break: break-word
+    hyphens: auto
 
+#up-arr
+  position: fixed
+  z-index: 20
+  left: 20px
+  bottom: 20px
+  background-color: $text
+  border-radius: 12px
+  cursor: pointer
+  transition: .3s
+  .icon
+    width: 50px
+    height: 50px
+    border-radius: 12px
+    display: flex
+    justify-content: center
+    align-items: center
+  svg path
+    stroke: #fff
 
+@media (min-width: 992px)
+  #up-arr
+    &:hover
+      background-color: $brand_main
+      svg path
+        stroke: $text
+@media (max-width: 992px)
+  #up-arr
+    bottom: 20px
+    left: 10px
+    height: 40px
+    width: 40px
+    .icon
+      width: 40px
+      height: 40px
+    svg 
+      width: 24px
+      height: 24px
 
-
-
-
-
-
+@media (min-width: 992px)
+  .pc-mb40
+    margin-bottom: 40px
+  .pc-mb60
+    margin-bottom: 60px

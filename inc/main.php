@@ -103,29 +103,10 @@ function remove_plugin_updates_ACF($value) {
 add_filter('site_transient_update_plugins', 'remove_plugin_updates_ACF'); 
 
 function remove_plugin_updates_DUPLICATOR($value) {
-  unset($value->response['duplicator-pro/index.php']);
+  unset($value->response['duplicator-pro/duplicator-pro.php']);
   return $value; 
 }
 add_filter('site_transient_update_plugins', 'remove_plugin_updates_DUPLICATOR'); 
-
-function remove_plugin_updates_ACC($value) {
-  unset($value->response['seraphinite-accelerator-ext/plugin_root.php']);
-  return $value; 
-}
-add_filter('site_transient_update_plugins', 'remove_plugin_updates_ACC'); 
-
-function remove_plugin_updates_WISHLIST($value) {
-  unset($value->response['ti-woocommerce-wishlist/ti-woocommerce-wishlist.php']);
-  return $value; 
-}
-add_filter('site_transient_update_plugins', 'remove_plugin_updates_WISHLIST'); 
-
-function remove_plugin_updates_COMPARE($value) {
-  unset($value->response['products-compare-for-woocommerce/products-compare.php']);
-  return $value; 
-}
-add_filter('site_transient_update_plugins', 'remove_plugin_updates_COMPARE'); 
-
 
 function remove_plugin_updates_PERMALINK($value) {
   unset($value->response['permalink-manager-pro/permalink-manager.php']);

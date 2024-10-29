@@ -58,26 +58,35 @@ jQuery(document).ready(function ($) {
 		alert("Ссылка скопирована: " + currentLink);
 	});
 
-	//FAQ PAGE
-	$('.faq-page-offer .answers .answer-title').on('click', function() {
-		$(this).next().slideToggle(200);
-		$(this).toggleClass('active');
-	});
-	$('.faq-page-offer .tabs .item').on('click', function() {
-    $('.faq-page-offer .tabs .item').removeClass('active');
-    $(this).addClass('active');
-    var index = $(this).index(); 
-    $('.faq-page-offer .answers').fadeOut(200, function() {
-			$('.faq-page-offer .answers').eq(index).fadeIn(200);
-    });
-	});
-	 
-	$(".anchor").click(function () {
-		var elementClick = $(this).attr("href");
-		var destination = $(elementClick).offset().top - 100;
-		$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
-		return false;
-	});
+	if (window.screen.width > 992) {
+		$(".anchor").click(function () {
+			var elementClick;
+			$('.anchor').removeClass('active-faq');
+			$(this).addClass('active-faq');
+			if ($(this).attr('data-href')) {
+				elementClick = $(this).attr("data-href");
+			} else {
+				elementClick = $(this).attr("href");
+			}
+			var destination = $(elementClick).offset().top - 100;
+			$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
+			return false;
+		});
+	} else {
+		$(".anchor").click(function () {
+			var elementClick;
+			$('.anchor').removeClass('active-faq');
+			$(this).addClass('active-faq');
+			if ($(this).attr('data-href')) {
+				elementClick = $(this).attr("data-href");
+			} else {
+				elementClick = $(this).attr("href");
+			}
+			var destination = $(elementClick).offset().top - 70;
+			$("html:not(:animated),body:not(:animated)").animate({scrollTop: destination}, 500);
+			return false;
+		});
+	}
 
 	const html = document.querySelector('html');
 	function disableScroll() {
@@ -183,60 +192,6 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
-	const pageTextFeed = document.querySelector('.only-feed-text');
-
-	if (pageTextFeed) {
-			const items = pageTextFeed.querySelectorAll('.item');
-			const moarBtn = pageTextFeed.querySelector('.moar-btn');
-			const itemsToShow = 4; // Количество отзывов для показа за один раз
-			let currentItems = itemsToShow; // Текущее количество отображаемых отзывов
-	
-			if (items.length > itemsToShow) {
-					// Скрываем все отзывы
-					items.forEach(item => {
-							item.style.display = 'none';
-					});
-	
-					// Показываем первые 4 отзыва
-					for (let i = 0; i < itemsToShow; i++) {
-							items[i].style.display = 'block';
-					}
-	
-					// Показываем кнопку "Показать еще"
-					moarBtn.style.display = 'flex';
-					moarBtn.textContent = 'Показать еще';
-	
-					// Обработчик события на кнопку
-					moarBtn.addEventListener('click', function() {
-							if (moarBtn.textContent === 'Показать еще') {
-									// Показываем следующие отзывы
-									for (let i = currentItems; i < currentItems + itemsToShow && i < items.length; i++) {
-											items[i].style.display = 'block';
-									}
-									currentItems += itemsToShow;
-	
-									// Если все отзывы показаны, меняем текст кнопки на "Свернуть"
-									if (currentItems >= items.length) {
-											moarBtn.textContent = 'Свернуть';
-									}
-							} else {
-									// Скрываем все отзывы кроме первых 4
-									items.forEach((item, index) => {
-											item.style.display = index < itemsToShow ? 'block' : 'none';
-									});
-									currentItems = itemsToShow;
-									moarBtn.textContent = 'Показать еще';
-							}
-					});
-			} else {
-					// Если отзывов 4 или меньше, показываем все и скрываем кнопку
-					items.forEach(item => {
-							item.style.display = 'block';
-					});
-					moarBtn.style.display = 'none';
-			}
-	}
-
 	if (window.screen.width < 993) {
 		const seoDouble = document.querySelectorAll('.seo-double')
 
@@ -265,6 +220,54 @@ jQuery(document).ready(function ($) {
 		}
 		$('.footer .item.menu b').on('click', function() {
 			$(this).next().slideToggle(200);
+			$(this).toggleClass('active')
+		})
+	}
+
+	$('.vacancy-page .item .top').on('click', function() {
+		$(this).toggleClass('active');
+		$(this).next().slideToggle(200);
+	});
+
+	$('.actions-page .wrap .item').on('click', function(ev) {
+		if (!ev.target.closest('.popup')) {
+			$(this).find('.popup').fadeIn(300);
+			$('.popup').removeClass('popup-thx');
+			$('.overlay').fadeIn(300);
+			$('html').addClass('fixed');
+		}
+	});
+	if (window.screen.width > 992) {
+		document.querySelectorAll('.all-services-block .item').forEach(item => {
+			const listItems = item.querySelectorAll('ul li');
+			
+			// Проверяем, больше ли 6 элементов <li>
+			if (listItems.length > 6) {
+					// Скрываем все элементы после шестого
+					listItems.forEach((li, index) => {
+							if (index >= 6) {
+									li.style.display = 'none';
+							}
+					});
+	
+					// Создаем кнопку "Смотреть все"
+					const showMoreBtn = document.createElement('div');
+					showMoreBtn.classList.add('show-li');
+					showMoreBtn.textContent = 'Смотреть все';
+	
+					// Добавляем кнопку после списка
+					item.appendChild(showMoreBtn);
+	
+					// Обработчик клика для отображения всех скрытых элементов
+					showMoreBtn.addEventListener('click', () => {
+							listItems.forEach(li => li.style.display = ''); // Показываем все <li>
+							showMoreBtn.style.display = 'none'; // Скрываем кнопку после нажатия
+					});
+			}
+		});
+	} else {
+		$('.all-services-block .item b').on('click', function() {
+			$(this).next().slideToggle(300);
 			$(this).toggleClass('active')
 		})
 	}

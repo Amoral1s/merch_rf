@@ -9,7 +9,11 @@ jQuery(document).ready(function ($) {
 		$('.popup').addClass('popup-thx');
 		$('.thanks').removeClass('popup-thx');
 		$('.overlay').fadeIn(300);
-		$('.input.listen').removeClass('listen')
+		$('.input.listen').removeClass('listen');
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
   });
   /* $(".wpcf7").on('wpcf7invalid', function(event){
     alert('Заполните поля правильно и повторите попытку!');
@@ -77,6 +81,10 @@ jQuery(document).ready(function ($) {
 		if ($('.popup.popup-video').is(':visible')) {
 			history.forward();
 		}
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
 	});
 	$('.popup .close').on('click', function() {
 		$('.popup').fadeOut(300);
@@ -149,12 +157,12 @@ jQuery(document).ready(function ($) {
 	$('input[type="file"]').change(function() {
     var fileInput = $(this);
     var fileName = fileInput.val().split('\\').pop();
-    var fileTextDiv = $(this).closest('.input-file').find('.input-file-text');
+    var fileTextDiv = $(this).closest('.input-file').find('.input-file-meta b');
 		console.log(fileTextDiv)
     if (fileName) {
       fileTextDiv.text(fileName);
     } else {
-      fileTextDiv.text('Файл не выбран');
+      fileTextDiv.text('Прикрепить файл');
     }
   });
 

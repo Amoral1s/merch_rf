@@ -629,11 +629,51 @@
   <div class="container">
     <h2 class="title"><?php echo get_field('services_title','home') ?></h2>
     <div class="wrap">
-    <?php if (have_rows('services','home')) : while(have_rows('services','home')) : the_row(); ?>
-      <a href="<?php echo get_sub_field('link'); ?>" class="item" style="background-image: url(<?php echo get_sub_field('bg'); ?>)">
-        <span class="roboto"><?php echo get_sub_field('title'); ?></span>
-      </a>
-    <?php endwhile; endif; ?>
+      <?php
+          // Получаем поле с ID записей
+          $services_ids = get_field('services', 'home');
+          // Проверяем, если поле пустое
+          if (empty($services_ids)) {
+              // Если пустое, то выводим все записи из категории services-main
+              $args = array(
+                  'post_type' => 'services',
+                  'tax_query' => array(
+                      array(
+                          'taxonomy' => 'services-category',
+                          'field'    => 'slug',
+                          'terms'    => 'services-main',
+                      ),
+                  ),
+              );
+          } else {
+              // Если не пустое, выводим только записи с указанными ID
+              $args = array(
+                  'post_type' => 'services',
+                  'post__in' => $services_ids, // Используем ID из поля
+                  'orderby' => 'post__in', // Сохраняем порядок из массива
+              );
+          }
+
+          // Выполняем запрос
+          $query = new WP_Query($args);
+
+          // Проверяем наличие постов
+          if ($query->have_posts()) :
+              while ($query->have_posts()) : $query->the_post(); ?>
+                  <?php 
+                    $post_bg = get_field('export_bg'); 
+                    $post_title = get_field('export_title');
+                    if (!$post_title) {
+                      $post_title = get_the_title();
+                    }
+                  ?>
+                  <a href="<?php the_permalink(); ?>" class="item" style="background-image: url(<?php echo $post_bg['url']; ?>)">
+                      <span class="roboto"><?php echo $post_title; ?></span>
+                  </a>
+              <?php endwhile;
+              wp_reset_postdata(); // Сбрасываем глобальные данные
+          endif;
+          ?>
     </div>
   </div>
 </section>
@@ -805,37 +845,48 @@
       <div class="swiper">
         <div class="swiper-wrapper">
           <?php
-            $args = array(
-              'post_type'      => 'services',
-              'posts_per_page' => 7,
-              'orderby'        => 'date',
-              'order'          => 'DESC',
-              'tax_query'      => array(
-                array(
-                  'taxonomy' => 'services-category',  // Указываем вашу таксономию
-                  'field'    => 'term_id',            // Можно использовать 'slug' или 'term_id' для идентификации термов
-                  'terms'    => array(17),              // Массив ID или слагов терминов, которые хотите вывести
-                ),
-              ),
-            );
+            // Получаем поле с ID записей
+            $services_ids = get_field('tech', 'home');
+            // Проверяем, если поле пустое
+            if (empty($services_ids)) {
+                // Если пустое, то выводим все записи из категории services-technology
+                $args = array(
+                    'post_type' => 'services',
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'services-category',
+                            'field'    => 'slug',
+                            'terms'    => 'services-technology',
+                        ),
+                    ),
+                );
+            } else {
+                // Если не пустое, выводим только записи с указанными ID
+                $args = array(
+                    'post_type' => 'services',
+                    'post__in' => $services_ids, // Используем ID из поля
+                    'orderby' => 'post__in', // Сохраняем порядок из массива
+                );
+            }
+            
             $query = new WP_Query( $args );
             if ( $query->have_posts() ) {
               while ( $query->have_posts() ) {
                 $query->the_post();
           ?>
           <a href="<?php the_permalink(); ?>" class="item swiper-slide">
-            <?php if (get_field('title')) : ?>
-              <b class="roboto"><?php echo get_field('title'); ?></b>
+            <?php if (get_field('export_title')) : ?>
+              <b class="roboto"><?php echo get_field('export_title'); ?></b>
             <?php else : ?>
               <b class="roboto"><?php the_title(); ?></b>
             <?php endif; ?>
-            <?php if (get_field('subtitle')) : ?>
-              <p><?php echo get_field('subtitle'); ?></p>
+            <?php if (get_field('export_subtitle')) : ?>
+              <p><?php echo get_field('export_subtitle'); ?></p>
             <?php endif; ?>
             <div class="meta">
               <div class="thumb">
                 <?php 
-                  $image = get_field('img'); // Получаем массив изображения
+                  $image = get_field('export_bg'); // Получаем массив изображения
                   if ($image) : 
                 ?>
                   <img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr(get_the_title()); ?>">

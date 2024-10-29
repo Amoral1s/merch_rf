@@ -1,0 +1,101 @@
+@import "../reset/_vars"
+
+  
+.lg-container
+  .lg-prev
+    background-image: url(../img/lightgallery/prev.svg)
+  .lg-next
+    background-image: url(../img/lightgallery/next.svg)
+  .lg-content
+    margin-bottom: 20px
+    .lg-next,
+    .lg-prev
+      height: 50px
+      width: 50px
+      border-radius: 100%
+      background-size: 24px 24px
+      background-position: center
+      background-repeat: no-repeat
+      display: block!important
+      background-color: rgba(255, 255, 255, 0.20)
+      box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10)
+      &:after, &:before
+        display: none
+    .lg-inner
+      .lg-item
+        .lg-img-wrap
+          img
+            border-radius: 24px
+  .lg-toolbar
+    .lg-close
+      background-image: url(../img/lightgallery/close.svg)
+      margin-top: 20px
+      margin-right: 20px
+      border-radius: 100%
+      height: 60px
+      width: 60px
+      background-repeat: no-repeat
+      min-height: 60px
+      background-size: 24px 24px
+      background-position: center
+      min-width: 60px
+      background-color: rgba(255, 255, 255, 0.20)
+      box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10)
+      &:after, &:before
+        display: none
+  .lg-sub-html
+    display: none
+  .lg-components
+    .lg-thumb-outer
+      background: transparent
+      .lg-thumb-item
+        opacity: .5
+        border: none
+        height: auto
+        img
+          height: auto
+          object-fit: cover
+          width: 100%
+          height: 100%
+          border-radius: 16px
+        &.active
+          opacity: 1
+
+@media (max-width: 992px)
+  .lg-container
+    .lg-toolbar
+      .lg-close
+        background-image: url(../img/lightgallery/close.svg)
+        margin-top: 10px
+        margin-right: 10px
+        border-radius: 100%
+        height: 40px
+        width: 40px
+        min-height: 40px
+        background-size: 20px 20px
+        background-position: center
+        min-width: 40px
+        background-color: rgba(255, 255, 255, 0.20)
+        box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10)
+        &:after, &:before
+          display: none
+    .lg-next,
+    .lg-prev
+      height: 30px
+      width: 30px
+      border-radius: 0
+      background-color: #fff
+      background-size: 20px 20px
+      background-position: center
+    .lg-prev
+      left: 0
+    .lg-next
+      right: 0
+    .lg-content
+      .lg-inner
+        .lg-item
+          .lg-img-wrap
+            img
+              border-radius: 0
+    .lg-components
+      display: none

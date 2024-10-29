@@ -68,7 +68,17 @@
   </div>
 </div>
 
-<header itemscope itemtype="http://schema.org/WPHeader" class="header" style="display: none"> 
+<?php 
+  $header_color_class = '';
+
+  if (!is_home()) {
+    $header_color_class = 'white-header';
+  }
+
+?>
+
+
+<header itemscope itemtype="http://schema.org/WPHeader" class="header <?php echo $header_color_class; ?>" style="display: none"> 
   <div class="container"> 
     <div class="wrap">
       <div class="left">

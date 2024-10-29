@@ -1,0 +1,261 @@
+@import "../reset/_vars"
+
+.equip-page
+  .wrap
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(33.3% - 20px)
+    margin-right: 20px
+    margin-bottom: 40px
+    .thumb
+      display: block
+      margin-bottom: 24px
+      img
+        border-radius: $brad24
+        width: 100%
+        object-fit: cover
+        height: auto
+        aspect-ratio: 1 / 1
+    b
+      font-size: 24px
+      margin-bottom: 10px
+    p
+      color: $gray_500
+      line-height: 1.2
+   
+@media (min-width: 992px)
+  .big-video
+    .wrap
+      &:hover
+        .icon
+          transform: scale(1.2)
+          transition: 1s
+        &::after
+          opacity: 0
+          transition: 1s
+
+.big-video
+  .wrap
+    width: 100%
+    height: auto
+    cursor: pointer
+    transition: .3s
+    position: relative
+    aspect-ratio: 1240 / 646
+    border-radius: $brad24
+    display: flex
+    justify-content: center
+    align-items: center
+    .icon
+      position: relative
+      z-index: 5
+      transition: 1s
+    &::after
+      position: absolute
+      content: ''
+      height: 100%
+      width: 100%
+      display: block
+      border-radius: $brad24
+      background-color: rgba(#000, .6)
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      transition: 1s
+      z-index: 1
+
+@media (max-width: 767px)
+  .big-video
+    .wrap
+      aspect-ratio: 328 / 220
+      .icon
+        position: relative
+        z-index: 5
+        transition: 1s
+        svg
+          width: 36px
+          height: 36px
+      
+
+
+  
+@media (max-width: 992px)
+  .equip-page
+    margin-bottom: 10px
+    .wrap
+      min-width: 0
+      justify-content: space-between
+    .item
+      width: calc(50% - 4px)
+      margin-right: 0
+      margin-bottom: 30px
+      .thumb
+        margin-bottom: 16px
+      b
+        font-size: 20px
+      p
+        font-size: 14px
+
+@media (max-width: 767px)
+  .equip-page
+    .item
+      width: 100%
+   
+.equip-slider
+  .wrap
+    .item
+      .thumb
+        display: block
+        margin-bottom: 24px
+        img
+          object-fit: cover
+          width: 100%
+          aspect-ratio: 1 / 1
+          height: auto
+          border-radius: $brad24
+      .roboto
+        font-size: 24px
+        margin-bottom: 10px
+      p
+        color: $gray_500
+        line-height: 1.2
+    &.disabled-slider
+      min-width: calc(100% + 20px)
+      .item
+        width: calc(33.3% - 20px)
+        margin-right: 20px
+
+
+@media (max-width: 992px) 
+  .equip-slider
+    .arr
+      display: none
+    .dots
+      display: flex!important
+    .wrap
+      display: block
+      .item
+        .thumb
+          margin-bottom: 16px
+        .roboto
+          font-size: 20px
+        p
+          font-size: 14px
+      &.disabled-slider
+        min-width: 0
+        .item
+          width: calc(50% - 20px)
+          margin-right: 20px
+
+@media (max-width: 578px) 
+  .equip-slider
+    .swiper
+      position: relative
+      left: -15px
+      padding-left: 15px
+      padding-right: 15px
+      min-width: calc(100% + 30px)
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+

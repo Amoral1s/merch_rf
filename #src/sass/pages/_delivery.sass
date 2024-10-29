@@ -1,0 +1,213 @@
+@import "../reset/_vars"
+
+
+.delivery-page
+  .wrap
+    display: flex
+    justify-content: flex-start
+    align-items: stretch
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(33.3% - 20px)
+    margin-right: 20px
+    margin-bottom: 20px
+    border-radius: $brad24
+    padding: 24px
+    border: 1px solid $gray_200
+    display: block
+    p
+      color: $gray_500
+      line-height: 1.2
+    b
+      font-size: 20px
+      margin-bottom: 10px
+    &-gall
+      display: flex
+      justify-content: flex-start
+      align-items: stretch
+      width: 100%
+      min-width: calc(100% + 12px)
+      margin-bottom: 30px
+      .thumb
+        border-radius: 6px
+        background-color: $gray_50
+        width: calc(33.3% - 12px)
+        margin-right: 12px
+        display: flex
+        justify-content: center
+        align-items: center
+        padding: 6px
+        height: 56px
+        max-width: 82px
+        img
+          display: block
+    &.date
+      b
+        margin-bottom: 20px
+      p
+        color: $text
+        margin-bottom: 10px
+        span
+          color: $gray_500
+      small
+        color: $gray_400
+        font-size: 14px
+        display: block
+
+.map
+  width: 100%
+  iframe
+    width: 100%
+    height: auto
+    aspect-ratio: 1240 / 600
+    border-radius: $brad24
+
+.delivery-map
+  .contacts-row
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    margin-bottom: 30px
+    .item
+      width: max-content
+      margin-right: 36px
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      .icon
+        height: 64px
+        width: 64px
+        min-width: 64px
+        border-radius: 14px
+        background-color: $gray_50
+        margin-right: 20px
+      .meta
+        display: block
+        b, a
+          font-size: 20px
+          margin-bottom: 6px
+        span
+          color: $gray_500
+          display: block
+
+.seo.delivery
+  .title
+    margin-bottom: 20px
+  .content
+    blockquote
+      background-color: #E9FCF0
+      font-weight: 400
+      border: none
+      margin: 20px 0
+      &::after
+        background-image: url(../img/icons/camera.svg)
+      p
+        font-weight: 400
+        font-size: 16px
+
+.delivery-troubles
+  .wrap
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(33.3% - 20px)
+    margin-bottom: 20px
+    margin-right: 20px
+    border-radius: $brad24
+    padding: 30px
+    background-color: $gray_50
+    .num
+      height: 60px
+      width: 60px
+      color: #fff
+      background-color: $text
+      border-radius: 100%
+      font-size: 24px
+      font-weight: 500
+      line-height: 1
+      margin-bottom: 20px
+      
+@media (max-width: 992px)
+  .delivery-page
+    .wrap
+      display: block
+      min-width: 0
+    .item
+      width: 100%
+      margin-right: 0
+      margin-bottom: 8px
+      border-radius: 24px
+      padding: 20px
+      p
+        font-size: 14px
+      b
+        font-size: 16px
+      &-gall
+        min-width: calc(100% + 8px)
+        margin-bottom: 20px
+        .thumb
+          width: calc(33.3% - 8px)
+          margin-right: 8px
+          padding: 4px
+          height: 46px
+          max-width: 67px
+      &.date
+        b
+          margin-bottom: 20px
+        p
+          font-size: 14px
+        small
+          font-size: 12px
+  .delivery-map
+    .contacts-row
+      display: block
+      margin-bottom: 0px
+      .item
+        width: 100%
+        margin-right: 0
+        margin-bottom: 16px
+        .icon
+          height: 54px
+          width: 54px
+          min-width: 54px
+          margin-right: 16px
+        .meta
+          b, a
+            font-size: 16px
+          span
+            font-size: 14px
+  .map
+    iframe
+      height: auto
+      aspect-ratio: 328 / 400
+      border-radius: $brad24
+  .delivery-troubles
+    .wrap
+      min-width: 0
+      display: block
+    .item
+      width: 100%
+      margin-bottom: 8px
+      margin-right: 0
+      border-radius: 24px
+      padding: 20px
+      p
+        font-size: 14px
+      .num
+        height: 50px
+        width: 50px
+        font-size: 20px
+        margin-bottom: 20px
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  

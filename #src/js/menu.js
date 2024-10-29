@@ -27,7 +27,39 @@ if (window.screen.width > 992) {
       $('.pc-catalog').removeClass('scrolled');
       $('#up-arr').fadeOut(200);
     }
+    const stickyElement = document.querySelectorAll('.sticky-elem');
+    if (stickyElement.length > 0) {
+      const rightElement = document.querySelector('.faq-page .right');
+      const container = document.querySelector('.faq-page .wrap'); // Контейнер родитель
+      const topOffset = 100; // Отступ сверху
+      const scrollPosition = window.scrollY;
+      
+      const containerTop = container.offsetTop;
+      const containerHeight = container.offsetHeight;
+      const rightElementHeight = rightElement.offsetHeight;
+    
+      // Определяем положение контейнера
+      const containerBottom = containerTop + containerHeight;
+    
+      // Если скролл больше чем положение контейнера минус отступ
+      if (scrollPosition > containerTop - topOffset && scrollPosition < (containerBottom - rightElementHeight - topOffset)) {
+        rightElement.style.position = 'fixed';
+        rightElement.classList.add('active');
+        rightElement.style.top = `${topOffset}px`;
+        rightElement.style.bottom = 'auto';
+      } else if (scrollPosition >= (containerBottom - rightElementHeight - topOffset)) {
+        // Останавливаем элемент, если прокрутка доходит до конца контейнера
+        rightElement.style.position = 'absolute';
+        rightElement.style.top = 'auto';
+        rightElement.style.bottom = '0';
+      } else {
+        // Возвращаем элемент к исходному состоянию
+        rightElement.style.position = 'static';
+        rightElement.classList.remove('active');
+      }
+    }
   });
+    
   
   // Функция для открытия подменю с задержкой
   function openSubMenu(_this) {
@@ -158,6 +190,19 @@ if (window.screen.width > 992) {
 
 } else {
 
+  $('#up-arr').on('click', function() {
+    topScroll(500);
+  })
+  $(window).scroll(function() { 
+    if ($(window).scrollTop() > 200) {
+      $('.mob-header').addClass('scrolled');
+      $('#up-arr').fadeIn(200);
+    } else {
+      $('.mob-header').removeClass('scrolled');
+      $('#up-arr').fadeOut(200);
+    }
+  });
+
   $('.mob-header .burger').on('click', function() {
       $('.mob-menu').slideDown(200);
       $('html').addClass('fixed');
@@ -226,7 +271,6 @@ if (window.screen.width > 992) {
       });
     });
   }
-
 
   //mob catalog scripts
   $('.mob-catalog-toggle').on('click', function(ev) {

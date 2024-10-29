@@ -49,6 +49,7 @@ const paths = {
             source_folder + '/js/forms.js',
             source_folder + '/js/single_page.js',
             source_folder + '/js/scripts_main.js',
+            source_folder + '/js/portfolio.js',
             //source_folder + '/js/woo-single.js',
             //source_folder + '/js/yandex.js',
         ],

@@ -1,0 +1,245 @@
+@import "../reset/_vars"
+
+//no vacancy
+.vacancy-page
+  .subtitle
+    font-size: 18px
+  .wrap
+    justify-content: space-between
+    .right
+      width: 505px
+      .form
+        background-color: $text
+        border-radius: $brad24
+        padding: 30px
+        margin-bottom: 20px
+        color: #fff
+        .input
+          input
+            background-color: #fff
+        .submit
+          input
+            background-color: $brand_main
+            color: $text
+            width: 100%
+            max-width: 100%
+    .left
+      width: calc(100% - 505px - 20px)
+    .manager
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      border: 1px solid $gray_200
+      border-radius: $brad24
+      padding: 16px
+      &-right
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+      .link
+        width: max-content
+        white-space: nowrap
+        margin-left: 16px
+        font-size: 16px
+        font-weight: 500
+      .meta
+        display: block
+        width: 100%
+        b
+          font-size: 18px
+          margin-bottom: 6px
+        p
+          font-size: 14px
+          color: $gray_450
+          line-height: 1.2
+      .avatar
+        width: 74px
+        height: 74px
+        min-width: 74px
+        margin-right: 14px
+        border-radius: 100%
+        overflow: hidden
+        background-color: $gray_50
+        img
+          object-fit: cover
+          border-radius: 100%
+    .no-vac
+      max-width: 516px
+      b
+        font-size: 32px
+        margin-bottom: 140px
+      img
+        width: 266px
+        margin-bottom: 20px
+
+@media (max-width: 992px)
+  .vacancy-page
+    .subtitle
+      font-size: 14px
+    .wrap
+      display: block
+      .right
+        width: 100%
+        .form
+          border-radius: 24px
+          padding: 20px
+          margin-bottom: 8px
+      .left
+        width: 100%
+        margin-bottom: 40px
+      .manager
+        position: relative
+        &-right
+          display: block
+        .link
+          width: max-content
+          white-space: nowrap
+          margin-left: 0
+          font-size: 14px
+        .meta
+          display: block
+          width: 100%
+          b
+            font-size: 16px
+            margin-bottom: 6px
+          p
+            font-size: 12px
+            margin-bottom: 6px
+      .no-vac
+        max-width: 100%
+        b
+          font-size: 22px
+          margin-bottom: 20px
+        img
+          width: 120px
+
+
+//vacancy
+@media (min-width: 992px)
+  .vacancy-page
+    .wrap
+      .left
+        .item
+          .top
+            transition: .2s
+            &:hover
+              b
+                color: $brand_main
+                transition: .2s
+              .icon
+                svg path
+                  stroke: $brand_main
+            .icon
+              margin-left: 10px
+              transition: .2s
+            b
+              font-size: 22px
+              color: $text
+              transition: .2s
+
+.vacancy-page
+  .wrap
+    .left
+      .item
+        border-radius: $brad24
+        width: 100%
+        background-color: $gray_50
+        margin-bottom: 13px
+        .content
+          display: none
+          padding: 30px 
+          padding-top: 0
+          margin-top: -20px
+          li
+            line-height: 1.2
+            margin-bottom: 8px
+          p
+            margin-bottom: 20px
+            line-height: 1.2
+            &:last-child
+              margin-bottom: 0
+            strong
+              font-size: 18px
+              font-weight: 800
+              line-height: 1
+              margin-bottom: -6px
+              display: block
+              font-family: "Roboto Flex", sans-serif
+              font-weight: 800
+              font-stretch: 151%
+              letter-spacing: -3%
+              font-optical-sizing: auto
+              font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+        .top
+          padding: 30px
+          display: flex
+          justify-content: space-between
+          align-items: center
+          cursor: pointer
+          &.active
+            .icon
+              transform: rotate(180deg)
+              svg path
+                stroke: $text!important
+            b
+              color: $text!important
+          .icon
+            margin-left: 10px
+          b
+            font-size: 22px
+            color: $text
+
+@media (max-width: 992px)
+  .vacancy-page
+    .wrap
+      .left
+        .item
+          margin-bottom: 8px
+          .content
+            padding: 20px 
+            padding-top: 0
+            margin-top: -10px
+            p
+              strong
+                font-size: 16px
+          .top
+            padding: 20px
+            b
+              font-size: 18px
+              color: $text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

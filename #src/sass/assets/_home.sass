@@ -21,11 +21,12 @@
 @media (min-width: 992px)
   .services-block
     .item
-      transition: .2s
       &:hover
-        opacity: .8
+        opacity: 1
+        transition: 1s
+        background-position: 20px
         span
-          color: $hover
+          color: $brand_main
 
 .services-block
   .wrap
@@ -38,9 +39,10 @@
     border-radius: $brad24 
     background-repeat: no-repeat
     background-size: contain
-    background-position: right bottom
+    background-position: right center
     aspect-ratio: 1 / 1
     padding: 30px
+    transition: 1s
     span
       font-size: 24px
       letter-spacing: -0.7px
@@ -68,12 +70,19 @@
   .cat-slider
     .item
       transition: .2s
+      .thumb
+        img
+          transition: 1s
       b
-        transition: .2s
+        transition: .3s
       &:hover
-        opacity: .8!important
+        .thumb
+          img
+            transform: scale(1.1)
+            transition: 1s
         b
-          color: $hover!important
+          color: $brand_main
+          transition: .3s
 
 .cat-slider
   user-select: none
@@ -110,11 +119,12 @@
       padding: 10px
       margin-left: auto
       margin-right: auto
+      overflow: hidden
     img
       width: 100%
       aspect-ratio: 1 / 1
       height: auto
-      transition: .3s
+      transition: 1s
     b
       font-weight: 800
       font-size: 20px
@@ -701,6 +711,8 @@
   .wrap
     &.disabled-slider
       min-width: calc(100% + 20px)
+      .item
+        max-width: calc(25% - 20px)
       .arr
         display: none
     .arr-prev
@@ -798,7 +810,10 @@
   .team
     .wrap
       &.disabled-slider
-        min-width: 0
+        min-width: calc(100% + 8px)
+        .item
+          max-width: calc(33.3% - 8px)
+          margin-right: 8px
       .arr-prev
         left: -20px
       .arr-next
@@ -851,6 +866,9 @@
 @media (max-width: 578px)
   .team
     .wrap
+      &.disabled-slider
+        .item
+          max-width: 50%
       .swiper
         position: relative
         min-width: calc(100% + 30px)
@@ -1071,7 +1089,9 @@
         min-width: calc(100% + 30px)
         padding-right: 15px
         padding-left: 15px
-        left: -15px            
+        left: -15px      
+        .item
+          margin: 0      
 
 .help-brand
   .wrap
@@ -1624,18 +1644,19 @@
         .subtitle
           margin-bottom: 20px
 
+.title-block
+  display: block
+  position: relative
+  margin-bottom: 30px
+  .subtitle
+    margin-bottom: 0
+    max-width: 930px
+  .link-all
+    position: absolute
+    bottom: 0
+    right: 0
 .how
-  .title-block
-    display: block
-    position: relative
-    margin-bottom: 30px
-    .subtitle
-      margin-bottom: 0
-      max-width: 930px
-    .link-all
-      position: absolute
-      bottom: 0
-      right: 0
+  
   .wrap
     min-width: calc(100% + 20px)
     align-items: stretch
@@ -1671,11 +1692,11 @@
       line-height: 1.2
 
 @media (max-width: 992px)
+  .title-block
+    margin-bottom: 20px
+    .link-all
+      display: none
   .how
-    .title-block
-      margin-bottom: 20px
-      .link-all
-        display: none
     .wrap
       min-width: 0
       align-items: stretch
@@ -1974,6 +1995,7 @@
           background-repeat: no-repeat
     &-bottom
       padding: 16px 0
+      padding-bottom: 80px
       &-wrap
         display: block
       &-left

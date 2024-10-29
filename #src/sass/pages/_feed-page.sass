@@ -1,0 +1,258 @@
+@import "../reset/_vars"
+
+
+.page-feed.feed-block
+  .subtitle
+    margin-bottom: 60px
+
+@media (min-width: 992px)
+  .feed-videos
+    .wrap
+      .item
+        &:hover
+          .play
+            transform: translate(-50%, -50%) scale(1.2)
+          &::after
+            opacity: 0
+
+.feed-videos
+  .wrap
+    .item
+      display: flex
+      justify-content: flex-start
+      align-items: flex-end
+      padding: 30px
+      position: relative
+      border-radius: $brad24
+      transition: .5s
+      aspect-ratio: 610 / 360
+      height: auto
+      overflow: hidden
+      cursor: pointer
+      background-repeat: no-repeat
+      background-size: cover
+      background-position: center
+      &::after
+        position: absolute
+        content: ''
+        height: 100%
+        width: 100%
+        border-radius: $brad24
+        z-index: 1
+        background-color: #000
+        opacity: .6
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        transition: .5s
+      .meta
+        position: relative
+        z-index: 5
+        p
+          color: $white_70
+          line-height: 1.2
+        b
+          color: #fff
+          font-size: 22px
+          margin-bottom: 8px
+      .play
+        position: absolute
+        top: 50%
+        left: 50%
+        transition: 1s
+        z-index: 5
+        transform: translate(-50%, -50%)
+    &.disabled-slider
+      min-width: calc(100% + 20px)
+      .item
+        max-width: calc(50% - 20px)
+        margin-right: 20px
+
+@media (max-width: 992px)
+  .page-feed.feed-block
+    .subtitle
+      margin-bottom: 20px
+  .feed-videos
+    .wrap
+      display: block
+      .item
+        padding: 20px
+        .play
+          svg
+            width: 36px
+            height: 36px
+        .meta
+          
+          b
+            font-size: 18px
+            margin-bottom: 4px
+          p
+            font-size: 14px
+      .swiper-wrap
+        border-radius: $brad24
+      .arr
+        display: none
+      .dots
+        display: flex!important
+      &.disabled-slider
+        .item
+          max-width: 100%
+
+@media (max-width: 578px)
+  .feed-videos
+    .wrap
+      .swiper
+        min-width: calc(100% + 30px)
+        padding-left: 15px
+        padding-right: 15px
+        left: -15px
+        position: relative
+       
+
+.feed-form
+  .form
+    .form-row
+      margin-bottom: 16px
+      flex-wrap: wrap
+      .input
+        width: calc(33.3% - 16px)
+        margin: 0
+        margin-right: 16px
+        &-file
+          width: calc(33.3% - 16px)
+          margin: 0
+        &.full
+          width: 100%
+          margin-right: 0
+          margin-bottom: 16px
+    .submit
+      margin-bottom: 0
+      margin-right: 16px
+    small
+      max-width: 210px
+    .mini-title
+      font-size: 16px
+      color: $gray_450
+      display: block
+      margin-bottom: 10px
+      font-weight: 400
+    .rating-input
+      margin-bottom: 30px
+
+@media (max-width: 992px)
+  .feed-form
+    .form
+      .form-row
+        margin-bottom: 8px
+        flex-wrap: wrap
+        .input
+          width: 100%
+          margin: 0
+          margin-bottom: 8px
+          &-file
+            width: 100%
+            margin: 0
+            order: 10
+          &.full
+            width: 100%
+            order: 8
+            margin-bottom: 8px
+      .submit
+        margin-right: 0
+        margin-bottom: 16px
+        width: 100%
+        max-width: 100%
+      small
+        max-width: 100%
+      .mini-title
+        font-size: 14px
+      .rating-input
+        margin-bottom: 16px
+
+@media (min-width: 992px)
+  .feed-block.feed-no-slider
+    .wrap
+      .item
+        .feed-gallery
+          a
+            &:hover
+              img
+                transform: scale(1.3)
+
+.feed-block.feed-no-slider
+  .wrap
+    .item
+      max-width: 100%
+      width: 100%
+      margin: 0
+      padding: 30px 0 
+      border-bottom: 1px solid $gray_200
+      background-color: #fff
+      border-radius: 0
+      .feed-gallery
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        margin-top: 24px
+        a
+          display: flex
+          justify-content: center
+          align-items: center
+          height: auto
+          width: 100%
+          max-width: 150px
+          margin-right: 16px
+          aspect-ratio: 1 / 1
+          border-radius: 20px
+          overflow: hidden
+          img
+            object-fit: cover
+            width: 100%
+            aspect-ratio: 1 / 1
+            border-radius: 20px
+            transition: 1s
+      .top
+        .avatar
+          background-color: $text
+        .meta
+          display: block
+          .rating
+            position: static
+            margin-top: 8px
+  
+
+@media (max-width: 992px)
+
+  .feed-block.feed-no-slider
+    .wrap
+      .item
+        max-width: 100%
+        width: 100%
+        margin: 0
+        padding: 20px 0 
+        border-radius: 0
+        .top
+          margin-bottom: 16px
+        .feed-gallery
+          margin-top: 16px
+          a
+            max-width: 100px
+            margin-right: 8px
+            border-radius: 16px
+            overflow: hidden
+            &:last-child
+              margin-right: 0
+            img
+              border-radius: 16px
+        
+    
+
+
+
+
+
+
+
+
+  

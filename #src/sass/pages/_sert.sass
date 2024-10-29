@@ -1,0 +1,128 @@
+@import "../reset/_vars"
+
+@media (min-width: 992px)
+  .sert-doc
+    .wrap
+      .item
+        transition: .5s
+        p
+          transition: .3s
+        .meta
+          span
+            transition: .3s
+        &:hover
+          .meta
+            .icon
+              svg path
+                stroke: $brand_main
+            span
+              color: $brand_main
+          p
+            color: $brand_main
+  .sert-page
+    .item
+      &:hover
+        img
+          filter: grayscale(0)
+          transition: .5s
+
+.sert-page
+  .wrap
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(25% - 20px)
+    margin-right: 20px
+    margin-bottom: 50px
+    img
+      aspect-ratio: 295 / 409
+      border-radius: 24px
+      filter: grayscale(100%)
+      display: block
+      transition: .5s
+      width: 100%
+      object-fit: cover
+    b
+      font-size: 20px
+      margin-top: 20px
+      color: $text
+    p
+      line-height: 1.2
+      color: $gray_400
+      margin-top: 6px
+
+.sert-doc
+  .wrap
+    display: block
+    .item
+      width: 100%
+      border-radius: $brad24
+      background-color: $gray_50
+      margin-bottom: 16px
+      padding: 26px 24px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .meta
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        .icon
+          margin-right: 10px
+        span
+          display: block
+          font-size: 16px
+          color: $text
+      p
+        font-size: 16px
+        line-height: 1.2
+        color: $text
+
+
+@media (max-width: 992px)
+  .sert-page
+    .wrap
+      min-width: calc(100% + 20px)
+    .item
+      width: calc(33.3% - 20px)
+      margin-right: 20px
+      margin-bottom: 30px
+      img
+        aspect-ratio: 160 / 221
+        border-radius: 20px
+       
+      b
+        font-size: 14px
+        margin-top: 10px
+      p
+        font-size: 12px
+@media (max-width: 767px)
+  .sert-page
+    margin-bottom: 10px
+    .wrap
+      min-width: 0
+      justify-content: space-between
+    .item
+      width: calc(50% - 4px)
+      margin-right: 0
+  .sert-doc
+    .wrap
+      .item
+        border-radius: 16px
+        margin-bottom: 8px
+        padding: 16px
+        .meta
+          min-width: 90px
+          margin-left: 15px
+          span
+            font-size: 14px
+        p
+          font-size: 14px
+          line-height: 1.2
+          color: $text
+
+
+
+
+
+
+

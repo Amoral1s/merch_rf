@@ -54,6 +54,17 @@
     background-color: transparent
     padding: 17px 0
     width: 100%
+    &.scrolled
+      z-index: 20
+      transition: 0
+      background-color: #fff
+      position: fixed
+      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.08)
+      transform: translateY(-100%)
+      animation-name: header
+      animation-duration: 1s
+      animation-delay: 1s
+      animation-fill-mode: forwards
     .wrap
       justify-content: space-between
       width: 100%
@@ -214,7 +225,7 @@
       display: flex
       justify-content: space-between
       align-items: center
-      padding: 14Dpx 0
+      padding: 14px 0
       position: relative
       z-index: 5
       .logo
@@ -518,6 +529,7 @@
             &> a, &> span
               position: relative
               padding-right: 24px
+              cursor: pointer
               &::after
                 position: absolute
                 content: ''
@@ -552,6 +564,8 @@
                   font-size: 16px
                   font-weight: 400
                   font-family: $font
+                a:hover
+                  color: $brand_main
               &::after
                 position: absolute
                 content: ''
@@ -560,7 +574,7 @@
                 width: 100%
                 left: 0 
           a:hover
-            color: $hover
+            color: $gray_450
     .catalog-toggle
       display: flex
       align-items: center
@@ -569,9 +583,9 @@
       cursor: pointer
       &:hover
         svg path
-          stroke: $hover
+          stroke: $gray_450
         span
-          color: $hover
+          color: $gray_450
       &.active
         .icon
           .opened
@@ -708,24 +722,47 @@
       width: 190px
       margin-right: 36px
       min-width: 190px
-    &.header-open-menu
+    &.header-open-menu, &.white-header
       background-color: #fff
       z-index: 40
       transition: .2s
       box-shadow: none!important
+      nav
+        ul
+          li
+            a:hover
+              color: $brand_main
+      .catalog-toggle
+        &:hover
+          svg path
+            stroke: $brand_main
+          span
+            color: $brand_main
     &.scrolled
       z-index: 40
       transition: 0
       padding: 20px 0
       background-color: #fff
       position: fixed
-      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.08)
+      box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.08)!important
       transform: translateY(-100%)
       animation-name: header
       animation-duration: 1s
       animation-delay: 1s
       animation-fill-mode: forwards
-      
+      &.header-open-menu
+        box-shadow: none!important
+      nav
+        ul
+          li
+            a:hover
+              color: $brand_main
+      .catalog-toggle
+        &:hover
+          svg path
+            stroke: $brand_main
+          span
+            color: $brand_main
   .pc-catalog
     position: fixed
     top: 120px
