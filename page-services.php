@@ -194,6 +194,7 @@ get_header();
 </section>
 <?php endif; ?>
 
+<?php if (get_field('treb_title', 'blocks')) : ?>
 <section class="banner-treb">
   <div class="container">
     <div class="wrap">
@@ -217,12 +218,12 @@ get_header();
         </svg>
       </div>
       <div class="center">
-        <b class="title sub">Требования к макетам</b>
+        <b class="title sub"><?php echo get_field('treb_title', 'blocks'); ?></b>
         <p>
-          Ознакомьтесь с требованиям к передаче файлов в печать, это обеспечит максимально быстрый и четкий результат
+          <?php echo get_field('treb_subtitle', 'blocks'); ?>
         </p>
       </div>
-      <a href="<?php the_permalink(421); ?>" class="button button-green btn-arr">
+      <a href="<?php echo get_field('treb_link', 'blocks'); ?>" class="button button-green btn-arr">
         <span>Перейти</span>
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -234,6 +235,7 @@ get_header();
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <?php if (get_field('cat_slider_title')) : ?>
 <section class="cat-slider">
@@ -487,12 +489,13 @@ get_header();
 </section>
 <?php endif; ?>
 
+<?php if (get_field('uni_title', 'blocks')) : ?>
 <section class="unisender-banner">
   <div class="container">
     <div class="wrap">
       <div class="left">
-        <b class="roboto">Подпишитесь на новости</b>
-        <p>Узнавайте первыми о самых горячих предложениях</p>
+        <b class="roboto"><?php echo get_field('uni_title', 'blocks'); ?></b>
+        <p><?php echo get_field('uni_subtitle', 'blocks'); ?></p>
       </div>
       <div class="right">
         <div class="form">
@@ -502,6 +505,7 @@ get_header();
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <?php 
   $term_id = 'city';

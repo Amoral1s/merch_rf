@@ -224,7 +224,32 @@ if ( post_password_required() ) {
 
 <?php if (get_field('price_title')) : ?>
 <section class="price-table">
-	<h2 class="title"><?php echo get_field('price_title') ?></h2>
+	<div class="title-row">
+		<h2 class="title"><?php echo get_field('table_title') ?></h2>
+		<?php if (get_field('table_file')) : ?>
+		<a href="<?php echo get_field('table_file'); ?>" class="link" target="blank" download>
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#0C0C0C" stroke-width="1.5"/>
+					<path d="M12 16V8M12 16C11.2998 16 9.99153 14.0057 9.5 13.5M12 16C12.7002 16 14.0085 14.0057 14.5 13.5" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+			<span>Скачать файлом</span>
+		</a>
+		<?php endif; ?>
+		<div class="link call-order">
+			<div class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<path d="M3 10H21" stroke="#0C0C0C" stroke-width="1.5" stroke-linejoin="round"/>
+					<path d="M15 6H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M21 13V11C21 6.75736 21 4.63604 19.682 3.31802C18.364 2 16.2426 2 12 2C7.75736 2 5.63604 2 4.31802 3.31802C3 4.63604 3 6.75736 3 11V13C3 17.2426 3 19.364 4.31802 20.682C5.63604 22 7.75736 22 12 22C16.2426 22 18.364 22 19.682 20.682C21 19.364 21 17.2426 21 13Z" stroke="#0C0C0C" stroke-width="1.5"/>
+					<path d="M7 14H7.52632M11.7368 14H12.2632M16.4737 14H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M7 18H7.52632M11.7368 18H12.2632M16.4737 18H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</div>
+			<span>Заказать расчёт</span>
+		</div>
+	</div>
 	<div class="wrap">
 		<?php
 			$table = get_field( 'price_table' );
@@ -291,19 +316,46 @@ if ( post_password_required() ) {
 </section>
 <?php endif; ?>
 
-<?php if (get_field('banner_title', 's_product')) : ?>
+<?php if (get_field('treb_title', 'blocks')) : ?>
 <section class="banner-treb">
-	<div class="wrap">
-		<div class="left">
-			<h2 class="title sub"><?php echo get_field('banner_title', 's_product') ?></h2>
-			<p class="subtitle"><?php echo get_field('banner_subtitle', 's_product') ?></p>
-		</div>
-		<div class="right">
-			<a href="<?php echo get_field('banner_link', 's_product') ?>" class="button">
-				Узнать подробнее
-			</a>
-		</div>
-	</div>
+  <div class="container">
+    <div class="wrap">
+      <div class="left">
+        <svg xmlns="http://www.w3.org/2000/svg" width="127" height="116" viewBox="0 0 127 116" fill="none">
+          <rect x="7.46966" y="6.72259" width="89.0716" height="101.396" stroke="url(#paint0_linear_5001_11099)" stroke-width="3.36119"/>
+          <rect x="1.6806" y="1.6806" width="12.8846" height="12.8846" fill="white" stroke="#37D7D0" stroke-width="3.36119"/>
+          <rect x="1.47097" y="100.627" width="13.3038" height="13.3038" fill="white" stroke="#E6776D" stroke-width="2.94194"/>
+          <rect x="89.0712" y="1.6806" width="12.8846" height="12.8846" fill="white" stroke="#38D7CF" stroke-width="3.36119"/>
+          <rect x="89.0712" y="100.836" width="12.8846" height="12.8846" fill="white" stroke="#B08194" stroke-width="3.36119"/>
+          <path d="M120.511 32.1678L110.949 32.7748L116.374 45.2332L113.004 46.7232L107.579 34.2649L100.646 40.9424L100.66 13.7769L120.511 32.1678Z" fill="white"/>
+          <path d="M126.347 34.2368L114.566 34.9956L119.58 46.502L111.757 49.9511L106.743 38.4447L98.2217 46.6675L98.2354 8.21631L126.347 34.2368ZM110.949 32.7743L120.511 32.1673L100.66 13.7764L100.647 40.9419L107.579 34.2644L113.004 46.7227L116.374 45.2327L110.949 32.7743Z" fill="#0C0C0C"/>
+          <defs>
+            <linearGradient id="paint0_linear_5001_11099" x1="52.0055" y1="5.04199" x2="52.0055" y2="109.799" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#65E5A5"/>
+              <stop offset="0.328555" stop-color="#07C8FA"/>
+              <stop offset="0.725" stop-color="#5A91D2"/>
+              <stop offset="1" stop-color="#EF7566"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="center">
+        <b class="title sub"><?php echo get_field('treb_title', 'blocks'); ?></b>
+        <p>
+          <?php echo get_field('treb_subtitle', 'blocks'); ?>
+        </p>
+      </div>
+      <a href="<?php echo get_field('treb_link', 'blocks'); ?>" class="button button-green btn-arr">
+        <span>Перейти</span>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M17 7L6 18" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M11 6H17C17.4714 6 17.7071 6 17.8536 6.14645C18 6.29289 18 6.5286 18 7V13" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 <?php endif; ?>
 

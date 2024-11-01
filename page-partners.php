@@ -1,10 +1,12 @@
 <?php
 /**
- Template Name: О компании
+ Template Name: Бизнес партнерам
  */
 
 get_header();
 ?>
+
+<?php $main_post_id = get_the_ID(); ?>
 
 <div class="page-top">
   <div class="container">
@@ -14,62 +16,88 @@ get_header();
   </div>
 </div>
 
-<section class="big-video about-offer">
+<section class="services-offer">
   <div class="container">
-    <h1 class="page-title sub"><?php the_title(); ?></h1>
-    <p class="subtitle dark"><?php echo get_field('subtitle'); ?></p>
-    <?php if (get_field('block_video_toggle') == true) : ?>
-      <?php 
-        $video_image = 'background-image: url('.get_field('video_img').')';
-        if (!get_field('video_img')) {
-          $video_image = '';
-        }
-        $video_link = get_field('video_link'); 
-        if (get_field('video_toggle') == true) {
-          $video_link = get_field('video_file'); 
-        }
-      ?>
-      <div class="wrap video-data" data-src="<?php echo $video_link; ?>" style="<?php echo $video_image; ?>">
-        <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="56" viewBox="0 0 50 56" fill="none">
-            <path d="M47 22.8039C51 25.1133 51 30.8868 47 33.1962L9.49999 54.8468C5.49999 57.1562 0.499997 54.2694 0.499997 49.6506L0.499999 6.34935C0.5 1.73055 5.5 -1.15619 9.5 1.15321L47 22.8039Z" fill="white"/>
-          </svg>
+    <div class="wrap">
+      <div class="left">
+        <h1 class="page-title sub"><?php the_title(); ?></h1>
+        <p class="subtitle"><?php echo get_field('subtitle', $main_post_id); ?></p>
+        <div class="button call-order">
+          Получить бесплатный образец
         </div>
       </div>
-    <?php endif; ?>
+      <div class="right">
+        <?php if (get_the_post_thumbnail_url()) : ?>
+          <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php echo get_the_title(); ?>">
+        <?php else : ?>
+          <img src="<?php echo get_template_directory_uri(); ?>/img/services/default.png" alt="<?php echo get_the_title(); ?>">
+        <?php endif; ?>
+      </div>
+      <?php if (get_field('services_features_toggle', $main_post_id) == false) : ?>
+        <?php if (get_field('services_features_toggle_uniq', $main_post_id) == false) : ?>
+          <div class="bottom">
+            <?php if (have_rows('services_features', 'blocks')) : while(have_rows('services_features', 'blocks')) : the_row(); ?>
+              <div class="item">
+                <div class="icon">
+                  <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
+                </div>
+                <div class="meta">
+                  <b class="roboto"><?php echo get_sub_field('title'); ?></b>
+                  <p><?php echo get_sub_field('text'); ?></p>
+                </div>
+              </div>
+            <?php endwhile; endif; ?>
+          </div>
+        <?php else : ?>
+          <div class="bottom">
+            <?php if (have_rows('services_features', $main_post_id)) : while(have_rows('services_features', $main_post_id)) : the_row(); ?>
+              <div class="item">
+                <div class="icon">
+                  <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
+                </div>
+                <div class="meta">
+                  <b class="roboto"><?php echo get_sub_field('title'); ?></b>
+                  <p><?php echo get_sub_field('text'); ?></p>
+                </div>
+              </div>
+            <?php endwhile; endif; ?>
+          </div>
+        <?php endif; ?>
+      <?php endif; ?>
+    </div>
   </div>
 </section>
 
-<?php if (get_field('history_title')) : ?>
-<section class="about-history">
+<?php if (get_field('what_title')) : ?>
+<section class="what">
   <div class="container">
-    <div class="title-row">
-      <h2 class="title"><?php echo get_field('history_title'); ?></h2>
-      <p class="text"><?php echo get_field('history_subtitle'); ?></p>
-    </div>
-    <div class="wrap slider-wrap">
-      <div class="arr arr-prev">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <?php if (have_rows('history')) : while(have_rows('history')) : the_row(); ?>
-            <div class="item swiper-slide">
-              <b class="roboto"><?php echo get_sub_field('year'); ?></b>
-              <p><?php echo get_sub_field('text'); ?></p>
-            </div>
-          <?php endwhile; endif; ?>
+    <div class="wrap">
+      <h2 class="title sub"><?php echo get_field('what_title') ?></h2>
+      <p class="subtitle"><?php echo get_field('what_subtitle'); ?></p>
+      <?php if (have_rows('what')) : while(have_rows('what')) : the_row(); ?>
+        <div class="item">
+          <b class="roboto"><?php echo get_sub_field('num'); ?></b>
+          <p><?php echo get_sub_field('text'); ?></p>
         </div>
-      </div>
-      <div class="arr arr-next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <?php endwhile; endif; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if (get_field('often_title')) : ?>
+<section class="often">
+  <div class="container">
+    <h2 class="title"><?php echo get_field('often_title') ?></h2>
+    <div class="wrap">
+    <?php if (have_rows('often')) : while(have_rows('often')) : the_row(); ?>
+      <a href="<?php echo get_sub_field('link'); ?>" class="item">
+        <div class="thumb">
+          <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
+        </div>
+        <b class="roboto"><?php echo get_sub_field('title'); ?></b>
+      </a>
+    <?php endwhile; endif; ?>
     </div>
   </div>
 </section>
@@ -116,27 +144,10 @@ get_header();
 </section>
 <?php endif; ?>
 
-<?php if (get_field('mission_title')) : ?>
-<section class="mission">
-  <div class="container">
-    <div class="wrap">
-      <h2 class="title sub"><?php echo get_field('mission_title') ?></h2>
-      <p class="subtitle"><?php echo get_field('mission_subtitle'); ?></p>
-      <?php if (have_rows('mission')) : while(have_rows('mission')) : the_row(); ?>
-        <div class="item">
-          <b class="roboto"><?php echo get_sub_field('title'); ?></b>
-          <p><?php echo get_sub_field('text'); ?></p>
-        </div>
-      <?php endwhile; endif; ?>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php if (get_field('feed_title')) : ?>
+<?php if (get_field('feedback_title')) : ?>
 <section class="feed-block">
   <div class="container">
-    <h2 class="title"><?php echo get_field('feed_title') ?></h2>
+    <h2 class="title"><?php echo get_field('feedback_title') ?></h2>
     <div class="feed-block-gall slider-wrap">
       <b class="roboto">Реальные фотографии наших клиентов</b>
       <div class="swiper">
@@ -261,202 +272,34 @@ get_header();
 </section>
 <?php endif; ?>
 
-<?php if (get_field('banner_vac_toggle') == false) : ?>
-<section class="vacancy-banner">
+<?php if (get_field('block_video_toggle') == false) : ?>
+<section class="big-video">
   <div class="container">
-    <div class="wrap">
-      <div class="left">
-        <img src="<?php echo get_field('vac_banner_bg', 'blocks'); ?>" alt="<?php echo get_field('vac_banner_title', 'blocks'); ?>">
-      </div>
-      <div class="center">
-        <b class="roboto"><?php echo get_field('vac_banner_title', 'blocks'); ?></b>
-        <p><?php echo get_field('vac_banner_subtitle', 'blocks'); ?></p>
-      </div>
-      <div class="right">
-        <a href="<?php echo get_field('vac_banner_link', 'blocks'); ?>" class="button button-green">
-          <span>Перейти</span>
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M17 7L6 18" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M11 6H17C17.4714 6 17.7071 6 17.8536 6.14645C18 6.29289 18 6.5286 18 7V13" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </a>
+    <?php 
+      $video_image = 'background-image: url('.get_field('video_img').')';
+      if (!get_field('video_img')) {
+        $video_image = '';
+      }
+      $video_link = get_field('video_link'); 
+      if (get_field('video_toggle') == true) {
+        $video_link = get_field('video_file'); 
+      }
+    ?>
+    <div class="wrap video-data" data-src="<?php echo $video_link; ?>" style="<?php echo $video_image; ?>">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="56" viewBox="0 0 50 56" fill="none">
+          <path d="M47 22.8039C51 25.1133 51 30.8868 47 33.1962L9.49999 54.8468C5.49999 57.1562 0.499997 54.2694 0.499997 49.6506L0.499999 6.34935C0.5 1.73055 5.5 -1.15619 9.5 1.15321L47 22.8039Z" fill="white"/>
+        </svg>
       </div>
     </div>
   </div>
 </section>
 <?php endif; ?>
 
-<?php if (get_field('best_cases_title')) : ?>
-  <?php if (get_field('cases_toggle') == false) : ?>
-  <section class="best-cases">
-    <div class="container">
-      <h2 class="title sub"><?php echo get_field('best_cases_title') ?></h2>
-      <p class="subtitle"><?php echo get_field('best_cases_subtitle'); ?></p>
-      <div class="wrap">
-        <?php
-          $cases_post_ids = get_field('best_cases', 'home');
-          $args = array(
-            'post_type'      => 'portfolio',
-            'post__in'       => $slider_posts_id,
-            'orderby'        => 'post__in',
-            'posts_per_page' => 4
-          );
-          $query = new WP_Query( $args );
-          if ( $query->have_posts() ) {
-            while ( $query->have_posts() ) {
-              $query->the_post();
-        ?>
-        <div class="item">
-          <div class="thumb">
-            <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
-          </div>
-          <div class="meta">
-            <b class="roboto"><?php the_title(); ?></b>
-            <p><?php echo get_field('excerpt'); ?></p>
-            <?php if (get_field('mini_logo')) : ?>
-            <div class="icon">
-              <img src="<?php echo get_field('mini_logo'); ?>" alt="<?php echo get_the_title(); ?>">
-            </div>
-            <?php endif; ?>
-          </div>
-        </div>
-        <?php } }  wp_reset_postdata(); ?>
-        <div class="best-cases-link">
-          <b class="roboto"><?php echo get_field('best_cases_banner_title', 'home') ?></b>
-          <p><?php echo get_field('best_cases_banner_subtitle', 'home') ?></p>
-          <a href="<?php echo get_the_permalink(163); ?>" class="link-all">
-            <span>Смотреть все</span>
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <?php else : ?>
-  <section class="best-cases">
-    <div class="container">
-      <h2 class="title sub"><?php echo get_field('best_cases_title') ?></h2>
-      <p class="subtitle"><?php echo get_field('best_cases_subtitle'); ?></p>
-      <div class="wrap">
-        <?php
-          $cases_post_ids = get_field('best_cases');
-          $args = array(
-            'post_type'      => 'portfolio',
-            'post__in'       => $slider_posts_id,
-            'orderby'        => 'post__in',
-            'posts_per_page' => 4
-          );
-          $query = new WP_Query( $args );
-          if ( $query->have_posts() ) {
-            while ( $query->have_posts() ) {
-              $query->the_post();
-        ?>
-        <div class="item">
-          <div class="thumb">
-            <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
-          </div>
-          <div class="meta">
-            <b class="roboto"><?php the_title(); ?></b>
-            <p><?php echo get_field('excerpt'); ?></p>
-            <?php if (get_field('mini_logo')) : ?>
-            <div class="icon">
-              <img src="<?php echo get_field('mini_logo'); ?>" alt="<?php echo get_the_title(); ?>">
-            </div>
-            <?php endif; ?>
-          </div>
-        </div>
-        <?php } }  wp_reset_postdata(); ?>
-        <div class="best-cases-link">
-          <b class="roboto"><?php echo get_field('best_cases_banner_title') ?></b>
-          <p><?php echo get_field('best_cases_banner_subtitle') ?></p>
-          <a href="<?php echo get_the_permalink(163); ?>" class="link-all">
-            <span>Смотреть все</span>
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <?php endif; ?>
-<?php endif; ?>
-
-<?php if (get_field('team_title')) : ?>
-<section class="team">
+<?php if (get_field('sert_title')) : ?>
+<section class="sertificates">
   <div class="container">
-    <h2 class="title"><?php echo get_field('team_title') ?></h2>
-    <div class="wrap slider-wrap">
-      <div class="arr arr-prev">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <?php if (have_rows('team','team')) : while(have_rows('team','team')) : the_row(); ?>
-          <div class="item swiper-slide">
-            <div class="meta">
-              <b class="roboto"><?php echo get_sub_field('name'); ?></b>
-              <p><?php echo get_sub_field('place'); ?></p>
-            </div>
-            <div class="thumb">
-              <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('name'); ?>">
-            </div>
-          </div>
-          <?php endwhile; endif; ?>
-        </div>
-      </div>
-      <div class="arr arr-next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-    </div>
-    <?php if (get_field('team_title', 'team')) : ?>
-      <div class="team-bottom">
-        <div class="left">
-          <b class="roboto">
-            <?php echo get_field('team_title', 'team'); ?>
-          </b>
-          <p>
-            <?php echo get_field('team_subtitle', 'team'); ?>
-          </p>
-        </div>
-        <div class="center">
-          <div class="avatar">
-            <img src="<?php echo get_field('leader_img', 'team'); ?>" alt="<?php echo get_field('team_title', 'team'); ?>">
-          </div>
-          <div class="meta">
-            <b class="roboto"><?php echo get_field('leader_name', 'team'); ?></b>
-            <p><?php echo get_field('leader_place', 'team'); ?></p>
-          </div>
-        </div>
-        <div class="right">
-          <svg xmlns="http://www.w3.org/2000/svg" width="163" height="129" viewBox="0 0 163 129" fill="none">
-            <path d="M65.529 17.4868C55.252 42.1454 45.3854 66.9457 36.0579 91.9784C35.9234 92.3394 27.8357 114.272 26.7939 117.776C26.0824 120.169 25.2887 122.896 28.4172 120.286C30.861 118.247 41.9385 106.56 42.719 105.728C49.9769 97.9875 53.3458 94.1226 60.1833 86.5122C67.6604 78.1898 61.5947 84.8382 60.799 87.0699C60.4444 88.0646 62.8846 86.552 63.7937 86.0102C66.2674 84.5359 71.5222 81.1154 73.8133 79.5957C75.7885 78.2856 77.5411 76.5742 79.7188 75.6354C80.4272 75.33 79.1054 77.0554 78.6832 77.6992C77.7755 79.0836 73.7033 84.2089 78.5433 81.269C365.618 -93.1065 -203.657 252.302 85.5122 76.5837C86.4105 76.0378 88.3015 74.636 87.3594 76.8904C86.873 78.0545 83.9409 82.8421 83.4131 83.7233C82.89 84.5967 82.3322 85.4506 81.8458 86.3448C81.6683 86.6711 81.0551 87.4108 81.426 87.3767C82.0457 87.3198 82.4388 86.6529 82.9094 86.2472C84.1006 85.2203 85.2545 84.1508 86.4078 83.0818C88.989 80.6894 94.8171 75.1477 97.2951 72.7629C101.582 68.6366 105.127 65.3771 107.595 59.9339C114.261 45.2255 119.282 29.7642 124.135 14.3911C125.084 11.3851 126.021 8.37447 126.878 5.34115C127.272 3.9477 129.123 1.87402 127.886 1.11596C126.704 0.392027 126.11 3.24833 125.353 4.40687C122.991 8.0219 120.752 11.7161 118.538 15.423C103.397 40.7751 88.8503 66.5964 76.6121 93.4844C75.596 95.7169 74.6194 97.9732 73.8133 100.289C73.6511 100.756 73.2735 101.96 73.7294 101.767C74.8437 101.296 75.4572 100.077 76.3182 99.2296C77.8268 97.7441 79.3285 96.2516 80.8383 94.7673C86.7177 88.987 92.6225 83.2314 98.5265 77.4761" stroke="#71E69B" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-    <?php endif; ?>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php if (get_field('about_gall_title')) : ?>
-<section class="about-gallery">
-  <div class="container">
-    <h2 class="title"><?php echo get_field('about_gall_title') ?></h2>
+    <h2 class="title"><?php echo get_field('sert_title'); ?></h2>
     <div class="wrap slider-wrap">
       <div class="arr arr-prev">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -466,10 +309,10 @@ get_header();
       </div>
       <div class="swiper">
         <div class="swiper-wrapper mag-toggle">
-          <?php $gallery = get_field('about_gall'); if ($gallery) : ?>
+          <?php $gallery = get_field('feed_sert', 'feed'); if ($gallery) : ?>
           <?php foreach( $gallery as $img ): ?>
-            <a href="<?php echo esc_url($img['url']) ?>" class="swiper-slide item">
-              <img src="<?php echo esc_url($img['sizes']['large']); ?>" alt="Галерея">
+            <a href="<?php echo esc_url($img['url']); ?>" class="swiper-slide item">
+              <?php echo '<img src="' . esc_url($img['sizes']['medium']) . '" alt="Благодарственное письмо">'; ?>
             </a>
           <?php endforeach; endif; ?>
         </div>
@@ -492,7 +335,7 @@ get_header();
       <div class="left">
         <div class="title-block">
           <b class="title sub"><?php echo get_field('banner_title') ?></b>
-          <p class="subtitle"><?php echo get_field('banner_subtitle'); ?></p>
+          <p class="subtitle"><?php echo get_field('banner_subtitle', 'home'); ?></p>
         </div>
         <div class="manager">
           <div class="avatar">

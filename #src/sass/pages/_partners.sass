@@ -1,11 +1,105 @@
 @import "../reset/_vars"
 
+@media (min-width: 992px)
+  .often
+    .item
+      &:hover
+        .thumb
+          img
+            transform: scale(1.1)
+            transition: 1s
 
-   
+.what
+  .wrap
+    background-color: $text
+    border-radius: $brad24
+    padding: 50px
+    justify-content: flex-start
+    align-items: stretch
+    background-image: url(../img/assets/what-bg.png)
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: right bottom
+    padding-right: 30px
+  .title, .subtitle
+    color: #fff
+    width: 100%
+  .item
+    width: calc(25% - 20px)
+    margin-right: 20px
+    background-color: #fff
+    border-radius: $brad24
+    padding: 30px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-start
+    padding-right: 5px
+    b
+      font-size: 48px
+      margin-bottom: 16px
+    p
+      color: $gray_500
 
+.often
+  .wrap
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(25% - 20px)
+    margin-right: 20px
+    margin-bottom: 20px
+    .thumb
+      width: 100%
+      aspect-ratio: 1 / 1
+      border-radius: $brad24
+      background-color: $gray_50
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-bottom: 20px
+      padding: 10px
+      overflow: hidden
+      img
+        object-fit: contain
+        margin: auto
+        transition: 1s
+    b
+      font-size: 20px
+      transition: .3s
 
+@media (max-width: 992px)
+  .what
+    .title
+      font-size: 30px
+    .wrap
+      padding: 20px
+      justify-content: space-between
+      padding-bottom: 12px
+    .item
+      width: calc(50% - 4px)
+      margin-right: 0
+      padding: 16px
+      margin-bottom: 8px
+      min-height: 146px
+      b
+        font-size: 26px
+        margin-bottom: 8px
+      p
+        font-size: 14px
 
-
+  .often
+    .wrap
+      min-width: 0
+      justify-content: space-between
+    .item
+      width: calc(50% - 4px)
+      margin-right: 0
+      margin-bottom: 20px
+      .thumb
+        margin-bottom: 16px
+        padding: 5px
+      b
+        font-size: 16px
 
 
 

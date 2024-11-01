@@ -1,8 +1,9 @@
 @import "../reset/_vars"
 
-.single .comments
+.single-post .comments
   margin-top: 60px
   #comments
+    max-width: 100%
     margin: 0
     #wpdcom
       margin: 0
@@ -63,12 +64,13 @@
                 .wpd-field-icon
                   display: none
                 input
-                  height: 56px
+                  height: 64px
                   background-color: $gray_50
                   border: none
                   border-radius: 12px
                   padding-left: 16px
                   color: $text
+                  min-width: 290px
                   box-shadow: none
                   &::placeholder
                     font-size: 16px
@@ -93,11 +95,11 @@
                 .wc_comm_submit
                   margin: 0
                   padding: 0
-                  height: 56px
+                  height: 64px
                   border-radius: 12px
                   border: none
                   box-shadow: none
-                  background-color: $violet
+                  background-color: $text
                   color: #fff
                   transition: .2s
                   cursor: pointer
@@ -162,11 +164,12 @@
         margin: 0
         .comment
           .wpd-comment-wrap
-            border-radius: 24px
-            background-color: $gray_50
-            padding: 30px
-            margin: 0 0 20px 0
+            border-radius: 0
+            background-color: transparent
+            padding: 30px 0
+            margin: 0
             position: relative
+            border-bottom: 1px solid $gray_200
             .wpd-comment-left
               position: absolute
               margin: 0
@@ -178,8 +181,8 @@
               background-size: 24px 24px
               background-position: center
               background-image: url(../img/icons/user.svg)
-              background-color: $violet
-              left: 30px
+              background-color: $text
+              left: 0px
               top: 30px
               .wpd-avatar,
               .wpd-comment-label
@@ -199,11 +202,18 @@
                 justify-content: center
                 padding: 0
                 margin: 0
-                margin-bottom: 24px
+                margin-bottom: 16px
+                .wpd-comment-status
+                  display: block
+                  font-size: 10px
+                  margin: 0
+                  padding: 0
+                  *
+                    font-size: 12px
+                    color: $green
                 .wpd-comment-share,
                 .wpd-space,
-                .wpd-comment-link,
-                .wpd-comment-status
+                .wpd-comment-link
                   display: none
                 .wpd-comment-author, a
                   font-size: 20px
@@ -239,9 +249,10 @@
 
 
 @media (max-width: 767px)
-  .single .comments
+  .single-post .comments
     margin-top: 40px
     #comments
+      width: 100%
       #wpdcom
         .wpd-form
           .wpd-form-foot
@@ -276,12 +287,12 @@
         .wpd-thread-list
           .comment
             .wpd-comment-wrap
-              padding: 20px
+              padding: 20px 0
               margin: 0 0 8px 0
               .wpd-comment-left
                 height: 54px
                 width: 54px
-                left: 20px
+                left: 0px
                 top: 20px
               .wpd-comment-right
                 padding-left: calc(16px + 54px)

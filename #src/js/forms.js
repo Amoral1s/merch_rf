@@ -70,7 +70,14 @@ jQuery(document).ready(function ($) {
 		// Добавляем новую запись в историю, чтобы предотвратить переход назад при закрытии видео
 		history.pushState(null, null, window.location.href);
 	});
-
+	$('.call-portfolio').on('click', function(ev) {
+		let target = ev.target;
+		$('.popup.popup-portfolio').fadeIn(300);
+		$('.popup').removeClass('popup-thx');
+		$('.overlay').fadeIn(300);
+		$('.popup.popup-portfolio .data-title').val($(target).attr('data-title'));
+		$('html').addClass('fixed');
+	});
 	$('.overlay').on('click', function() {
 		$('.popup').fadeOut(300);
 		$('.mini-cart').fadeOut(300);

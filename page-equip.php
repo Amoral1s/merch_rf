@@ -418,7 +418,11 @@ get_header();
           ?>
           <a href="<?php echo get_the_permalink(); ?>" class="item swiper-slide">
             <div class="thumb">
-              <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php if (has_post_thumbnail()) : ?>
+                  <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php else : ?>
+                  <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+              <?php endif; ?>
             </div>
             <div class="meta">
               <div class="date"><?php echo get_the_date('d M Y') ?></div>

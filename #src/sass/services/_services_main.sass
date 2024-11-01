@@ -284,7 +284,39 @@
         span
           font-size: 14px
 
+@media (min-width: 992px)
+  .price-table
+    .title-row
+      .link
+        &:hover
+          span
+            color: $brand_main
+          svg path
+            stroke: $brand_main
+
 .price-table
+  .title-row
+    margin-bottom: 40px
+    justify-content: flex-start
+    align-items: center
+    .link
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      margin-left: 30px
+      cursor: pointer
+      .icon
+        margin-right: 11px
+      span
+        color: $text
+        font-weight: 600
+        display: block
+        font-size: 16px
+        white-space: nowrap
+        transition: .2s
+    .title
+      margin-bottom: 0
+      width: max-content
   .wrap
     width: 100%
     table
@@ -344,6 +376,21 @@
 
 @media (max-width: 992px)
   .price-table
+    .title-row
+      margin-bottom: 20px
+      display: flex
+      flex-wrap: wrap
+      .link
+        margin-left: 0
+        margin-right: 16px
+        width: max-content
+        .icon
+          margin-right: 6px
+        span
+          font-size: 14px
+      .title
+        margin-bottom: 10px
+        width: 100%
     .wrap
       display: block
       margin-bottom: 10px

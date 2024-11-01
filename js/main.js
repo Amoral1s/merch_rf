@@ -5888,6 +5888,98 @@ jQuery(document).ready(function ($) {
         wrapper.classList.add('disabled-slider');
       }
 	}
+
+  const historySlider = document.querySelector('.about-history');
+	if (historySlider) {
+      const wrapper = historySlider.querySelector('.wrap');
+      const swiper = historySlider.querySelector('.swiper');
+      const arrNext = historySlider.querySelector('.arr-next');
+      const arrPrev = historySlider.querySelector('.arr-prev');
+      const items = historySlider.querySelectorAll('.wrap .item');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            578: {
+              spaceBetween: 8,
+              slidesPerView: 2,
+            },  
+            768: {
+              spaceBetween: 10,
+              slidesPerView: 2,
+            },  
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 4) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 2) {
+        startSlider();
+      } else if (window.screen.width < 768 && items.length > 1) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
+
+  const aboutGallerySlider = document.querySelector('.about-gallery');
+	if (aboutGallerySlider) {
+      const wrapper = aboutGallerySlider.querySelector('.wrap');
+      const swiper = aboutGallerySlider.querySelector('.swiper');
+      const arrNext = aboutGallerySlider.querySelector('.arr-next');
+      const arrPrev = aboutGallerySlider.querySelector('.arr-prev');
+      const items = aboutGallerySlider.querySelectorAll('.wrap .item');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            578: {
+              spaceBetween: 8,
+              slidesPerView: 2,
+            },  
+            768: {
+              spaceBetween: 10,
+              slidesPerView: 2,
+            },  
+            992: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 2) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 2) {
+        startSlider();
+      } else if (window.screen.width < 768 && items.length > 2) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
   const singlePortfolioSlider = document.querySelector('.portfolio-single');
 	if (singlePortfolioSlider) {
       const wrapper = singlePortfolioSlider.querySelector('.left');
@@ -5899,7 +5991,7 @@ jQuery(document).ready(function ($) {
       function startSlider() {
         new Swiper(swiper, {
           lazy: false,
-          autoHeight: true,
+          autoHeight: false,
           slidesPerView: 1,
           spaceBetween: 8,
           navigation: {
@@ -6443,7 +6535,14 @@ jQuery(document).ready(function ($) {
 		// Добавляем новую запись в историю, чтобы предотвратить переход назад при закрытии видео
 		history.pushState(null, null, window.location.href);
 	});
-
+	$('.call-portfolio').on('click', function(ev) {
+		let target = ev.target;
+		$('.popup.popup-portfolio').fadeIn(300);
+		$('.popup').removeClass('popup-thx');
+		$('.overlay').fadeIn(300);
+		$('.popup.popup-portfolio .data-title').val($(target).attr('data-title'));
+		$('html').addClass('fixed');
+	});
 	$('.overlay').on('click', function() {
 		$('.popup').fadeOut(300);
 		$('.mini-cart').fadeOut(300);
@@ -6582,8 +6681,6 @@ jQuery(document).ready(function ($) {
 				 $(this).prev().prev().prev().removeClass('active');
 				 $(this).prev().prev().prev().prev().removeClass('active');
 			 }
- 
-			 
 		 });
  
 	 }
@@ -6592,44 +6689,124 @@ jQuery(document).ready(function ($) {
 	 const singlePage = document.querySelector('.only-single-page');
  
 	 if (singlePage) {
-		 $('.wpd-rating-title').text('Оцените статью');
-		 $('.wpd-thread-info').text('Комментарии к статье');
-		 const navWrap = document.querySelector('.single-nav-wrap');
-		 if (!navWrap) {
-			 return
-		 }
-		 const navWrapParent = navWrap.parentElement;
-		 const content = document.querySelector('.content');
-		 const contentBlocks = content.querySelectorAll('*');
-		 let elems = 0;
-		 let count = 1;
-		 contentBlocks.forEach((elem, index) => {
-			 if (elem.id) {
-				 if (
-							elem.closest('.line') || 
-							elem.closest('.product') || 
-							elem.classList.contains('wpcf7') || 
-							elem.classList.contains('awooc-custom-order') || 
-							elem.classList.contains('swiper-wrapper') 
-						) 
-					{
-					 return
-				 }
-				 const navLink = document.createElement('a');
-				 navLink.href = `#${elem.id}`;
-				 navLink.classList.add('anchor');
-				 navLink.textContent = elem.id.replace(/\-/g, ' ');
-				 navLink.textContent = count + '. ' + navLink.textContent;
-				 count++;
-				 navWrap.appendChild(navLink);
-				 elems++;
-			 }
-		 });
-		 if (elems === 0) {
-			 navWrapParent.remove();
-		 }
-		 
-	 }
+		function declension(number, one, few, many) {
+			number = Math.abs(number) % 100;
+			const n1 = number % 10;
+			if (number > 10 && number < 20) return many;
+			if (n1 > 1 && n1 < 5) return few;
+			if (n1 === 1) return one;
+			return many;
+		}
+		$('.wpd-rating-title').text('Оцените статью');
+		$('.wpd-thread-info').text('Комментарии');
+		const navWrap = document.querySelector('.single-nav-wrap');
+		if (!navWrap) {
+			return
+		}
+		const navWrapParent = navWrap.parentElement;
+		const content = document.querySelector('.content');
+		const contentBlocks = content.querySelectorAll('*');
+		let elems = 0;
+		let count = 1;
+		contentBlocks.forEach((elem, index) => {
+			if (elem.id) {
+				if (
+						elem.closest('.line') || 
+						elem.closest('.product') || 
+						elem.classList.contains('wpcf7') || 
+						elem.classList.contains('awooc-custom-order') || 
+						elem.classList.contains('swiper-wrapper') 
+					) 
+				{
+					return
+				}
+				const navLink = document.createElement('a');
+				navLink.href = `#${elem.id}`;
+				navLink.classList.add('anchor');
+				navLink.textContent = elem.id.replace(/\-/g, ' ');
+				navLink.textContent = count + '. ' + navLink.textContent;
+				count++;
+				navWrap.appendChild(navLink);
+				elems++;
+			}
+		});
+		if (elems === 0) {
+			navWrapParent.remove();
+		}
+		//const rating = document.querySelector('.wpd-rating-stars').cloneNode(true);
+		//const ratngTopWrap = document.querySelector('.new-rating');
+		const avarageRating = document.querySelector('.wpd-rating-value .wpdrv').textContent;
+		const ratingValue = document.querySelector('.ratingValue');
+		const ratingVotes = document.querySelector('.wpd-rating-value .wpdrc').textContent;
+		const votes = document.querySelector('.votes');
+
+		ratingValue.textContent = avarageRating;
+		ratingValue.content = avarageRating;
+		votes.content = ratingVotes;
+		votes.textContent = `(${ratingVotes} ${declension(ratingVotes, 'оценка', 'оценки', 'оценок')})`;
+
+		//ratngTopWrap.appendChild(rating);
+
+		//SINGLE POST SHARE
+		$('.share-link').click(function() {
+			var currentLink = window.location.href;
+			var $temp = $("<input>");
+			$("body").append($temp);
+			$temp.val(currentLink).select();
+			document.execCommand("copy");
+			$temp.remove();
+			alert("Ссылка скопирована: " + currentLink);
+		});
+
+		const ratingWrapToClone = document.querySelector('#wpd-post-rating .wpd-rating-data'); 
+		const ratingWrapEnd = document.querySelector('.share-stars');
+		if (ratingWrapToClone && ratingWrapEnd) {
+			const newRating = ratingWrapToClone.cloneNode(true);
+			//ratingWrapToClone.style.display = 'none';
+			ratingWrapEnd.appendChild(newRating);
+			const ratingStars = ratingWrapEnd.querySelectorAll('.wpd-rating-stars svg');
+			const oldRatingStars = ratingWrapToClone.querySelectorAll('.wpd-rate-starts .wpd-star');
+			
+			if (oldRatingStars.length > 0) {
+				ratingWrapEnd.classList.add('active');
+				$(ratingStars).hover(function() {
+					$(this).addClass('active');
+					$(this).prev().addClass('active');
+					$(this).prev().prev().addClass('active');
+					$(this).prev().prev().prev().addClass('active');
+					$(this).prev().prev().prev().prev().addClass('active');
+				}, function() {
+					$(this).removeClass('active');
+					$(this).prev().removeClass('active');
+					$(this).prev().prev().removeClass('active');
+					$(this).prev().prev().prev().removeClass('active');
+					$(this).prev().prev().prev().prev().removeClass('active');
+				});
+				ratingStars.forEach((el, i) => {
+					el.addEventListener('click', () => {
+						console.log(oldRatingStars[i])
+						$(oldRatingStars[i]).trigger('click')
+					})
+				});
+			}
+
+			
+		}
+
+		const commentList = document.querySelector('.wpd-thread-list');
+
+		if (commentList) {
+			const comments = commentList.querySelectorAll('.comment');
+
+			if (comments.length == 0) {
+				const noComments = document.createElement('p');
+				noComments.classList.add('no-comments');
+				noComments.textContent = 'Комментариев пока нету...';
+				commentList.appendChild(noComments);
+			}
+		}
+		
+	}
 	
  
  }); //end
@@ -6682,16 +6859,7 @@ jQuery(document).ready(function ($) {
 		$(this).parent().toggleClass('active');
 	})
 	
-	//SINGLE POST SHARE
-	$('.share-link').click(function() {
-		var currentLink = window.location.href;
-		var $temp = $("<input>");
-		$("body").append($temp);
-		$temp.val(currentLink).select();
-		document.execCommand("copy");
-		$temp.remove();
-		alert("Ссылка скопирована: " + currentLink);
-	});
+
 
 	if (window.screen.width > 992) {
 		$(".anchor").click(function () {

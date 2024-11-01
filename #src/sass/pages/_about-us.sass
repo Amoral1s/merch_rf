@@ -1,18 +1,242 @@
 @import "../reset/_vars"
 
+.about-history
+  .title-row
+    display: flex
+    justify-content: flex-start
+    .title
+      width: max-content
+    p
+      font-size: 18px
+      color: $gray_500
+      font-weight: 400
+      margin-left: 40px
+      line-height: 1.2
+  .wrap
+    &.disabled-slider
+      .item
+        width: calc(25% - 20px)
+        margin-right: 20px
+    .swiper-wrapper
+      align-items: stretch
+    .item
+      padding: 30px
+      border-radius: $brad24
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      flex-direction: column
+      height: auto
+      background-color: $gray_50
+      background-repeat: no-repeat
+      background-size: cover
+      transition: .5s
+      b
+        color: $text
+        font-size: 22px
+        margin-bottom: 16px
+        display: block
+        transition: .5s
+      p
+        font-size: 16px
+        line-height: 1.2
+        color: $text
+        transition: .5s
+      &.swiper-slide-active
+        background-image: url(../img/assets/history-bg.jpg)
+        b,p 
+          color: #fff
 
-   
+.mission
+  .wrap
+    background-color: $text
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: right bottom
+    background-image: url(../img/assets/mission-bg.png)
+    padding: 40px
+    border-radius: $brad24
+    justify-content: space-between
+    align-items: stretch
+    .title
+      color: #fff
+      margin-bottom: 16px
+      width: 100%
+      font-size: 36px 
+    .subtitle
+      color: #fff
+      font-size: 16px
+      margin-bottom: 0
+      width: 100%
+    .item
+      width: calc(50% - 7px)
+      margin-top: 14px
+      border-radius: $brad24
+      background-color: #fff
+      padding: 30px
+      b
+        font-size: 26px
+        margin-bottom: 16px
+      p
+        line-height: 1.2
 
-
-
-
-
-
-
-
-
+.vacancy-banner
+  .wrap
+    background-color: $text
+    position: relative
+    flex-wrap: nowrap
+    padding: 40px 60px
+    border-radius: $brad24
+    align-items: center
+    justify-content: flex-start
+  .left
+    position: absolute
+    left: 16px
+    bottom: 0
+    max-width: 350px
+  .center
+    width: 100%
+    padding-left: calc(376px - 60px)
+    .roboto
+      color: #fff
+      font-size: 36px
+      margin-bottom: 16px
+    p
+      color: #fff
+      line-height: 1.2
+  .right
+    width: max-content
+    margin-left: 34px
+    .button
+      .icon
+        margin-left: 10px
   
+@media (min-width: 992px)
+  .about-gallery
+    .item
+      &:hover
+        img
+          transform: scale(1.1)
+          transition: 1s
 
+.about-gallery
+  .wrap
+    user-select: none
+  .swiper
+    overflow: visible
+  .item
+    display: block
+    height: auto
+    aspect-ratio: 610 / 495
+    border-radius: $brad24
+    overflow: hidden
+    img
+      width: 100%
+      height: auto
+      aspect-ratio: 610 / 495
+      border-radius: $brad24
+      object-fit: cover
+      transition: 1s
+
+
+@media (max-width: 992px)
+  .about-offer
+    .page-title
+      font-size: 28px
+      letter-spacing: -0.8px
+  .about-history
+    .title-row
+      display: block
+      .title
+        width: 100%
+      p
+        font-size: 16px
+        margin-left: 0
+    .wrap
+      .arr-prev
+        left: -25px
+      .arr-next
+        right: -25px
+      &.disabled-slider
+        .item
+          width: calc(50% - 10px)
+          margin-right: 10px
+      .item
+        padding: 20px
+        b
+          font-size: 20px
+        p
+          font-size: 14px
+  .mission
+    .wrap
+      padding: 20px
+      .title
+        font-size: 24px 
+      .subtitle
+        color: #fff
+        font-size: 14px
+        margin-bottom: 20px
+      .item
+        width: 100%
+        margin-top: 0
+        margin-bottom: 8px
+        padding: 16px
+        &:last-child
+          margin-bottom: 0
+        b
+          font-size: 20px
+          margin-bottom: 8px
+        p
+          font-size: 14px
+  .vacancy-banner
+    .wrap
+      display: block
+      padding: 24px
+    .left
+      position: static
+      max-width: 350px
+    .center
+      width: 100%
+      padding-left: 0
+      margin: 20px 0
+      .roboto
+        font-size: 32px
+      p
+        font-size: 14px
+    .right
+      width: 100%
+      margin-left: 0
+    
+
+@media (max-width: 578px)
+  .about-history
+    .swiper
+      position: relative
+      left: -15px
+      padding-left: 15px
+      min-width: calc(100% + 30px)
+      padding-right: 70px
+    .wrap
+      .arr
+        display: none
+      &.disabled-slider
+        .item
+          width: 100%
+          margin-right: 10px
+  .about-gallery
+    .arr
+      display: none
+    .swiper
+      overflow: hidden
+      position: relative
+      left: -15px
+      padding-left: 15px
+      padding-right: 70px 
+      min-width: calc(100% + 30px)
+    .item
+      aspect-ratio: 272 / 221
+      img
+        aspect-ratio: 272 / 221
 
 
 

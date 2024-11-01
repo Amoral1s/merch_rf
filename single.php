@@ -5,15 +5,6 @@
 
 <div class="page-top">
   <div class="container">
-    <a href="/news" class="back-btn"  onclick="history.back()">
-      <div class="icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-					<path d="M5 12L20 11.9998" stroke="#2CB4C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="#2CB4C2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-      </div>
-      <span>Назад</span>
-    </a>
     <?php
       if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<p class="breadcrumbs">', '</p>'); }
     ?>
@@ -21,137 +12,189 @@
 </div>
 
 
-<section itemid="<?php echo get_permalink(); ?>" itemscope itemtype="http://schema.org/BlogPosting" class="single only-single-page container">
-		<meta itemprop="description" content="<?php the_excerpt(); ?>">
-		<link itemprop="image" href="<?php the_post_thumbnail_url(); ?>">
-		<meta itemprop="author" content="<?php echo get_field('imya'); ?>, <?php echo get_field('dolzhnost'); ?>">
-		<meta itemprop="datePublished" content="<?php the_time('c'); ?>">
-		<meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>">
-	
-	<div class="single-top">
-		<h1 itemprop="headline" class="page-title"><?php the_title(); ?></h1>
-		<?php if (get_field('subtitle')) { ?>
-		<p class="subtitle"><?php echo get_field('subtitle'); ?></p>
-		<?php } ?>
-		<div class="meta-wrap">
-			<div class="left">
-				<div class="author">
-					<?php if (get_field('author_image')) : ?>
-					<div class="avatar">
-						<img src="<?php echo get_field('author_image'); ?>" alt="Автор статьи">
-					</div>
-					<div itemprop="author" class="name">
-						<p><?php echo get_field('author_name'); ?></p>
-						<span><?php echo get_field('author_place'); ?></span>
-					</div>
-					<?php else : ?>
-					<div class="avatar">
-						<svg xmlns="http://www.w3.org/2000/svg" width="57" height="55" viewBox="0 0 57 55" fill="none">
-							<path d="M11.2254 41.4622C12.3943 39.4925 14.899 37.1617 21.7786 35.4546V31.2197C5.58142 33.4192 1.57386 39.0985 0.471786 41.3965C-2.63407 49.5379 10.5575 53.346 11.9935 53.7071C17.4705 54.889 22.2796 54.6592 27.1554 53.9041C21.9122 52.8864 16.2682 50.1289 14.2645 48.7501C11.1252 46.8132 9.65576 44.4167 11.2254 41.4622Z" fill="#885C8C"/>
-							<path d="M56.6443 41.8891C54.4736 34.4699 39.2449 31.2855 34.3356 31.1542V35.6845C39.2783 36.5052 42.9853 38.3108 44.9556 40.7401C48.4288 46.1239 41.95 50.9497 36.4062 48.1593C33.4673 46.4851 33.4673 44.4825 33.2335 42.7098C33.2335 33.9118 33.2335 24.7527 33.1667 15.889C31.6639 16.8082 29.8939 17.3663 27.9903 17.3663C26.0867 17.3663 24.4169 16.8082 22.9141 15.9218V41.5608C22.9475 45.2704 24.2165 48.4876 26.1535 50.3916C29.2928 53.5103 32.933 54.6921 36.9071 54.9876C40.9147 55.1189 45.2228 54.1997 48.7962 52.5911C54.4068 50.0962 58.214 46.0911 56.6443 41.8234" fill="#885C8C"/>
-							<path d="M25.4188 14.7071C26.2203 15.0354 27.0886 15.1667 27.9903 15.1667C28.892 15.1667 29.7603 15.0026 30.5618 14.7071C33.5675 13.6894 35.7049 10.8662 35.7049 7.58335C35.7049 4.69446 34.0684 2.13384 31.4635 0.820709H31.4301C31.4301 0.820709 29.6267 0.164142 29.5599 0.164142C29.5599 0.164142 28.6916 0.0328283 28.6582 0.0328283C28.6582 0.0328283 28.1239 0 27.9903 0C26.955 0 25.9865 0.19697 24.9847 0.623739C23.8826 1.05051 22.9475 1.60859 22.1794 2.46213C21.5114 3.11869 21.0773 3.84092 20.8101 4.82577C20.4428 5.74496 20.2758 6.66416 20.2758 7.61618C20.2758 10.899 22.4465 13.7223 25.4188 14.7399" fill="#885C8C"/>
-						</svg>
-					</div>
-					<div itemprop="author" class="name">
-						<p>Принт Среда</p>
-						<span>Администратор</span>
-					</div>
-					<?php endif; ?>
-				</div>
-				<div class="meta-wrap-items">
-					<div class="item date">
-						<div class="icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-								<path d="M11.9955 13.5H12.0045M11.9955 17.5H12.0045M15.991 13.5H16M8 13.5H8.00897M8 17.5H8.00897" stroke="#885C8C" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
-								<path d="M17.5 2V6M6.5 2V6" stroke="#885C8C" stroke-width="1.5" stroke-linejoin="round"/>
-								<path d="M21 4H3V22H21V4Z" stroke="#885C8C" stroke-width="1.5" stroke-linejoin="round"/>
-								<path d="M3 9H21" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</div>
-						<time class="value" datetime="<?php echo get_the_date('d.m.Y') ?>"><?php echo get_the_date('d.m.Y') ?></time>
-					</div>
-					<div class="item views">
-						<div class="icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-								<path d="M15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12Z" stroke="#885C8C" stroke-width="1.5"/>
-								<path d="M12 5C17.5228 5 22 12 22 12C22 12 17.5228 19 12 19C6.47715 19 2 12 2 12C2 12 6.47715 5 12 5Z" stroke="#885C8C" stroke-width="1.5"/>
-							</svg>
-						</div>
-						<div class="value">
-							<?php setPostViews(get_the_ID()); ?>
-							<?php echo getPostViews(get_the_ID()); ?>
-						</div>
-					</div>
-					<div class="item read-time">
-						<div class="icon">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-								<path d="M8.37563 3C8.16172 3.07993 7.95135 3.16712 7.74481 3.26126M20.7176 16.3011C20.8198 16.0799 20.914 15.8542 20.9999 15.6245M18.4987 19.3647C18.6704 19.2044 18.8364 19.0381 18.9962 18.866M15.2688 21.3723C15.4629 21.2991 15.654 21.22 15.842 21.1351M12.1559 21.9939C11.925 22.0019 11.6925 22.0019 11.4615 21.9939M7.7872 21.1404C7.968 21.2217 8.15172 21.2978 8.33814 21.3683M4.67244 18.9208C4.80913 19.0657 4.95018 19.2064 5.09539 19.3428M2.63259 15.6645C2.70747 15.8622 2.78856 16.0569 2.87561 16.2483M2.00486 12.5053C1.99837 12.2972 1.99839 12.0878 2.00486 11.8794M2.62534 8.73714C2.6989 8.54165 2.77853 8.34913 2.86399 8.1598M4.65591 5.47923C4.80057 5.32514 4.95014 5.17573 5.10439 5.03124" stroke="#885C8C" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-								<path d="M13.5 12C13.5 12.8284 12.8284 13.5 12 13.5C11.1716 13.5 10.5 12.8284 10.5 12C10.5 11.1716 11.1716 10.5 12 10.5M13.5 12C13.5 11.1716 12.8284 10.5 12 10.5M13.5 12H16M12 10.5V6" stroke="#885C8C" stroke-width="1.5"/>
-								<path d="M22 12C22 6.47715 17.5228 2 12 2" stroke="#885C8C" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-							</svg>
-						</div>
-						<div class="value">
-							~ <?php echo gp_read_time(); ?> мин.
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			<div class="share">
-				<script src="https://yastatic.net/share2/share.js"></script>
-				<div class="row">
-					<div class="ya-share2 share-block" data-curtain data-shape="round" data-services="whatsapp,vkontakte,telegram"></div>
-					<div class="share-link">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M13.1766 9.32596C11.8861 8.03543 9.81336 8.00323 8.48436 9.22938C8.14606 9.54138 7.61885 9.52021 7.30677 9.18188C6.99471 8.84363 7.01594 8.31642 7.35421 8.00434C9.33794 6.17424 12.4297 6.22193 14.3552 8.14741C16.3295 10.1218 16.3295 13.3229 14.3552 15.2973L11.9666 17.6858C9.99219 19.6602 6.79111 19.6602 4.81673 17.6858C2.84234 15.7115 2.84234 12.5104 4.81673 10.536L5.20368 10.149C5.52912 9.82354 6.05676 9.82354 6.3822 10.149C6.70763 10.4745 6.70763 11.002 6.38219 11.3275L5.99524 11.7145C4.67173 13.038 4.67173 15.1838 5.99524 16.5073C7.31875 17.8308 9.46461 17.8308 10.7881 16.5073L13.1766 14.1188C14.5002 12.7953 14.5002 10.6495 13.1766 9.32596Z" fill="#885C8C"/>
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M14.0047 3.49267C12.6812 2.16917 10.5354 2.16917 9.2119 3.49267L6.82336 5.88122C5.49986 7.20473 5.49986 9.35054 6.82336 10.674C8.11386 11.9645 10.1866 11.9968 11.5156 10.7706C11.854 10.4586 12.3811 10.4798 12.6932 10.8181C13.0053 11.1564 12.9841 11.6835 12.6458 11.9956C10.6621 13.8258 7.57033 13.778 5.64486 11.8526C3.67046 9.87821 3.67046 6.67709 5.64486 4.70271L8.0334 2.31416C10.0078 0.339777 13.2089 0.339777 15.1833 2.31416C17.1576 4.28855 17.1576 7.48966 15.1833 9.46404L14.7963 9.85096C14.4709 10.1765 13.9432 10.1765 13.6178 9.85096C13.2924 9.52554 13.2924 8.99796 13.6178 8.67246L14.0047 8.28552C15.3283 6.96202 15.3283 4.81618 14.0047 3.49267Z" fill="#885C8C"/>
-						</svg>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="thumb">
-			<img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" >
-		</div>
-	</div>
-	<?php if (get_field('nav_toggle') == false) : ?>
-	<div class="single-nav">
-		<b>Содержание статьи</b>
-		<div class="single-nav-wrap">
-		</div>
-	</div>
-	<?php endif; ?>
+<section itemid="<?php echo get_permalink(); ?>" itemscope itemtype="http://schema.org/BlogPosting" class="container single-post only-single-page">
+	<meta itemprop="description" content="<?php the_excerpt(); ?>">
+	<link itemprop="image" href="<?php the_post_thumbnail_url(); ?>">
+	<meta itemprop="author" content="<?php echo get_field('imya'); ?>, <?php echo get_field('dolzhnost'); ?>">
+	<meta itemprop="datePublished" content="<?php the_time('c'); ?>">
+	<meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>">
 
+	<h1 itemprop="headline" class="page-title sub"><?php the_title(); ?></h1>
+	<?php if (get_field('subtitle')) { ?>
+		<p class="subtitle dark"><?php echo get_field('subtitle'); ?></p>
+	<?php } ?>
+	<div class="single-post__top">
+		<?php 
+			// Получаем URL профиля автора
+			$author_id = get_the_author_meta('ID');
+			$author_url = get_author_posts_url($author_id); 
+		?>
+		<a href="<?php echo esc_url($author_url); ?>" class="author">
+				<div class="avatar">
+						<?php
+						// Получаем URL аватара из профиля пользователя
+						$author_avatar = get_the_author_meta('author_avatar');
+						
+						// Если аватар не задан, используем SVG-заглушку
+						if ($author_avatar) {
+								echo '<img src="' . esc_url($author_avatar) . '" alt="Аватар автора">';
+						} else {
+								// SVG-заглушка
+								echo '<svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="12" cy="12" r="10" stroke="#333" stroke-width="2"/>
+										<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="#333"/>
+										<path d="M6 18c1.33-2 3.67-3 6-3s4.67 1 6 3" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+										</svg>';
+						}
+						?>
+				</div>
+				<div itemprop="author" class="name">
+						<p class="roboto"><?php echo esc_html(get_the_author_meta('author_name') ? get_the_author_meta('author_name') : 'Администратор'); ?></p>
+						<span><?php echo esc_html(get_the_author_meta('author_position') ? get_the_author_meta('author_position') : 'Автор статьи'); ?></span>
+				</div>
+		</a>
+		<div class="meta-wrap">
+			<div class="item date">
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M18 2V4M6 2V4" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M11.9955 13H12.0045M11.9955 17H12.0045M15.991 13H16M8 13H8.00897M8 17H8.00897" stroke="#0C0C0C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M3.5 8H20.5" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M2.5 12.2432C2.5 7.88594 2.5 5.70728 3.75212 4.35364C5.00424 3 7.01949 3 11.05 3H12.95C16.9805 3 18.9958 3 20.2479 4.35364C21.5 5.70728 21.5 7.88594 21.5 12.2432V12.7568C21.5 17.1141 21.5 19.2927 20.2479 20.6464C18.9958 22 16.9805 22 12.95 22H11.05C7.01949 22 5.00424 22 3.75212 20.6464C2.5 19.2927 2.5 17.1141 2.5 12.7568V12.2432Z" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M3 8H21" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<time class="value" datetime="<?php echo get_the_date('d.m.Y') ?>"><?php echo get_the_date('d.m.Y') ?></time>
+			</div>
+			<div class="item views">
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M2 8C2 8 6.47715 3 12 3C17.5228 3 22 8 22 8" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round"/>
+						<path d="M21.544 13.045C21.848 13.4713 22 13.6845 22 14C22 14.3155 21.848 14.5287 21.544 14.955C20.1779 16.8706 16.6892 21 12 21C7.31078 21 3.8221 16.8706 2.45604 14.955C2.15201 14.5287 2 14.3155 2 14C2 13.6845 2.15201 13.4713 2.45604 13.045C3.8221 11.1294 7.31078 7 12 7C16.6892 7 20.1779 11.1294 21.544 13.045Z" stroke="#0C0C0C" stroke-width="1.5"/>
+						<path d="M15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17C13.6569 17 15 15.6569 15 14Z" stroke="#0C0C0C" stroke-width="1.5"/>
+					</svg>
+				</div>
+				<div class="value">
+					<?php setPostViews(get_the_ID()); ?>
+					<?php echo getPostViews(get_the_ID()); ?>
+				</div>
+			</div>
+			<div class="item read-time">
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M8.37563 3C8.16172 3.07993 7.95135 3.16712 7.74481 3.26126M20.7176 16.3011C20.8198 16.0799 20.914 15.8542 20.9999 15.6245M18.4987 19.3647C18.6704 19.2044 18.8364 19.0381 18.9962 18.866M15.2688 21.3723C15.4629 21.2991 15.654 21.22 15.842 21.1351M12.1559 21.9939C11.925 22.0019 11.6925 22.0019 11.4615 21.9939M7.7872 21.1404C7.968 21.2217 8.15172 21.2978 8.33814 21.3683M4.67244 18.9208C4.80913 19.0657 4.95018 19.2064 5.09539 19.3428M2.63259 15.6645C2.70747 15.8622 2.78856 16.0569 2.87561 16.2483M2.00486 12.5053C1.99837 12.2972 1.99839 12.0878 2.00486 11.8794M2.62534 8.73714C2.6989 8.54165 2.77853 8.34913 2.86399 8.1598M4.65591 5.47923C4.80057 5.32514 4.95014 5.17573 5.10439 5.03124" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M13.5 12C13.5 12.8284 12.8284 13.5 12 13.5C11.1716 13.5 10.5 12.8284 10.5 12C10.5 11.1716 11.1716 10.5 12 10.5M13.5 12C13.5 11.1716 12.8284 10.5 12 10.5M13.5 12H16M12 10.5V6" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round"/>
+						<path d="M22 12C22 6.47715 17.5228 2 12 2" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round"/>
+					</svg>
+				</div>
+				<div class="value">
+					~ <?php echo gp_read_time(); ?> мин.
+				</div>
+			</div>
+			<div itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating" class="post-rating item">
+				<meta class="bestRating" itemprop="bestRating" content="5">
+				<div class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+						<g clip-path="url(#clip0_3126_8015)">
+							<path d="M8.99658 0.9375C9.78356 0.9375 10.4034 1.5319 10.7991 2.33393L12.1207 4.99887C12.1608 5.08135 12.2558 5.19748 12.3986 5.30373C12.5412 5.40986 12.681 5.46841 12.7728 5.48385L15.165 5.8846C16.0292 6.0298 16.7535 6.45337 16.9886 7.19093C17.2235 7.92788 16.8793 8.6937 16.2579 9.3162L16.2573 9.31687L14.3988 11.1907C14.3252 11.2649 14.2427 11.4048 14.1909 11.587C14.1396 11.7681 14.135 11.933 14.1583 12.0395L14.1586 12.041L14.6903 14.359C14.9109 15.3238 14.8377 16.2805 14.1573 16.7807C13.4745 17.2825 12.5415 17.06 11.6939 16.5552L9.45146 15.2167C9.35726 15.1605 9.19556 15.1149 9.00033 15.1149C8.80653 15.1149 8.64146 15.1599 8.54111 15.2183L8.53968 15.2191L6.30167 16.5549C5.45505 17.0615 4.52316 17.28 3.84034 16.7776C3.16038 16.2774 3.08361 15.3225 3.30484 14.3585L3.83643 12.041L3.83676 12.0395C3.86007 11.933 3.85551 11.7681 3.80411 11.587C3.75236 11.4048 3.66985 11.2649 3.59619 11.1907L1.7364 9.31545C1.119 8.69295 0.775917 7.9278 1.00897 7.19194C1.2427 6.45394 1.96558 6.02985 2.83026 5.88454L5.2205 5.48414L5.22126 5.48401C5.30889 5.46881 5.44653 5.41092 5.58887 5.30451C5.73147 5.19791 5.8267 5.08151 5.86685 4.99887L5.86887 4.99475L7.18872 2.33323L7.18925 2.33218C7.58876 1.53081 8.21051 0.9375 8.99658 0.9375Z" fill="#FFB800"/>
+						</g>
+						<defs>
+							<clipPath id="clip0_3126_8015">
+								<rect width="18" height="18" fill="white"/>
+							</clipPath>
+						</defs>
+					</svg>
+				</div>
+				<div class="ratingValue" itemprop="ratingValue" content="0">0</div>
+				<!-- <div class="new-rating">
+				</div> -->
+				<div itemprop="ratingCount" class="votes" content="0">
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php if (get_the_post_thumbnail_url()) : ?>
+		<div class="thumb">
+			<img src="<?php echo the_post_thumbnail_url(); ?>" alt="<?php echo get_the_title(); ?>" >
+		</div>
+	<?php endif; ?>
+	<div class="single-post__nav-wrapper">
+		<?php if (get_field('nav_toggle') == false) : ?>
+		<div class="single-post__nav">
+			<b class="roboto">Содержание статьи</b>
+			<div class="single-nav-wrap">
+			</div>
+		</div>
+		<?php endif; ?>
+		<?php if (get_field('mini_banner_title')) : ?>
+		<div class="mini-banner">
+			<div class="left">
+				<b class="roboto"><?php echo get_field('mini_banner_title'); ?></b>
+				<p><?php echo get_field('mini_banner_text'); ?></p>
+				<?php if (get_field('mini_banner_btn_text')) : ?>
+					<a href="<?php echo get_field('mini_banner_btn_link'); ?>" class="button">
+						<?php echo get_field('mini_banner_btn_text'); ?>
+					</a>
+				<?php endif; ?>
+			</div>
+			<?php if (get_field('mini_banner_img')) : ?>
+				<div class="right">
+					<img src="<?php echo get_field('mini_banner_img'); ?>" alt="<?php echo get_field('mini_banner_img'); ?>">
+				</div>
+			<?php endif; ?>
+		</div>
+		<?php endif; ?>
+	</div>
 	<div class="content">
 		<?php the_content(); ?>
 	</div>
-	
+	<div class="share-post">
+		<div class="left">
+			<b class="roboto">Оцените статью</b>
+			<div class="share-stars">
+				
+			</div>
+		</div>
+		<div class="right">
+			<b class="roboto">Поделитесь в соцсетях</b>
+			<div class="share">
+				<script src="http://yastatic.net/share2/share.js"></script>
+				<div class="ya-share2 share-block" data-curtain data-shape="round" data-services="whatsapp,telegram,vkontakte"></div>
+				<div class="share-link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M13.1766 9.32584C11.8861 8.03531 9.81336 8.00311 8.48436 9.22926C8.14606 9.54126 7.61885 9.52009 7.30677 9.18176C6.99471 8.84351 7.01594 8.3163 7.35421 8.00422C9.33794 6.17412 12.4297 6.22181 14.3552 8.14729C16.3295 10.1217 16.3295 13.3228 14.3552 15.2972L11.9666 17.6857C9.99219 19.6601 6.79111 19.6601 4.81673 17.6857C2.84234 15.7113 2.84234 12.5103 4.81673 10.5358L5.20368 10.1488C5.52912 9.82342 6.05676 9.82342 6.3822 10.1489C6.70763 10.4743 6.70763 11.0019 6.38219 11.3274L5.99524 11.7143C4.67173 13.0378 4.67173 15.1837 5.99524 16.5072C7.31875 17.8307 9.46461 17.8307 10.7881 16.5072L13.1766 14.1187C14.5002 12.7952 14.5002 10.6493 13.1766 9.32584Z" fill="#0C0C0C"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M14.0047 3.4928C12.6812 2.16929 10.5354 2.16929 9.2119 3.4928L6.82336 5.88134C5.49986 7.20485 5.49986 9.35066 6.82336 10.6742C8.11386 11.9647 10.1866 11.9969 11.5156 10.7707C11.854 10.4587 12.3811 10.4799 12.6932 10.8182C13.0053 11.1565 12.9841 11.6837 12.6458 11.9957C10.6621 13.8259 7.57033 13.7782 5.64486 11.8527C3.67046 9.87833 3.67046 6.67721 5.64486 4.70283L8.0334 2.31429C10.0078 0.339899 13.2089 0.339899 15.1833 2.31429C17.1576 4.28867 17.1576 7.48978 15.1833 9.46416L14.7963 9.85108C14.4709 10.1766 13.9432 10.1766 13.6178 9.85108C13.2924 9.52566 13.2924 8.99808 13.6178 8.67258L14.0047 8.28565C15.3283 6.96214 15.3283 4.8163 14.0047 3.4928Z" fill="#0C0C0C"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div  class="comments">
 		<h2 class="title">Комментарии к статье</h2>
 		<?php comments_template(); ?>
 	</div>
-
-	
 </section>
 
-<?php if (get_field('consult_banner_title', 'options')) : ?>
-<section class="consult-banner">
+<?php endwhile; ?>
+
+<?php if (get_field('subscribe_banner_toggle') == false) : ?>
+<section class="unisender-banner">
   <div class="container">
     <div class="wrap">
       <div class="left">
-        <b class="title sub"><?php echo get_field('consult_banner_title', 'options'); ?></b>
-        <p class="subtitle"><?php echo get_field('consult_banner_subtitle', 'options'); ?></p>
-        <div class="form">
-          <?php echo do_shortcode('[contact-form-7 id="89d9af1" title="Бесплатная консультация (Баннер)"]'); ?>
-        </div>
+        <b class="roboto"><?php echo get_field('uni_title', 'blocks'); ?></b>
+        <p><?php echo get_field('uni_subtitle', 'blocks'); ?></p>
       </div>
       <div class="right">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/consult/phone.png" alt="Консультация">
+        <div class="form">
+          <?php echo do_shortcode('[contact-form-7 id="b0f62b8" title="Подписка на рассылку"]'); ?>
+        </div>
       </div>
     </div>
   </div>
 </section>
 <?php endif; ?>
+
 
 <?php 
 	$current_post_id = get_the_ID();
@@ -213,102 +256,127 @@
 	// Выводим только если есть найденные посты
 	if ( !empty( $related_posts ) ) {
 ?>
-<section class="news news-slider">
-  <div class="container">
-    <h2 class="title">Читайте также</h2>
-    
-    <div class="wrap slider-wrap">
-      <div class="arr arr-prev">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12H20" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9 7L4.7071 11.2929C4.3738 11.6262 4.2071 11.7929 4.2071 12C4.2071 12.2071 4.3738 12.3738 4.7071 12.7071L9 17" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          <?php
-            // Выводим записи
-            if ( !empty( $related_posts ) ) {
-              foreach ( $related_posts as $post ) {
-                  setup_postdata( $post );
-              ?>
-              <a href="<?php the_permalink(); ?>" class="item swiper-slide">
-                <?php if (has_post_thumbnail()) : ?>
-                    <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'medium'); ?>" alt="<?php the_title(); ?>">
-                <?php else : ?>
-                    <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
-                <?php endif; ?>
-                <div class="meta">
-                  <b><?php the_title(); ?></b>
-                  <div class="date"><?php echo get_the_date('d M Y') ?></div>
-                </div>
-              </a>
-              <?php
-              }
-              wp_reset_postdata();
-            }
-          ?>
-        </div>
-      </div>
-      <div class="arr arr-next">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M19 12H4" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M15 7L19.2929 11.2929C19.6262 11.6262 19.7929 11.7929 19.7929 12C19.7929 12.2071 19.6262 12.3738 19.2929 12.7071L15 17" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="dots" style="display: none"></div>
-    </div>
-  </div>
-</section>
+	<?php if (get_field('related_title')) : ?>
+	<section class="news news-slider">
+		<div class="container">
+			<div class="title-row">
+				<h2 class="title"><?php echo get_field('related_title'); ?></h2>
+				<a href="<?php echo get_field('news_link', 'home'); ?>" class="link-all">
+					<span>Смотреть все</span>
+					<div class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</a>
+			</div>
+			<div class="wrap slider-wrap">
+				<div class="arr arr-prev">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+      	</div>
+				<div class="swiper">
+					<div class="swiper-wrapper">
+						
+						<?php
+
+							$news_ids = get_field('related_ids');
+							if ($news_ids) {
+								$args = array(
+									'post_type'      => 'post',
+									'post__in'       => $news_ids,
+									'orderby'        => 'post__in',
+								);
+							} else {
+								
+							}
+							// Выводим записи
+							if ( !empty( $related_posts ) ) {
+								foreach ( $related_posts as $post ) {
+										setup_postdata( $post );
+								?>
+								<a href="<?php the_permalink(); ?>" class="item swiper-slide">
+									<div class="thumb">
+										<?php if (has_post_thumbnail()) : ?>
+												<img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+										<?php else : ?>
+												<img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+										<?php endif; ?>
+									</div>
+								<div class="meta">
+									<div class="date"><?php echo get_the_date('d M Y') ?></div>
+									<b class="roboto"><?php the_title(); ?></b>
+									<?php 
+										$subtitle = get_field('subtitle'); // Получаем значение поля ACF
+										$word_limit = 10; // Указываем количество слов
+
+										// Проверяем, если текст не пустой
+										if ($subtitle) {
+												$words = explode(' ', $subtitle); // Разделяем текст на слова
+												if (count($words) > $word_limit) {
+														$subtitle = implode(' ', array_slice($words, 0, $word_limit)) . '...'; // Обрезаем текст и добавляем троеточие
+												}
+												echo '<p>'.$subtitle.'</p>'; // Выводим ограниченный текст
+										}
+									?>
+								</div>
+								</a>
+								<?php
+								}
+								wp_reset_postdata();
+							}
+						?>
+					</div>
+				</div>
+				<div class="arr arr-prev">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php endif; ?>
 <?php }  wp_reset_postdata(); ?>
 
-<?php if (get_field('filialy', 'options')) : ?>
-<section class="map">
+<?php if (get_field('form_title')) : ?>
+<section class="form-big">
   <div class="container">
     <div class="wrap">
       <div class="left">
-        <?php if (have_rows('filialy', 'options')) : ?>
-          <?php $first = true; ?>
-          <?php while(have_rows('filialy', 'options')) : the_row(); ?>
-          <div class="item<?php echo $first ? ' active' : ''; ?>" data-coordinat="<?php echo get_sub_field('koordinaty'); ?>">
-            <b><?php echo get_sub_field('zagolovok'); ?></b>
-            <p><?php echo get_sub_field('adres'); ?></p>
-            <a href="tel:<?php echo get_sub_field('telefon'); ?>" class="phone" target="blank"><?php echo get_sub_field('telefon'); ?></a>
-            <span><?php echo get_sub_field('rezhim_raboty'); ?></span>
+        <div class="title-block">
+          <b class="title sub"><?php echo get_field('form_title') ?></b>
+          <p class="subtitle"><?php echo get_field('banner_subtitle'); ?></p>
+        </div>
+        <div class="manager">
+          <div class="avatar">
+            <img src="<?php echo get_field('banner_avatar','options'); ?>" alt="<?php echo get_field('banner_name','options'); ?>">
           </div>
-          <?php $first = false; ?>
-          <?php endwhile; ?>
-        <?php endif; ?>
-      </div>
-      <div class="right">
-        <!-- Карта будет выведена здесь -->
-        <div id="yandex-map" style="width: 100%; height: 100%;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php endwhile; ?>
-
-<?php if (get_field('catalog_banner_title', 'options')) : ?>
-<section class="catalog-banner">
-  <div class="container">
-    <div class="wrap">
-      <div class="left">
-        <b class="title sub"><?php echo get_field('catalog_banner_title', 'options'); ?></b>
-        <p class="subtitle"><?php echo get_field('catalog_banner_subtitle', 'options'); ?></p>
-        <div class="form">
-          <?php echo do_shortcode('[contact-form-7 id="7dc5478" title="Отправка каталога"]'); ?>
+          <div class="meta">
+            <b class="roboto"><?php echo get_field('banner_name','options'); ?></b>
+            <p><?php echo get_field('banner_place','options'); ?></p>
+          </div>
         </div>
       </div>
-      <div class="right">
-        <img src="<?php echo get_field('catalog_banner_bg', 'options'); ?>" alt="<?php echo get_field('catalog_banner_title', 'options'); ?>">
+      <div class="right form form-white">
+        <b class="roboto mini-title">
+          Оставьте заявку
+        </b>
+        <p class="mini-subtitle">
+          Мы свяжемся с вами в течение рабочего дня
+        </p>
+        <?php echo do_shortcode('[contact-form-7 id="4925d8f" title="Оставьте заявку (баннер)"]'); ?>
       </div>
     </div>
   </div>
 </section>
 <?php endif; ?>
+
+
+
 
 
 

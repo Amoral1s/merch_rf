@@ -611,7 +611,7 @@
 <?php endif; ?>
 
 <?php if (get_field('table_title', $main_post_id)) : ?>
-<section class="price-table">
+<section class=>
   <div class="container">
     <h2 class="title"><?php echo get_field('table_title', $main_post_id) ?></h2>
     <div class="wrap">
@@ -669,6 +669,7 @@
 	</section>
 <?php endif; ?>
 
+<?php if (get_field('treb_title', 'blocks')) : ?>
 <section class="banner-treb">
   <div class="container">
     <div class="wrap">
@@ -692,12 +693,12 @@
         </svg>
       </div>
       <div class="center">
-        <b class="title sub">Требования к макетам</b>
+        <b class="title sub"><?php echo get_field('treb_title', 'blocks'); ?></b>
         <p>
-          Ознакомьтесь с требованиям к передаче файлов в печать, это обеспечит максимально быстрый и четкий результат
+          <?php echo get_field('treb_subtitle', 'blocks'); ?>
         </p>
       </div>
-      <a href="<?php the_permalink(421); ?>" class="button button-green btn-arr">
+      <a href="<?php echo get_field('treb_link', 'blocks'); ?>" class="button button-green btn-arr">
         <span>Перейти</span>
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -709,6 +710,7 @@
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <?php if (get_field('how_title', $main_post_id)) : ?>
   <?php if (get_field('how_toggle', $main_post_id) == false) : ?>
@@ -1073,7 +1075,11 @@
           ?>
           <a href="<?php echo get_the_permalink(); ?>" class="item swiper-slide">
             <div class="thumb">
-              <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php if (has_post_thumbnail()) : ?>
+                  <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php else : ?>
+                  <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+              <?php endif; ?>
             </div>
             <div class="meta">
               <div class="date"><?php echo get_the_date('d M Y') ?></div>

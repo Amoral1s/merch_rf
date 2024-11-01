@@ -31,27 +31,6 @@ function artabr_remove_name_cat( $title ) {
     return $title;
 }
 
-function quote() {
-  ob_start();
-  get_template_part('shortcodes/quote');
-  return ob_get_clean();
-}
-add_shortcode('quote', 'quote');
-
-function mini_banner() {
-  ob_start();
-  get_template_part('shortcodes/mini-banner');
-  return ob_get_clean();
-}
-add_shortcode('mini_banner', 'mini_banner');
-
-function big_banner() {
-  ob_start();
-  get_template_part('shortcodes/big-banner');
-  return ob_get_clean();
-}
-add_shortcode('big_banner', 'big_banner');
-
 /* Выводим кол-во просмотров поста */
 function getPostViews($postID){
   $count_key = 'post_views_count';
@@ -76,18 +55,23 @@ function setPostViews($postID) {
   }
 }
 
-// подключаем расчет чтения
+// Подсчет времени чтения для русскоязычного текста
 if ( ! function_exists( 'gp_read_time' ) ) {
   function gp_read_time() {
-  $text = get_the_content( '' );
-  $words = str_word_count( strip_tags( $text ), 0, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' );
-  if ( !empty( $words ) ) {
-  $time_in_minutes = ceil( $words / 200 );
-  return $time_in_minutes;
+    $text = get_the_content( '' );
+    
+    // Используем регулярное выражение для подсчета слов на кириллице и латинице
+    preg_match_all('/\p{L}+/u', strip_tags( $text ), $matches);
+    $words = count($matches[0]);
+
+    if ( !empty( $words ) ) {
+      $time_in_minutes = ceil( $words / 100 ); // Предполагаем, что 200 слов в минуту
+      return $time_in_minutes;
+    }
+
+    return false;
   }
-  return false;
-  }
-  }
+}
 
 
 add_action( 'after_setup_theme', 'fix_month_abbrev', 0 );

@@ -519,6 +519,7 @@
 </section>
 <?php endif; ?>
 
+<?php if (get_field('treb_title', 'blocks')) : ?>
 <section class="banner-treb">
   <div class="container">
     <div class="wrap">
@@ -542,12 +543,12 @@
         </svg>
       </div>
       <div class="center">
-        <b class="title sub">Требования к макетам</b>
+        <b class="title sub"><?php echo get_field('treb_title', 'blocks'); ?></b>
         <p>
-          Ознакомьтесь с требованиям к передаче файлов в печать, это обеспечит максимально быстрый и четкий результат
+          <?php echo get_field('treb_subtitle', 'blocks'); ?>
         </p>
       </div>
-      <a href="<?php the_permalink(421); ?>" class="button button-green btn-arr">
+      <a href="<?php echo get_field('treb_link', 'blocks'); ?>" class="button button-green btn-arr">
         <span>Перейти</span>
         <div class="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -559,11 +560,37 @@
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 <?php if (get_field('table_title', $main_post_id)) : ?>
 <section class="price-table">
   <div class="container">
-    <h2 class="title"><?php echo get_field('table_title', $main_post_id) ?></h2>
+    <div class="title-row">
+      <h2 class="title"><?php echo get_field('table_title', $main_post_id) ?></h2>
+      <?php if (get_field('table_file', $main_post_id)) : ?>
+      <a href="<?php echo get_field('table_file', $main_post_id); ?>" class="link" target="blank" download>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#0C0C0C" stroke-width="1.5"/>
+            <path d="M12 16V8M12 16C11.2998 16 9.99153 14.0057 9.5 13.5M12 16C12.7002 16 14.0085 14.0057 14.5 13.5" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Скачать файлом</span>
+      </a>
+      <?php endif; ?>
+      <div class="link call-order">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 10H21" stroke="#0C0C0C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M15 6H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 13V11C21 6.75736 21 4.63604 19.682 3.31802C18.364 2 16.2426 2 12 2C7.75736 2 5.63604 2 4.31802 3.31802C3 4.63604 3 6.75736 3 11V13C3 17.2426 3 19.364 4.31802 20.682C5.63604 22 7.75736 22 12 22C16.2426 22 18.364 22 19.682 20.682C21 19.364 21 17.2426 21 13Z" stroke="#0C0C0C" stroke-width="1.5"/>
+            <path d="M7 14H7.52632M11.7368 14H12.2632M16.4737 14H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 18H7.52632M11.7368 18H12.2632M16.4737 18H17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span>Заказать расчёт</span>
+      </div>
+    </div>
     <div class="wrap">
       <?php
         $table = get_field( 'table', $main_post_id);
@@ -645,7 +672,11 @@
           ?>
           <a href="<?php echo get_the_permalink(); ?>" class="item swiper-slide">
             <div class="thumb">
-              <img src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php if (has_post_thumbnail()) : ?>
+                  <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+              <?php else : ?>
+                  <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+              <?php endif; ?>
             </div>
             <div class="meta">
               <div class="date"><?php echo get_the_date('d M Y') ?></div>

@@ -14,96 +14,70 @@ get_header();
   </div>
 </div>
 
-<section class="contacts-top">
+<section class="contacts-page">
   <div class="container">
-    <h1 class="page-title sub"><?php the_title(); ?></h1>
-    <div class="wrap">
-      <div class="contacts">
-        <div class="phone-wrap">
-          <a target="blank" href="tel:<?php echo get_field('phone','options'); ?>"><?php echo get_field('phone','options'); ?></a>
-          <span>
-            Телефон в Москве
-          </span>
-        </div>
+    <h1 class="page-title"><?php the_title(); ?></h1>
+    <div class="row">
+      <div class="item">
+        <a target="blank" class="roboto" href="tel:<?php echo get_field('phone','options'); ?>"><?php echo get_field('phone','options'); ?></a>
+        <span>
+          Телефон
+        </span>
+      </div>
+      <div class="item">
+        <b class="roboto"><?php echo get_field('footer_address', 'options'); ?></b>
+        <span>Адрес</span>
+      </div>
+      <div class="item">
+        <b class="roboto"><?php echo get_field('work_time', 'options'); ?></b>
+        <span>Режим работы</span>
+      </div>
+      <div class="item">
+        <a href="mailto:<?php echo get_field('email', 'options'); ?>" class="roboto"><?php echo get_field('email', 'options'); ?></a>
+        <span>Служба поддержки</span>
+      </div>
+      <div class="social">
         <a href="<?php echo get_field('wa','options'); ?>" target="blank" rel="nofollow" noindex class="social-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-            <path d="M1.77263 12.4072C1.77199 14.2083 2.24474 15.9668 3.14365 17.517L1.68652 22.8134L7.13095 21.3922C8.63101 22.2059 10.3199 22.6355 12.0387 22.6361H12.0432C17.7035 22.6361 22.3107 18.0507 22.3132 12.4152C22.3143 9.68414 21.2469 7.11645 19.3078 5.18432C17.3689 3.25246 14.7904 2.18797 12.0427 2.18669C6.38208 2.18669 1.77483 6.77142 1.77238 12.4072L1.77263 12.4072ZM12.043 22.636H12.0431H12.043C12.0429 22.636 12.0428 22.636 12.043 22.636Z" fill="url(#paint0_linear_6214_1073)"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.38575 7.97749C9.18659 7.53678 8.97704 7.52796 8.78762 7.52021C8.63259 7.51365 8.45529 7.51407 8.27819 7.51407C8.10088 7.51407 7.8129 7.58031 7.56938 7.84512C7.32565 8.10995 6.63892 8.7501 6.63892 10.052C6.63892 11.3541 7.59158 12.6122 7.72431 12.7889C7.85726 12.9653 9.56331 15.7226 12.265 16.7832C14.5106 17.6647 14.9675 17.4894 15.4549 17.4452C15.9423 17.4012 17.0276 16.8053 17.2491 16.1873C17.4706 15.5695 17.4706 15.0399 17.4042 14.9293C17.3378 14.819 17.1605 14.7527 16.8947 14.6205C16.6288 14.4881 15.3219 13.8479 15.0783 13.7596C14.8346 13.6714 14.6573 13.6273 14.48 13.8922C14.3028 14.1569 13.7937 14.7527 13.6386 14.9293C13.4836 15.1061 13.3284 15.1282 13.0626 14.9958C12.7967 14.863 11.9406 14.5839 10.9249 13.6825C10.1347 12.981 9.60121 12.1148 9.44607 11.8499C9.29104 11.5853 9.42952 11.4419 9.5628 11.31C9.68223 11.1914 9.82871 11.001 9.96167 10.8466C10.0943 10.692 10.1385 10.5817 10.2272 10.4052C10.3159 10.2286 10.2715 10.0741 10.2051 9.94169C10.1385 9.80933 9.62197 8.50069 9.3856 7.97741" fill="white"/>
-            <defs>
-              <linearGradient id="paint0_linear_6214_1073" x1="12" y1="22.8112" x2="12" y2="2.18452" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#20B038"/>
-                <stop offset="1" stop-color="#60D66A"/>
-              </linearGradient>
-            </defs>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1273 13.8243C16.8738 13.6982 15.6312 13.0904 15.3999 13.0058C15.1685 12.922 15.0001 12.8805 14.8308 13.1327C14.6624 13.3833 14.1785 13.9504 14.0313 14.118C13.8833 14.2865 13.7362 14.3068 13.4836 14.1815C13.231 14.0545 12.4162 13.7896 11.4508 12.933C10.6998 12.266 10.192 11.4424 10.0448 11.1901C9.8977 10.9387 10.0287 10.8024 10.1554 10.6771C10.2694 10.5646 10.408 10.3834 10.5348 10.237C10.6615 10.0897 10.7032 9.98474 10.7874 9.81629C10.8724 9.64869 10.8299 9.50225 10.7661 9.37613C10.7032 9.25 10.1979 8.01162 9.98701 7.50798C9.78203 7.01787 9.57365 7.08474 9.41885 7.07628C9.27085 7.06951 9.10245 7.06781 8.93404 7.06781C8.76563 7.06781 8.49176 7.13045 8.26041 7.3827C8.02821 7.6341 7.37585 8.24271 7.37585 9.48109C7.37585 10.7186 8.28082 11.9147 8.40755 12.0831C8.53428 12.2507 10.1894 14.7918 12.7249 15.8812C13.3288 16.1402 13.7991 16.2951 14.1657 16.4103C14.7713 16.6024 15.3225 16.5753 15.7579 16.5101C16.2427 16.4382 17.2532 15.9015 17.4641 15.3141C17.6742 14.7266 17.6742 14.223 17.6113 14.118C17.5483 14.0131 17.3799 13.9504 17.1265 13.8243H17.1273ZM12.5157 20.0907H12.5123C11.0063 20.091 9.52803 19.6881 8.23234 18.9243L7.92615 18.7431L4.74342 19.5744L5.59311 16.4864L5.39323 16.1699C4.55132 14.8361 4.10577 13.2925 4.10807 11.7175C4.10977 7.10421 7.88107 3.35098 12.5191 3.35098C14.7645 3.35098 16.8755 4.22284 18.4627 5.80404C19.2455 6.57989 19.8659 7.50253 20.2882 8.51857C20.7104 9.53461 20.9259 10.6239 20.9224 11.7234C20.9207 16.3366 17.1494 20.0907 12.5157 20.0907ZM19.6704 4.6029C18.7333 3.6641 17.6183 2.91973 16.39 2.41292C15.1617 1.90611 13.8445 1.64694 12.5148 1.65043C6.94037 1.65043 2.40188 6.16633 2.40018 11.7166C2.39933 13.4908 2.86457 15.2227 3.74999 16.7489L2.31512 21.9656L7.67694 20.5656C9.16018 21.3698 10.8223 21.7912 12.5114 21.7913H12.5157C18.0901 21.7913 22.6286 17.2754 22.6303 11.7242C22.6344 10.4014 22.3749 9.09095 21.8669 7.8686C21.3588 6.64624 20.6123 5.53627 19.6704 4.6029Z" fill="#0C0C0C"/>
           </svg>
         </a>
         <a href="<?php echo get_field('tg','options'); ?>" target="blank" rel="nofollow" noindex class="social-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.95103 11.353C8.29574 9.02439 11.8597 7.48923 13.643 6.74752C18.7345 4.62978 19.7925 4.26191 20.482 4.24976C20.6337 4.24709 20.9728 4.28468 21.1925 4.46292C21.378 4.61342 21.429 4.81673 21.4534 4.95942C21.4778 5.10212 21.5082 5.42718 21.4841 5.68117C21.2082 8.58019 20.0143 15.6154 19.4069 18.8623C19.1499 20.2362 18.6439 20.6969 18.154 20.742C17.0893 20.8399 16.2808 20.0383 15.2496 19.3624C13.636 18.3046 12.7244 17.6462 11.1581 16.614C9.34796 15.4212 10.5214 14.7656 11.553 13.6941C11.823 13.4137 16.514 9.14685 16.6048 8.75979C16.6161 8.71138 16.6267 8.53093 16.5195 8.43564C16.4123 8.34036 16.254 8.37294 16.1399 8.39886C15.978 8.43559 13.4002 10.1394 8.40651 13.5103C7.67482 14.0127 7.01207 14.2576 6.41827 14.2447C5.76366 14.2306 4.50444 13.8746 3.56834 13.5703C2.42017 13.1971 1.50764 12.9998 1.5871 12.3659C1.62849 12.0358 2.08313 11.6981 2.95103 11.353Z" fill="#2AAAEC"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.95103 10.8534C8.29574 8.52476 11.8597 6.9896 13.643 6.24789C18.7345 4.13015 19.7925 3.76228 20.482 3.75013C20.6337 3.74746 20.9728 3.78504 21.1925 3.96329C21.378 4.11379 21.429 4.3171 21.4534 4.45979C21.4778 4.60248 21.5082 4.92754 21.4841 5.18154C21.2082 8.08056 20.0143 15.1157 19.4069 18.3627C19.1499 19.7366 18.6439 20.1972 18.154 20.2423C17.0893 20.3403 16.2808 19.5387 15.2496 18.8627C13.636 17.805 12.7244 17.1465 11.1581 16.1144C9.34796 14.9215 10.5214 14.2659 11.553 13.1945C11.823 12.9141 16.514 8.64722 16.6048 8.26015C16.6161 8.21174 16.6267 8.03129 16.5195 7.93601C16.4123 7.84073 16.254 7.87331 16.1399 7.89922C15.978 7.93596 13.4002 9.63977 8.40651 13.0107C7.67482 13.5131 7.01207 13.7579 6.41827 13.7451C5.76366 13.7309 4.50444 13.375 3.56834 13.0707C2.42017 12.6975 1.50764 12.5001 1.5871 11.8663C1.62849 11.5361 2.08313 11.1985 2.95103 10.8534Z" fill="#0C0C0C"/>
           </svg>
         </a>
       </div>
-      <div class="button call-callback">
-        Обратный звонок
-      </div>
-      <div class="address">
-        <address class="row">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M13.6177 21.367C13.1841 21.773 12.6044 22 12.0011 22C11.3978 22 10.8182 21.773 10.3845 21.367C6.41302 17.626 1.09076 13.4469 3.68627 7.37966C5.08963 4.09916 8.45834 2 12.0011 2C15.5439 2 18.9126 4.09916 20.316 7.37966C22.9082 13.4393 17.599 17.6389 13.6177 21.367Z" stroke="#885C8C" stroke-width="1.5"/>
-              <path d="M15.5 11C15.5 12.933 13.933 14.5 12 14.5C10.067 14.5 8.5 12.933 8.5 11C8.5 9.067 10.067 7.5 12 7.5C13.933 7.5 15.5 9.067 15.5 11Z" stroke="#885C8C" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <span>
-            <?php echo get_field('address_short', 'options'); ?>
-          </span>
-        </address>
-        <time>
-          <?php echo get_field('work_time', 'options'); ?>
-        </time>
-      </div>
-      <div class="email">
-        <a href="mailto:<?php echo get_field('email', 'options'); ?>" class="email">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M2 6L8.91302 9.91697C11.4616 11.361 12.5384 11.361 15.087 9.91697L22 6" stroke="#885C8C" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z" stroke="#885C8C" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <?php echo get_field('email', 'options'); ?>
-        </a>
-        <span>Служба поддержки</span>
-      </div>
     </div>
-  </div>
-</section>
-
-<?php if (get_field('filialy', 'options')) : ?>
-<section class="map">
-  <div class="container">
     <div class="wrap">
       <div class="left">
-        <?php if (have_rows('filialy', 'options')) : ?>
-          <?php $first = true; ?>
-          <?php while(have_rows('filialy', 'options')) : the_row(); ?>
-          <div class="item<?php echo $first ? ' active' : ''; ?>" data-coordinat="<?php echo get_sub_field('koordinaty'); ?>">
-            <b><?php echo get_sub_field('zagolovok'); ?></b>
-            <p><?php echo get_sub_field('adres'); ?></p>
-            <a href="tel:<?php echo get_sub_field('telefon'); ?>" class="phone" target="blank"><?php echo get_sub_field('telefon'); ?></a>
-            <span><?php echo get_sub_field('rezhim_raboty'); ?></span>
-          </div>
-          <?php $first = false; ?>
-          <?php endwhile; ?>
-        <?php endif; ?>
+        <iframe src="<?php echo get_field('map', 'options'); ?>" frameborder="0"></iframe>
       </div>
       <div class="right">
-        <!-- Карта будет выведена здесь -->
-        <div id="yandex-map" style="width: 100%; height: 100%;"></div>
+        <div class="form">
+          <b class="mini-title">Обратная связь</b>
+          <p class="mini-subtitle">Мы свяжемся с вами в течение дня</p>
+          <?php echo do_shortcode('[contact-form-7 id="69beacb" title="Обратная связь"]'); ?>
+        </div>
+        <?php if (get_field('code_title', 'options')) : ?>
+        <div class="code">
+          <div class="avatar">
+            <img src="<?php echo get_field('code_avatar', 'options'); ?>" alt="<?php echo get_field('code_title', 'options'); ?>">
+          </div>
+          <div class="code-right">
+            <div class="meta">
+              <b class="roboto"><?php echo get_field('code_title', 'options'); ?></b>
+              <p><?php echo get_field('code_subtitle', 'options'); ?></p>
+            </div>
+            <a target="blank" href="mailto:<?php echo get_field('code_email', 'options'); ?>" class="link"><?php echo get_field('code_email', 'options'); ?></a>
+          </div>
+          
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>
 </section>
-<?php endif; ?>
 
 <?php if (get_field('req_title', 'options')) : ?>
 <section class="req">
@@ -114,12 +88,11 @@ get_header();
         <a href="<?php echo get_field('req_file', 'options'); ?>" target="blank" download>
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 20H18" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M12.0005 15L12 4" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8 12L11.2929 15.2929C11.6262 15.6262 11.7929 15.7929 12 15.7929C12.2071 15.7929 12.3738 15.6262 12.7071 15.2929L16 12" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#0C0C0C" stroke-width="1.5"/>
+              <path d="M12 16V8M12 16C11.2998 16 9.99153 14.0057 9.5 13.5M12 16C12.7002 16 14.0085 14.0057 14.5 13.5" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <span>Скачать файл</span>
+          <span>Скачать файлом</span>
         </a>
       <?php endif; ?>
     </div>
@@ -135,19 +108,31 @@ get_header();
 </section>
 <?php endif; ?>
 
-<section class="consult-big">
-  <div class="container">
-    <div class="wrap">
-      <div class="left">
-        <b class="title sub">Есть вопросы?</b>
-        <p class="subtitle">Заполните ваши контактные данные и мы перезвоним в течение рабочего дня</p>
-        <div class="form">
-          <?php echo do_shortcode('[contact-form-7 id="aa474fd" title="Есть вопросы? (Баннер)"]'); ?>
-        </div>
-      </div>
+<?php 
+  $term_id = 'city';
+?>
+<?php if (get_field('city_title', 'home')) : ?>
+<section class="city">
+	<div class="container">
+		<h2 class="title"><?php echo get_field('city_title', 'home') ?></h2>
+		<ul class="wrap">
+      <?php if (have_rows('city', $term_id)) : while(have_rows('city', $term_id)) : the_row(); ?>
+        <li class="item">
+          <?php if (get_sub_field('link')) : ?>
+            <a href="<?php echo get_sub_field('link'); ?>"><?php echo get_sub_field('name'); ?></a>
+          <?php else : ?>
+            <span><?php echo get_sub_field('name'); ?></span>
+          <?php endif; ?>
+        </li>
+      <?php endwhile; endif; ?>
+		</ul>
+    <div class="moar-btn" style="display: none">
+      Показать все
     </div>
-  </div>
+	</div>
 </section>
+<?php endif; ?>
+
 
 <script type="application/ld+json">
   {

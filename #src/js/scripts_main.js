@@ -47,16 +47,7 @@ jQuery(document).ready(function ($) {
 		$(this).parent().toggleClass('active');
 	})
 	
-	//SINGLE POST SHARE
-	$('.share-link').click(function() {
-		var currentLink = window.location.href;
-		var $temp = $("<input>");
-		$("body").append($temp);
-		$temp.val(currentLink).select();
-		document.execCommand("copy");
-		$temp.remove();
-		alert("Ссылка скопирована: " + currentLink);
-	});
+
 
 	if (window.screen.width > 992) {
 		$(".anchor").click(function () {
