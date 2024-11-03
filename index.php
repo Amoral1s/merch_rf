@@ -693,20 +693,49 @@
       </div>
       <div class="swiper">
         <div class="swiper-wrapper">
-          <?php if (have_rows('cat_slider','home')) : while(have_rows('cat_slider','home')) : the_row(); ?>
-          <a href="<?php echo get_sub_field('link'); ?>" class="item swiper-slide">
-            <?php if (get_sub_field('img')) : ?>
-              <div class="thumb">
-                <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
-              </div>
-            <?php else : ?>
-              <div class="thumb">
-                <img src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php echo get_sub_field('title'); ?>">
-              </div>
-            <?php endif; ?>
-            <b><?php echo get_sub_field('title'); ?></b>
-          </a>
-          <?php endwhile; endif; ?>
+          <?php
+            // Получаем значения из поля 'cat_slider'
+            $category_ids = get_field('cat_slider', 'home'); // Замените 'home' на нужный ID или объект
+
+            // Проверяем, если поле 'cat_slider' заполнено
+            if (!empty($category_ids) && is_array($category_ids)) {
+              // Если 'cat_slider' заполнен, выводим категории по указанным ID, включая родительские и дочерние
+              $product_categories = get_terms(array(
+                'taxonomy'   => 'product_cat',
+                'hide_empty' => true,
+                'include'    => $category_ids, // Только категории из 'cat_slider'
+              ));
+            } else {
+              // Если 'cat_slider' пуст, выводим только родительские категории
+              $product_categories = get_terms(array(
+                'taxonomy'   => 'product_cat',
+                'hide_empty' => true,
+                'parent'     => 0, // Только родительские категории
+              ));
+            }
+
+            if (!empty($product_categories) && !is_wp_error($product_categories)) :
+              foreach ($product_categories as $category) :
+                // Получаем URL категории
+                $category_link = get_term_link($category);
+                
+                // Получаем изображение категории или стандартную заглушку WooCommerce
+                $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+                $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : wc_placeholder_img_src();
+                
+                // Название категории
+                $category_name = $category->name;
+            ?>
+                <a href="<?php echo esc_url($category_link); ?>" class="item swiper-slide">
+                    <div class="thumb">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($category_name); ?>">
+                    </div>
+                    <b class="roboto"><?php echo esc_html($category_name); ?></b>
+                </a>
+            <?php
+              endforeach;
+            endif;
+          ?>
         </div>
       </div>
       <div class="arr arr-next">

@@ -28,13 +28,13 @@
 			// Получаем URL профиля автора
 			$author_id = get_the_author_meta('ID');
 			$author_url = get_author_posts_url($author_id); 
+			$author_name = get_field('author_name', 'user_' . $author_id);
+			$author_avatar = get_field('author_avatar', 'user_' . $author_id);
+			$author_position = get_field('author_place', 'user_' . $author_id);
 		?>
 		<a href="<?php echo esc_url($author_url); ?>" class="author">
 				<div class="avatar">
 						<?php
-						// Получаем URL аватара из профиля пользователя
-						$author_avatar = get_the_author_meta('author_avatar');
-						
 						// Если аватар не задан, используем SVG-заглушку
 						if ($author_avatar) {
 								echo '<img src="' . esc_url($author_avatar) . '" alt="Аватар автора">';
@@ -49,8 +49,8 @@
 						?>
 				</div>
 				<div itemprop="author" class="name">
-						<p class="roboto"><?php echo esc_html(get_the_author_meta('author_name') ? get_the_author_meta('author_name') : 'Администратор'); ?></p>
-						<span><?php echo esc_html(get_the_author_meta('author_position') ? get_the_author_meta('author_position') : 'Автор статьи'); ?></span>
+						<p class="roboto"><?php echo esc_html($author_name ? $author_name : 'Администратор'); ?></p>
+						<span><?php echo esc_html($author_position ? $author_position : 'Автор статьи'); ?></span>
 				</div>
 		</a>
 		<div class="meta-wrap">

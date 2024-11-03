@@ -2475,6 +2475,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 
 .lg-container .lg-content .lg-inner .lg-item .lg-img-wrap img {
   border-radius: 24px;
+  background-color: #F6F8FA;
 }
 
 .lg-container .lg-toolbar .lg-close {
@@ -2510,12 +2511,16 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   opacity: 0.5;
   border: none;
   height: auto;
+  aspect-ratio: 1/1;
+  background-color: #F6F8FA;
+  border-radius: 16px;
 }
 
 .lg-container .lg-components .lg-thumb-outer .lg-thumb-item img {
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
+  background-color: #F6F8FA;
   height: 100%;
   border-radius: 16px;
 }
@@ -2790,21 +2795,27 @@ a.link-all span {
 .wp-pagenavi a,
 .woocommerce-pagination ul span,
 .woocommerce-pagination ul a {
-  height: 54px;
-  width: 54px;
-  border-radius: 100%;
+  font-family: "Roboto Flex", sans-serif;
+  font-style: normal;
+  font-stretch: 151%;
+  letter-spacing: -3%;
+  font-optical-sizing: auto;
+  font-variation-settings: "GRAD" 0, "XOPQ" 96, "XTRA" 485, "YOPQ" 79, "YTAS" 750, "YTDE" -203, "YTFI" 738, "YTLC" 544, "YTUC" 643, "slnt" 0, "wdth" 151;
   font-size: 18px;
-  font-weight: 500;
-  margin: 0 3px;
+  line-height: 1;
+  font-weight: 800;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
+  height: 54px;
+  width: 54px;
+  border-radius: 12px;
 }
 
 .wp-pagenavi a,
 .woocommerce-pagination ul a {
-  color: #0C0C0C;
+  color: #6B7280;
 }
 
 .wp-pagenavi a:hover,
@@ -2827,7 +2838,7 @@ a.link-all span {
 .woocommerce-pagination ul .prev,
 .woocommerce-pagination ul a.previouspostslink {
   border-radius: 12px;
-  padding: 0 30px;
+  padding: 0 24px;
   margin-left: 10px;
   font-size: 16px;
   color: #fff;
@@ -8275,8 +8286,8 @@ a.link-all span {
   .wp-pagenavi a,
   .woocommerce-pagination ul span,
   .woocommerce-pagination ul a {
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
     font-size: 14px;
     margin: 0;
   }
@@ -8289,7 +8300,7 @@ a.link-all span {
   .woocommerce-pagination ul a.previouspostslink,
   .woocommerce-pagination ul .next,
   .woocommerce-pagination ul .prev {
-    padding: 0 20px;
+    padding: 0 14px;
     margin-left: 5px;
     font-size: 12px;
   }
@@ -8300,8 +8311,25 @@ a.link-all span {
   }
 
   .breadcrumbs {
-    overflow: hidden;
+    position: relative;
+    min-width: calc(100% + 30px);
+    padding-left: 15px;
+    left: -15px;
+    padding-right: 15px;
+    position: relative;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .breadcrumbs:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
   }
 
   .content .wp-block-gallery.swiper {
@@ -8382,6 +8410,15 @@ a.link-all span {
   .popup .wrapper .form > p {
     font-size: 12px;
     margin-bottom: 15px;
+  }
+
+  .popup .wrapper .manager {
+    display: block;
+  }
+
+  .popup .wrapper .manager .right {
+    align-items: flex-start;
+    margin-top: 16px;
   }
 
   .form .input .wpcf7-not-valid-tip {

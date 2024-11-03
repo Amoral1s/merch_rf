@@ -94,10 +94,12 @@
         // Оставляем только уникальные категории
         $unique_categories = array_unique($all_categories);
       ?>
-    <div class="tabs">
-        <?php foreach ( $unique_categories as $category ) : ?>
-            <div class="tab"><?php echo esc_html( $category ); ?></div>
-        <?php endforeach; ?>
+    <div class="tabs-wrapper">
+      <div class="tabs">
+          <?php foreach ( $unique_categories as $category ) : ?>
+              <div class="tab"><?php echo esc_html( $category ); ?></div>
+          <?php endforeach; ?>
+      </div>
     </div>
     <div class="wrap slider-wrap">
       <div class="arr arr-prev">

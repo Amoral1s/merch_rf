@@ -1,0 +1,91 @@
+@import "../reset/_vars"
+
+@media (min-width: 992px)
+  .single-product-gallery
+    .slider-thumbs
+      .slider-thumb
+        &.active
+          &:hover
+            img
+              transform: none
+        &:hover
+          opacity: 1
+          img
+            transform: scale(1.1)
+  
+.single-product-gallery
+  display: block
+  .dots
+    display: none
+  .slider-thumbs
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    margin-top: 10px
+    .slider-thumb
+      width: 100%
+      max-width: 120px
+      border-radius: $brad24
+      overflow: hidden
+      aspect-ratio: 1 / 1
+      background-color: $gray_50
+      margin-right: 10px
+      padding: 10px
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      transition: .5s
+      opacity: .7
+      &.active
+        opacity: 1
+      img
+        width: 100%
+        object-fit: contain
+        transition: .5s
+      &:last-child
+        margin-right: 0
+  .slider-wrap
+    .arr
+      display: none
+    .swiper-wrapper
+      align-items: stretch
+    .item
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+      height: auto
+      aspect-ratio: 1 / 1
+      padding: 10px
+    .arr-prev
+      left: 10px
+    .arr-next
+      right: 10px
+    .arr
+      svg path
+        stroke: $text
+    .swiper
+      background-color: $gray_50
+      border-radius: $brad24
+  
+@media (max-width: 992px)
+  .single-product-gallery
+    margin-bottom: 20px
+    .dots
+      display: none
+    .slider-thumbs
+      margin-top: 8px
+      .slider-thumb
+        width: 100%
+        max-width: 90px
+        border-radius: 12px
+        margin-right: 8px
+        padding: 5px
+        &:last-child
+          margin-right: 0
+    .slider-wrap
+      .swiper
+        background-color: $gray_50
+        border-radius: 16px
+

@@ -9,11 +9,10 @@
 @include('inc/portfolio.php');
 @include('inc/author.php');
 @include('inc/woocommerce.php');
-
-/* @include('inc/woo_single_product.php');
+@include('inc/woo_single_product.php');
 @include('inc/woo_review.php');
 @include('inc/woo_loop_item.php');
-@include('inc/woo_catalog.php'); */
+@include('inc/woo_catalog.php');
 
 
 // Отключение Gravatar

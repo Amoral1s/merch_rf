@@ -9,7 +9,7 @@ function custom_product_gallery() {
     $gallery_images = $product->get_gallery_image_ids();
 
     // Выводим только если есть основное изображение или изображения в галерее
-    if( $product_image || $gallery_images ) : ?>
+    ?>
         <div class="single-product-gallery">
             <div class="slider-wrap">
                 <div class="arr-prev arr">
@@ -21,17 +21,20 @@ function custom_product_gallery() {
                 <div class="swiper">
                     <div class="swiper-wrapper mag-toggle">
                         <!-- Основное изображение товара -->
-                        <?php if ( $product_image ) : ?>
-                            <a href="<?php echo esc_url( $product_image[0] ); ?>" class="swiper-slide">
-                                <img src="<?php echo esc_url( $product_image[0] ); ?>" alt="<?php the_title(); ?>">
-                            </a>
-                        <?php endif; ?>
+                        <?php 
+                            $image_url = has_post_thumbnail() 
+                            ? get_the_post_thumbnail_url( get_the_ID(), 'woocommerce_thumbnail' ) 
+                            : wc_placeholder_img_src( 'woocommerce_thumbnail' );
+                        ?>
+                        <a href="<?php echo esc_url( $image_url ); ?>" class="swiper-slide item">
+                            <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php the_title_attribute(); ?>">
+                        </a>
 
                         <!-- Галерея товара -->
                         <?php if ( $gallery_images ) :
                             foreach ( $gallery_images as $gallery_image_id ) :
                                 $image_url = wp_get_attachment_image_src( $gallery_image_id, 'large' ); ?>
-                                <a href="<?php echo esc_url( $image_url[0] ); ?>" class="swiper-slide">
+                                <a href="<?php echo esc_url( $image_url[0] ); ?>" class="swiper-slide item">
                                     <img src="<?php echo esc_url( $image_url[0] ); ?>" alt="<?php the_title(); ?>">
                                 </a>
                             <?php endforeach;
@@ -55,6 +58,10 @@ function custom_product_gallery() {
                         <div class="slider-thumb">
                             <img src="<?php echo esc_url( $thumb_image[0] ); ?>" alt="<?php the_title(); ?>">
                         </div>
+                    <?php else : ?>
+                        <div class="slider-thumb">
+                            <img src="<?php echo esc_url( $image_url ); ?>" alt="<?php the_title(); ?>">
+                        </div>
                     <?php endif; ?>
 
                     <!-- Миниатюры галереи -->
@@ -67,10 +74,10 @@ function custom_product_gallery() {
                 </div>
             <?php endif; ?>
         </div>
-    <?php endif;
+    <?php 
 }
 
-//summary
+//summary 
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 10);
@@ -79,13 +86,38 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50);
 remove_action('woocommerce_single_variation', 'woocommerce_template_single_sharing', 50);
 //remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+//add_action('woocommerce_single_product_summary', 'woocommerce_template_single_price', 100);
 
 //bototm
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15);
 remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
 
+// Показываем минимальную цену перед выбором вариации
+//add_action('woocommerce_single_product_summary', 'show_minimum_variation_price', 100);
+function show_minimum_variation_price() {
+    global $product;
 
+    if ($product->is_type('variable')) {
+        $min_price = $product->get_variation_price('min', true);
+        echo '<p class="price">от ' . wc_price($min_price) . '</p>';
+    }
+}
+
+// Скрываем минимальную цену после выбора вариации
+add_action('woocommerce_single_variation', 'hide_minimum_price_after_selection', 100);
+function hide_minimum_price_after_selection() {
+    echo '<script>
+        jQuery(document).ready(function($) {
+            $(".single_variation_wrap").on("show_variation", function() {
+                $(".price").first().hide(); // Скрывает минимальную цену
+            });
+            $(".single_variation_wrap").on("hide_variation", function() {
+                $(".price").first().show(); // Показывает минимальную цену при сбросе выбора
+            });
+        });
+    </script>';
+}
 
 
 

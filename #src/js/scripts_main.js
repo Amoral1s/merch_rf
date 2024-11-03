@@ -263,6 +263,63 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
+	if (window.screen.width > 992) {
+		let catToggles = document.querySelector('.cat-toggles');
+		let portfolioToggles = document.querySelector('.tabs-wrapper');
+		if (catToggles || portfolioToggles) {
+			if (portfolioToggles) {
+				catToggles = portfolioToggles.querySelector('.tabs');
+			}
+	
+			const container = catToggles.closest('.container')
+	
+			// Создаем кнопки прокрутки
+			const scrollLeftButton = document.createElement('div')
+			scrollLeftButton.classList.add('scroll-left')
+			scrollLeftButton.setAttribute('aria-label', 'Scroll left')
+			scrollLeftButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>`;
+	
+			const scrollRightButton = document.createElement('div')
+			scrollRightButton.classList.add('scroll-right')
+			scrollRightButton.setAttribute('aria-label', 'Scroll right')
+			scrollRightButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M15.0001 17.0001L19.293 12.7072C19.6263 12.3739 19.793 12.2072 19.793 12.0001C19.793 11.793 19.6263 11.6263 19.293 11.293L15.0001 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>`;
+	
+			// Вставляем кнопки перед и после .cat-toggles
+			catToggles.parentElement.insertBefore(scrollLeftButton, catToggles)
+			catToggles.parentElement.appendChild(scrollRightButton)
+	
+			// Функция для обновления видимости кнопок
+			function updateButtonVisibility() {
+					const isOverflowing = catToggles.scrollWidth > container.clientWidth
+					scrollLeftButton.style.display = isOverflowing && catToggles.scrollLeft > 0 ? 'flex' : 'none'
+					scrollRightButton.style.display = isOverflowing && (catToggles.scrollLeft + container.clientWidth) < catToggles.scrollWidth ? 'flex' : 'none'
+			}
+	
+			// Обработчики для прокрутки
+			scrollLeftButton.addEventListener('click', () => {
+					catToggles.scrollBy({ left: -300, behavior: 'smooth' })
+			})
+	
+			scrollRightButton.addEventListener('click', () => {
+					catToggles.scrollBy({ left: 300, behavior: 'smooth' })
+			})
+	
+			// Обновляем видимость кнопок при прокрутке и загрузке
+			catToggles.addEventListener('scroll', updateButtonVisibility)
+			window.addEventListener('resize', updateButtonVisibility)
+	
+			// Инициализация
+			updateButtonVisibility()
+		}
+	}
+	
+    
 
 
 }); //end

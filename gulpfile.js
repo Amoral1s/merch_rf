@@ -50,7 +50,7 @@ const paths = {
             source_folder + '/js/single_page.js',
             source_folder + '/js/scripts_main.js',
             source_folder + '/js/portfolio.js',
-            //source_folder + '/js/woo-single.js',
+            source_folder + '/js/woo-single.js',
             //source_folder + '/js/yandex.js',
         ],
         img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',

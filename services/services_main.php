@@ -57,8 +57,56 @@
 <section class="products-slider">
   <div class="container">
     <h2 class="title"><?php echo get_field('products_title', $main_post_id) ?></h2>
-    <div class="wrap">
-    
+    <div class="wrap slider-wrap prod-slider-wrap">
+      <div class="arr arr-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="swiper">
+        <ul class="products">
+          <?php
+            $category_id = get_field('products_category'); // Получаем ID категории из поля ACF
+            $args = array();
+
+            if ($category_id) {
+              $args = array(
+                'post_type'      => 'product',
+                'tax_query'      => array(
+                  array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $category_id,
+                  ),
+                ),
+                'posts_per_page' => -1, // Выводим все товары из категории
+              );
+            } else {
+              $args = array(
+                'post_type'      => 'product',
+                'orderby'        => 'date',
+                'posts_per_page' => 10, // Выводим последние 10 товаров
+              );
+            }
+
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+              while ($query->have_posts()) {
+                $query->the_post();
+                wc_get_template_part('content', 'product'); // Выводим шаблон content-product.php
+              }
+            } 
+            wp_reset_postdata();
+          ?>
+        </ul>
+      </div>
+      <div class="arr arr-next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -80,7 +128,7 @@
           <div class="swiper">
             <div class="swiper-wrapper">
               <?php if (have_rows('material', 'blocks')) : while(have_rows('material', 'blocks')) : the_row(); ?>
-                <div class="item">
+                <div class="item swiper-slide">
                   <div class="thumb">
                     <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
                   </div>
@@ -152,10 +200,10 @@
               <?php endwhile; endif; ?>
             </div>
           </div>
-          <div class="arr arr-prev">
+          <div class="arr arr-next">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
@@ -176,7 +224,7 @@
           <div class="swiper">
             <div class="swiper-wrapper">
               <?php if (have_rows('material', $main_post_id)) : while(have_rows('material', $main_post_id)) : the_row(); ?>
-                <div class="item">
+                <div class="item swiper-slide">
                   <div class="thumb">
                     <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
                   </div>
@@ -248,10 +296,10 @@
               <?php endwhile; endif; ?>
             </div>
           </div>
-          <div class="arr arr-prev">
+          <div class="arr arr-next">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
         </div>
@@ -356,10 +404,12 @@
         // Оставляем только уникальные категории
         $unique_categories = array_unique($all_categories);
       ?>
-    <div class="tabs">
-        <?php foreach ( $unique_categories as $category ) : ?>
-            <div class="tab"><?php echo esc_html( $category ); ?></div>
-        <?php endforeach; ?>
+    <div class="tabs-wrapper">
+      <div class="tabs">
+          <?php foreach ( $unique_categories as $category ) : ?>
+              <div class="tab"><?php echo esc_html( $category ); ?></div>
+          <?php endforeach; ?>
+      </div>
     </div>
     <div class="wrap slider-wrap">
       <div class="arr arr-prev">
@@ -611,7 +661,7 @@
 <?php endif; ?>
 
 <?php if (get_field('table_title', $main_post_id)) : ?>
-<section class=>
+<section class="price-table">
   <div class="container">
     <h2 class="title"><?php echo get_field('table_title', $main_post_id) ?></h2>
     <div class="wrap">
@@ -818,20 +868,49 @@
       </div>
       <div class="swiper">
         <div class="swiper-wrapper">
-          <?php if (have_rows('cat_slider','home')) : while(have_rows('cat_slider','home')) : the_row(); ?>
-          <a href="<?php echo get_sub_field('link'); ?>" class="item swiper-slide">
-            <?php if (get_sub_field('img')) : ?>
-              <div class="thumb">
-                <img src="<?php echo get_sub_field('img'); ?>" alt="<?php echo get_sub_field('title'); ?>">
-              </div>
-            <?php else : ?>
-              <div class="thumb">
-                <img src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php echo get_sub_field('title'); ?>">
-              </div>
-            <?php endif; ?>
-            <b><?php echo get_sub_field('title'); ?></b>
-          </a>
-          <?php endwhile; endif; ?>
+          <?php
+            // Получаем значения из поля 'cat_slider'
+            $category_ids = get_field('cat_slider', $main_post_id); // Замените 'home' на нужный ID или объект
+
+            // Проверяем, если поле 'cat_slider' заполнено
+            if (!empty($category_ids) && is_array($category_ids)) {
+              // Если 'cat_slider' заполнен, выводим категории по указанным ID, включая родительские и дочерние
+              $product_categories = get_terms(array(
+                'taxonomy'   => 'product_cat',
+                'hide_empty' => true,
+                'include'    => $category_ids, // Только категории из 'cat_slider'
+              ));
+            } else {
+              // Если 'cat_slider' пуст, выводим только родительские категории
+              $product_categories = get_terms(array(
+                'taxonomy'   => 'product_cat',
+                'hide_empty' => true,
+                'parent'     => 0, // Только родительские категории
+              ));
+            }
+
+            if (!empty($product_categories) && !is_wp_error($product_categories)) :
+              foreach ($product_categories as $category) :
+                // Получаем URL категории
+                $category_link = get_term_link($category);
+                
+                // Получаем изображение категории или стандартную заглушку WooCommerce
+                $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+                $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : wc_placeholder_img_src();
+                
+                // Название категории
+                $category_name = $category->name;
+            ?>
+                <a href="<?php echo esc_url($category_link); ?>" class="item swiper-slide">
+                    <div class="thumb">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($category_name); ?>">
+                    </div>
+                    <b class="roboto"><?php echo esc_html($category_name); ?></b>
+                </a>
+            <?php
+              endforeach;
+            endif;
+          ?>
         </div>
       </div>
       <div class="arr arr-next">

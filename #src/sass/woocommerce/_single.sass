@@ -1,19 +1,337 @@
 @import "../reset/_vars"
 
+@media (min-width: 992px)
+  .single-product
+    .size-btn
+      &:hover
+        p
+          color: $brand_main!important
+          transition: .3s
+
+    
+
+.single-product
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  flex-wrap: wrap
+  .labels
+    position: absolute
+    top: 16px
+    left: 16px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    z-index: 10
+    .label
+      display: flex
+      justify-content: center
+      align-items: center
+      white-space: nowrap
+      width: max-content
+      margin-right: 10px
+      background-color: $brand_main
+      padding: 0 16px
+      color: $text
+      border-radius: 15px
+      font-size: 16px
+      height: 32px
+  .onsale
+    display: none
+  .single_variation
+    display: block!important
+    transition: 0
+  &-left
+    width: 580px
+    position: relative
+  &-right
+    width: calc(100% - 580px - 50px)
+  .sku
+    display: block
+    font-size: 16px
+    font-weight: 400
+    line-height: 1.2
+    margin-bottom: 10px
+  .page-title
+    font-size: 42px
+    line-height: 1
+    margin-bottom: 30px
+  &-bottom
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    margin-top: 10px
+    .button
+      width: max-content
+      margin-right: 32px
+      padding: 0 26px
+    .price-wrap
+      display: block
+      .price
+        font-size: 22px
+        font-weight: 800
+        line-height: 1
+        letter-spacing: -3%
+        color: $text
+        font-family: "Roboto Flex", sans-serif
+        font-stretch: 151%
+        letter-spacing: -3%
+        font-optical-sizing: auto
+        font-variation-settings: 'GRAD' 0, 'XOPQ' 96, 'XTRA' 485, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, 'YTFI' 738, 'YTLC' 544, 'YTUC' 643, 'slnt' 0, 'wdth' 151
+      .count
+        display: block
+        font-size: 16px
+        color: $gray_500
+        line-height: 1
+        margin-top: 4px
+        white-space: nowrap
+  table.variations
+    tbody
+      tr
+        width: max-content
+        max-width: 100%
+    td.value
+      ul
+        li
+          border-radius: 12px!important
+          background-color: $gray_50!important
+          .swatch-color-inner-inner
+            border-radius: 100%!important
+    td.label
+      display: flex!important
+      justify-content: flex-start
+      align-items: center
+      width: 100%
+      position: relative
+      padding-bottom: 10px
+      .size-btn
+        position: absolute
+        right: 10px
+        top: calc(50% - 3px)
+        transform: translateY(-50%)
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        transition: .3s
+        cursor: pointer
+        .icon
+          margin-right: 8px
+        p
+          line-height: 1
+          font-size: 16px
+          font-weight: 500
+          color: $text
+          transition: .3s
+      label
+        width: max-content
+        margin: 0
+        margin-right: 5px
+        font-size: 16px
+        font-weight: 500
+        line-height: 1.2
+        color: $text
+        font-family: $font
+        .xt_woovs-attribute-value
+          font-weight: 400
+          display: block
+          margin: 0
+          display: block
+          line-height: 1.2
+          font-size: 16px
+          color: $text
+
+@media (max-width: 992px)
+  .single-product
+    display: block
+    .labels
+      top: 10px
+      left: 10px
+      display: block
+      .label
+        margin-right: 0
+        margin-bottom: 8px
+        padding: 0 10px
+        font-size: 12px
+        height: 24px
+    .single_variation
+      display: block!important
+      transition: 0
+    &-left
+      width: 100%
+    &-right
+      width: 100%
+    .sku
+      font-size: 12px
+      margin-bottom: 8px
+    .page-title
+      font-size: 30px
+      margin-bottom: 16px
+    .reset_variations
+      margin-bottom: 14px
+      font-size: 14px
+    &-bottom
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      margin-top: 0px
+      
+      .button
+        margin-right: 16px
+        min-height: 64px
+      .price-wrap
+        .price
+          font-size: 20px
+        .count
+          font-size: 14px
+    table.variations
+      tbody
+        tr
+          width: max-content
+          max-width: 100%
+      td.value
+        ul
+          padding-bottom: 14px!important
+          li
+            font-size: 14px!important
+            margin-right: 8px!important
+      td.label
+        .size-btn
+          .icon
+            margin-right: 4px
+          p
+            font-size: 14px
+        label
+          font-size: 14px!important
+          .xt_woovs-attribute-value
+            font-size: 14px!important
+
+.popup.popup-sizes
+  padding: 30px
+  width: 611px
+  max-width: calc(100% - 30px)
+  b.roboto
+    margin-bottom: 10px
+  .subtitle
+    font-size: 16px
+    line-height: 1.2
+    margin-bottom: 16px
+  .table
+    span
+      display: block
+      width: 100%
+      text-align: center
+      margin-top: 10px
+    table
+      width: 100%
+      border-collapse: collapse
+      tbody
+        tr
+          border-bottom: 1px solid $gray_200
+          &:last-child
+            border-color: $text
+          td
+            padding: 15px 10px
+            text-align: center
+      thead
+        border-top: 1px solid $text
+        border-bottom: 1px solid $text
+        tr
+          position: relative
+          th
+            text-align: center
+            padding: 25px 10px
+            font-size: 16px
+            font-weight: 400
+
+@media (max-width: 992px)
+  .popup.popup-sizes
+    padding: 16px
+    width: 611px
+    max-width: calc(100% - 30px)
+    border-radius: 16px
+    b.roboto
+      margin-bottom: 10px
+      font-size: 22px
+    .subtitle
+      font-size: 14px
+      margin-bottom: 10px
+    .table
+      span
+        font-size: 14px
+      table
+        tbody
+          tr
+            td
+              padding: 10px 4px
+              text-align: center
+              font-size: 14px
+        thead
+          border-top: 1px solid $text
+          border-bottom: 1px solid $text
+          tr
+            position: relative
+            th
+              padding: 10px 4px
+              font-size: 14px
 
 
-  
+.popup.popup-order
+  .data
+    margin-bottom: 16px
+    padding-top: 16px
+    border-top: 1px solid $gray_200
+  .cart-item
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    &-meta
+      b
+        font-size: 20px
+        margin-bottom: 10px
+      .meta-row
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        p
+          line-height: 1.2
+          color: $gray_450
+          white-space: nowrap
+          margin-right: 16px
+    &-thumb
+      width: 90px
+      min-width: 90px
+      margin-right: 30px
+      height: auto
+      aspect-ratio: 1 / 1
+      border-radius: 18px
+      background-color: $gray_50
+      padding: 5px
+      img
+        width: 100%
+
+@media (max-width: 578px)
+  .popup.popup-order
+    .subtitle
+      font-size: 14px!important
+    .cart-item
+      &-meta
+        b
+          font-size: 16px
+          margin-bottom: 10px
+        .meta-row
+          p
+            font-size: 14px
+            margin-right: 10px
+      &-thumb
+        width: 80px
+        min-width: 80px
+        margin-right: 16px
+        border-radius: 16px
+
+    
 
 
-
-
-
-
-
-  
-
-
-
+ 
 
 
 

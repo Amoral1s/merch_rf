@@ -125,6 +125,11 @@ function remove_plugin_updates_WBWPRO($value) {
   return $value; 
 }
 add_filter('site_transient_update_plugins', 'remove_plugin_updates_WBWPRO'); 
+function remove_plugin_updates_SWATCHES($value) {
+  unset($value->response['xt-woo-variation-swatches-pro/xt-woo-variation-swatches.php']);
+  return $value; 
+}
+add_filter('site_transient_update_plugins', 'remove_plugin_updates_SWATCHES'); 
 
 
  

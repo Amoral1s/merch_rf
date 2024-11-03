@@ -491,122 +491,6 @@
           
 
 
-.portfolio-slider
-  .item
-    width: calc(33.3% - 20px)
-    margin-right: 20px
-    cursor: pointer
-    .thumb
-      display: block
-      margin-bottom: 24px
-      overflow: hidden
-      border-radius: $brad24
-    img
-      width: 100%
-      display: block
-      object-fit: cover
-      height: auto
-      aspect-ratio: 1 / 1
-      border-radius: $brad24
-      transition: 1s
-    a
-      font-size: 22px
-      margin-bottom: 12px
-      font-weight: 800
-      display: block
-      line-height: 1
-    p
-      font-size: 16px
-      line-height: 1.2
-      color: $gray_500
-  .tabs
-    display: flex
-    justify-content: flex-start
-    align-items: center
-    overflow: hidden
-    overflow-x: auto
-    margin-bottom: 40px
-    position: relative
-    padding-bottom: 5px
-    &::-webkit-scrollbar //скроллбар
-      width: 10px 
-      height: 4px
-      background-color: $bg
-    &::-webkit-scrollbar-thumb //ползунок
-      background: $gray_200
-      border-radius: 4px
-    &::-webkit-scrollbar-button:vertical:start:decrement
-      background: linear-gradient(120deg, $bg 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(240deg, $bg 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(0deg, $bg 30%, rgba(0, 0, 0, 0) 31%)
-      background-color: $bg
-    &::-webkit-scrollbar-button:vertical:end:increment
-      background: linear-gradient(300deg, $bg 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(60deg, $bg 40%, rgba(0, 0, 0, 0) 41%), linear-gradient(180deg, $bg 30%, rgba(0, 0, 0, 0) 31%)
-      background-color: $bg
-    &::after
-      content: ''
-      position: absolute
-      top: 0
-      right: 0
-      width: 150px // Ширина затемнения, подстраивайте по необходимости
-      height: 100%
-      z-index: 2
-      background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent) // Градиент от черного к прозрачному
-      pointer-events: none // Чтобы затемнение не перекрывало элементы
-      display: none
-    .tab
-      white-space: nowrap
-      width: max-content
-      margin-right: 10px
-      height: 50px
-      border-radius: 12px
-      border: 1px solid $gray_200
-      transition: .3s
-      cursor: pointer
-      padding: 0 16px
-      display: flex
-      justify-content: center
-      align-items: center
-      color: $gray_500
-      &.active
-        color: $brand_main
-        border-color: $brand_main
-  
-@media (max-width: 992px)
-  .portfolio-slider
-    .arr-prev
-      left: -20px
-    .arr-next
-      right: -20px
-    .item
-      width: calc(50% - 8px)
-      margin-right: 8px
-      .thumb
-        margin-bottom: 16px
-      a
-        font-size: 18px
-        margin-bottom: 8px
-      p
-        font-size: 14px
-    .tabs
-      margin-bottom: 16px
-      .tab
-        margin-right: 6px
-        height: 36px
-        padding: 0 14px
-  
-@media (max-width: 578px)
-  .portfolio-slider
-    .swiper
-      position: relative
-      left: -15px
-      padding-left: 15px
-      min-width: calc(100% + 30px)
-      padding-right: 70px
-    .arr
-      display: none
-    .item
-      width: 100%
-      margin-right: 8px
-    
 @media (min-width: 992px)
   .all-services-block
     .wrap
@@ -775,6 +659,124 @@
             margin-top: 16px
       
       
+
+
+.portfolio-slider
+  .item
+    width: calc(33.3% - 20px)
+    margin-right: 20px
+    cursor: pointer
+    .thumb
+      display: block
+      margin-bottom: 24px
+      overflow: hidden
+      border-radius: $brad24
+    img
+      width: 100%
+      display: block
+      object-fit: cover
+      height: auto
+      aspect-ratio: 1 / 1
+      border-radius: $brad24
+      transition: 1s
+    a
+      font-size: 22px
+      margin-bottom: 12px
+      font-weight: 800
+      display: block
+      line-height: 1
+    p
+      font-size: 16px
+      line-height: 1.2
+      color: $gray_500
+  .tabs-wrapper
+    position: relative
+    display: flex
+    align-items: center
+    margin-bottom: 30px
+  .tabs
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    overflow: hidden
+    overflow-x: auto
+    position: relative
+    &::-webkit-scrollbar //скроллбар
+      width: 0 
+      height: 0
+      background-color: $bg
+    .tab
+      white-space: nowrap
+      width: max-content
+      margin-right: 10px
+      height: 50px
+      border-radius: 12px
+      border: 1px solid $gray_200
+      transition: .3s
+      cursor: pointer
+      padding: 0 16px
+      display: flex
+      line-height: 1
+      justify-content: center
+      align-items: center
+      color: $gray_500
+      &.active
+        color: $brand_main
+        border-color: $brand_main
+  
+@media (max-width: 992px)
+  .portfolio-slider
+    .arr-prev
+      left: -20px
+    .arr-next
+      right: -20px
+    .item
+      width: calc(50% - 8px)
+      margin-right: 8px
+      .thumb
+        margin-bottom: 16px
+      a
+        font-size: 18px
+        margin-bottom: 8px
+      p
+        font-size: 14px
+    .tabs
+      &-wrapper
+        margin-bottom: 16px
+      .tab
+        margin-right: 6px
+        height: 36px
+        padding: 0 14px
+  
+@media (max-width: 578px)
+  .portfolio-slider
+    .tabs-wrapper
+      min-width: calc(100% + 30px)
+      position: relative
+      left: -15px
+      overflow-x: auto
+      padding-bottom: 6px
+      margin-bottom: 10px
+      padding-right: 15px
+      .tabs
+        width: 100%
+        overflow: visible
+        padding-left: 15px
+        padding-right: 15px
+    .swiper
+      position: relative
+      left: -15px
+      padding-left: 15px
+      min-width: calc(100% + 30px)
+      padding-right: 70px
+    .arr
+      display: none
+    .item
+      width: 100%
+      margin-right: 8px
+      &:last-child
+        margin-right: 8px
+   
 
 
 

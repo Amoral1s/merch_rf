@@ -1,16 +1,244 @@
 @import "../reset/_vars"
 
+.author-page
+  .wrap
+    justify-content: space-between
+    align-items: center
+    .right
+      width: 300px
+      b
+        font-size: 16px
+        margin-bottom: 16px
+      .social
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        a
+          height: 50px
+          width: 50px
+          border-radius: 100%
+          background-color: $gray_50
+          display: flex
+          justify-content: center
+          align-items: center
+          margin-right: 16px
+          &:last-child
+            margin-right: 0
+          &:hover
+            background-color: $brand_main
+          img
+            width: 24px
+            height: 24px
+    .left
+      width: calc(100% - 340px)
+    .bottom
+      width: 100%
+      margin-top: 30px
+      border-radius: $brad24
+      padding: 30px
+      border: 1px solid $gray_200
+      position: relative
+      padding-left: 74px
+      &::after
+        position: absolute
+        content: ''
+        height: 24px
+        width: 24px
+        left: 30px
+        top: 30px
+        background-repeat: no-repeat
+        background-size: contain
+        background-image: url(../img/icons/quote.svg)
+    .author
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      .avatar
+        overflow: hidden
+        border-radius: 100%
+        min-width: 200px
+        width: 200px
+        height: 200px
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $gray_50
+        margin-right: 36px
+        img
+          display: block
+          aspect-ratio: 1 / 1
+          border-radius: 100%
+          object-fit: cover
+      .name
+        display: block
+        margin-bottom: 16px
+        .page-title
+          padding-top: 34px
+          font-size: 54px
+          color: $text
+          margin-bottom: 14px
+        span
+          display: block
+          font-weight: 400
+          font-size: 18px
+      .row
+        width: 100%
+        .item
+          display: flex
+          justify-content: flex-start
+          align-items: center
+          margin-right: 24px
+          .icon
+            margin-right: 10px
+          .ratingValue
+            white-space: nowrap
+            font-size: 16px
+            font-weight: 400
+            color: $text
+            display: flex
+            margin-right: 10px
+          .votes
+            font-size: 16px
+            color: $gray_450
+            line-height: 1.2
+            white-space: nowrap
 
-   
+.about-history.author-avards
+  .item
+    &.swiper-slide-active
+      background-image: none
+      b, p
+        color: $text
+
+.author-feed
+  .wrap
+    justify-content: space-between
+  .left
+    width: calc(100% - 505px - 30px)
+    .title
+      margin-bottom: 20px
+  .right
+    width: 505px
+    border-radius: $brad24
+    padding: 30px
+    background-color: $gray_50
+    .button
+      width: 100%
+    small
+      color: $gray_400
+      a
+        color: $gray_400
+    .label-title
+      font-size: 16px
+      color: $gray_450
+      display: block
+      margin-bottom: 10px
+  .feed-block
+    display: block
+    width: 100%
+    .item
+      width: 100%
+      padding: 30px 0
+      border-bottom: 1px solid $gray_200
+      .meta
+        svg
+          margin-right: 4px
+        b
+          font-size: 22px
+          margin-bottom: 8px
+        span
+          color: $gray_450
+          display: block
+          margin-bottom: 8px
+      .top
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        margin-bottom: 24px
+      .avatar
+        height: 74px
+        width: 74px
+        min-width: 74px
+        border-radius: 100%
+        overflow: hidden
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $text
+        margin-right: 16px
+
+@media (max-width: 992px)
+  .author-page
+    .wrap
+      display: block
+      .right
+        width: 100%
+      .left
+        width: 100%
+      .bottom
+        margin-top: 40px
+        padding: 20px
+        padding-top: 60px
+        &::after
+          left: 20px
+          top: 20px
+      .author
+        display: block
+        .avatar
+          min-width: 160px
+          width: 160px
+          height: 160px
+          margin-right: 0
+          margin-bottom: 30px
+        .name
+          display: block
+          margin-bottom: 10px
+          .page-title
+            padding-top: 0
+            font-size: 36px
+            margin-bottom: 10px
+          span
+            font-size: 16px
+        .row
+          display: block
+          margin-bottom: 30px
+          .item
+            margin-right: 0
+            margin-bottom: 10px
+  .author-feed
+    .wrap
+      display: block
+    .left
+      width: 100%
+      margin-bottom: 40px
+      .title
+        margin-bottom: 20px
+    .right
+      width: 100%
+      padding: 20px
+      .label-title
+        font-size: 14px
+    .feed-block
+      display: block
+      width: 100%
+      .item
+        padding: 20px 0
+        .meta
+          b
+            font-size: 18px
+            margin-bottom: 4px
+          span
+            font-size: 14px
+            margin-bottom: 4px
+        .top
+          margin-bottom: 16px
+        .avatar
+          height: 50px
+          width: 50px
+          min-width: 50px
 
 
-
-
-
-
-
-
-
+  
   
 
 

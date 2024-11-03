@@ -5802,6 +5802,76 @@ var Swiper=function(){"use strict";function e(e){return null!==e&&"object"==type
 //# sourceMappingURL=imask.js.map
 
 jQuery(document).ready(function ($) {
+
+  
+  const productGallery = document.querySelector('.single-product-gallery');
+  if (productGallery) {
+      const swiperContainer = productGallery.querySelector('.swiper');
+      const wrapper = productGallery.querySelector('.slider-wrap');
+      const arrNext = productGallery.querySelector('.arr-next');
+      const arrPrev = productGallery.querySelector('.arr-prev');
+      const pagination = productGallery.querySelector('.dots');
+      const items = productGallery.querySelectorAll('.swiper-slide');
+      const thumbs = productGallery.querySelectorAll('.slider-thumb');
+      let swiperInstance; // Переменная для хранения инстанса слайдера
+  
+      function startSlider() {
+          swiperInstance = new Swiper(swiperContainer, {
+              spaceBetween: 20,
+              lazy: true,
+              slidesPerView: 1,
+              autoHeight: false,
+              pagination: {
+                el: pagination,
+                clickable: true,
+              },
+              navigation: {
+                  nextEl: arrNext,
+                  prevEl: arrPrev
+              },
+              on: {
+                  // При смене слайда обновляем активную миниатюру
+                  slideChange: function() {
+                      updateActiveThumb(swiperInstance.activeIndex);
+                  }
+              }
+          });
+      }
+  
+      // Функция для обновления активной миниатюры
+      function updateActiveThumb(activeIndex) {
+          thumbs.forEach((thumb, index) => {
+              if (index === activeIndex) {
+                  thumb.classList.add('active');
+              } else {
+                  thumb.classList.remove('active');
+              }
+          });
+      }
+  
+      if (items.length > 1) {
+          startSlider();
+      } else {
+          // Если слайд только один, добавляем класс disabled-slider
+          wrapper.classList.add('disabled-slider');
+          $('.single-product-right').addClass('disabled-slider-block')
+      }
+  
+      // Связываем миниатюры с главным слайдером
+      thumbs.forEach((thumb, index) => {
+          thumb.addEventListener('click', function() {
+              if (swiperInstance) {
+                  swiperInstance.slideTo(index);
+              }
+          });
+      });
+  
+      // Устанавливаем активную миниатюру при загрузке
+      if (thumbs.length > 0) {
+          updateActiveThumb(0); // Устанавливаем первую миниатюру как активную
+      }
+  }
+
   const prodHomeSlider = document.querySelector('.cat-slider');
 	if (prodHomeSlider) {
       const swiper = prodHomeSlider.querySelector('.swiper');
@@ -6462,12 +6532,109 @@ jQuery(document).ready(function ($) {
       });
   }
 
+  const relatedSlider = document.querySelector('.related');
+	if (relatedSlider) {
+      const wrapper = relatedSlider.querySelector('.wrap');
+      const swiper = relatedSlider.querySelector('.swiper');
+      const arrNext = relatedSlider.querySelector('.arr-next');
+      const arrPrev = relatedSlider.querySelector('.arr-prev');
+      const itemsWrap = relatedSlider.querySelector('ul.products');
+      const items = relatedSlider.querySelectorAll('li.product');
+      itemsWrap.classList.add('swiper-wrapper');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            768: {
+              spaceBetween: 10,
+              slidesPerView: 2,
+            },  
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 4) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 2) {
+        startSlider();
+      } else if (window.screen.width < 768 && items.length > 1) {
+        startSlider();
+      } else {
+        wrapper.classList.add('disabled-slider');
+      }
+	}
+
+  const productSlider = document.querySelectorAll('.prod-slider-wrap');
+	if (productSlider.length > 0) {
+
+    productSlider.forEach(wrap => {
+      const swiper = wrap.querySelector('.swiper');
+      const arrNext = wrap.querySelector('.arr-next');
+      const arrPrev = wrap.querySelector('.arr-prev');
+      const itemsWrap = wrap.querySelector('ul.products');
+      const items = wrap.querySelectorAll('li.product');
+      itemsWrap.classList.add('swiper-wrapper');
+      function startSlider() {
+        new Swiper(swiper, {
+          lazy: false,
+          autoHeight: false,
+          navigation: {
+            nextEl: arrNext,
+            prevEl: arrPrev
+          },
+          breakpoints: {
+            300: {
+              slidesPerView: 1,
+              spaceBetween: 8,
+            },
+            578: {
+              spaceBetween: 10,
+              slidesPerView: 2,
+            },  
+            768: {
+              spaceBetween: 10,
+              slidesPerView: 3,
+            },  
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            }
+          },
+        });
+      }
+      if (window.screen.width > 992 && items.length > 4) {
+        startSlider();
+      } else if (window.screen.width < 993 && items.length > 3) {
+        startSlider();
+      } else if (window.screen.width < 768 && items.length > 2) {
+        startSlider();
+      } else {
+        wrap.classList.add('disabled-slider');
+      }
+    })
+     
+	}
+
 }); //end
 jQuery(document).ready(function ($) {
 		
   $(".wpcf7").on('wpcf7mailsent', function(event){
-		if (event.detail.contactFormId == '813') {
-			$('#thx-faq').fadeIn(200);
+		if (event.detail.contactFormId == '1462' || event.detail.contactFormId == '647') {
+			$('#thx-feed').fadeIn(200);
+		} else if (event.detail.contactFormId == '1177') {
+			$('#thx-subscribe').fadeIn(200);
 		} else {
 			$('#thx').fadeIn(200);
 		}
@@ -6520,6 +6687,7 @@ jQuery(document).ready(function ($) {
 		$('.overlay').fadeIn(300);
 		$('html').addClass('fixed');
 	});
+
 	$('.call-review-single').on('click', function() {
 		$('.popup.popup-single-review').fadeIn(300);
 		$('.popup').removeClass('popup-thx');
@@ -7075,6 +7243,63 @@ jQuery(document).ready(function ($) {
 		})
 	}
 
+	if (window.screen.width > 992) {
+		let catToggles = document.querySelector('.cat-toggles');
+		let portfolioToggles = document.querySelector('.tabs-wrapper');
+		if (catToggles || portfolioToggles) {
+			if (portfolioToggles) {
+				catToggles = portfolioToggles.querySelector('.tabs');
+			}
+	
+			const container = catToggles.closest('.container')
+	
+			// Создаем кнопки прокрутки
+			const scrollLeftButton = document.createElement('div')
+			scrollLeftButton.classList.add('scroll-left')
+			scrollLeftButton.setAttribute('aria-label', 'Scroll left')
+			scrollLeftButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M8.99992 6.99988L4.70703 11.2928C4.37369 11.6261 4.20703 11.7928 4.20703 11.9999C4.20703 12.207 4.37369 12.3737 4.70703 12.707L8.99992 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>`;
+	
+			const scrollRightButton = document.createElement('div')
+			scrollRightButton.classList.add('scroll-right')
+			scrollRightButton.setAttribute('aria-label', 'Scroll right')
+			scrollRightButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+			<path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M15.0001 17.0001L19.293 12.7072C19.6263 12.3739 19.793 12.2072 19.793 12.0001C19.793 11.793 19.6263 11.6263 19.293 11.293L15.0001 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>`;
+	
+			// Вставляем кнопки перед и после .cat-toggles
+			catToggles.parentElement.insertBefore(scrollLeftButton, catToggles)
+			catToggles.parentElement.appendChild(scrollRightButton)
+	
+			// Функция для обновления видимости кнопок
+			function updateButtonVisibility() {
+					const isOverflowing = catToggles.scrollWidth > container.clientWidth
+					scrollLeftButton.style.display = isOverflowing && catToggles.scrollLeft > 0 ? 'flex' : 'none'
+					scrollRightButton.style.display = isOverflowing && (catToggles.scrollLeft + container.clientWidth) < catToggles.scrollWidth ? 'flex' : 'none'
+			}
+	
+			// Обработчики для прокрутки
+			scrollLeftButton.addEventListener('click', () => {
+					catToggles.scrollBy({ left: -300, behavior: 'smooth' })
+			})
+	
+			scrollRightButton.addEventListener('click', () => {
+					catToggles.scrollBy({ left: 300, behavior: 'smooth' })
+			})
+	
+			// Обновляем видимость кнопок при прокрутке и загрузке
+			catToggles.addEventListener('scroll', updateButtonVisibility)
+			window.addEventListener('resize', updateButtonVisibility)
+	
+			// Инициализация
+			updateButtonVisibility()
+		}
+	}
+	
+    
 
 
 }); //end
@@ -7207,3 +7432,175 @@ jQuery(document).ready(function($) {
   }
 
 });
+jQuery(document).ready(function ($) {
+  console.log('woocommerce JS Single Product')
+
+  const singleProduct = document.querySelector('.product.single-product');
+
+  if (!singleProduct) {
+    return;
+  }
+
+  const sizeLabel = document.querySelector('.single-product .variations label[for="pa_razmer"]');
+
+  if (sizeLabel) {
+    const button = document.createElement('div');
+    button.classList.add('size-btn');
+    button.innerHTML = `
+    <div class="icon">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+				<path d="M5 9.97873C5 11.095 6.79086 12 9 12V9.97873C9 8.98454 9 8.48745 8.60252 8.18419C8.20504 7.88092 7.811 7.99435 7.02292 8.22121C5.81469 8.56902 5 9.2258 5 9.97873Z" stroke="#71E69B" stroke-width="1.5" stroke-linejoin="round"/>
+				<path d="M16 8.5C16 10.433 12.866 12 9 12C5.13401 12 2 10.433 2 8.5C2 6.567 5.13401 5 9 5C12.866 5 16 6.567 16 8.5Z" stroke="#71E69B" stroke-width="1.5"/>
+				<path d="M2 9V15.6667C2 17.5076 5.13401 19 9 19H20C20.9428 19 21.4142 19 21.7071 18.7071C22 18.4142 22 17.9428 22 17V14C22 13.0572 22 12.5858 21.7071 12.2929C21.4142 12 20.9428 12 20 12H9" stroke="#71E69B" stroke-width="1.5"/>
+				<path d="M18 19V17M14 19V17M10 19V17M6 18.5V16.5" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</div>
+		<p>Таблица размеров</p>
+    `;
+    sizeLabel.parentElement.appendChild(button);
+    $('.size-btn').on('click', function() {
+      $('.popup.popup-sizes').fadeIn(300);
+      $('.popup').removeClass('popup-thx');
+      $('.overlay').fadeIn(300);
+      $('html').addClass('fixed');
+    });
+  }
+  
+
+  const callOrder = document.querySelector('.button.call-cart');
+  callOrder.classList.add('disabled');
+  let varToggle = false;
+
+  function checkButton() {
+    if (varToggle == true) {
+      callOrder.classList.remove('disabled');
+    } else {
+      callOrder.classList.add('disabled');
+    }
+  }
+
+  let indexAll = 0;
+  const checkVariables = () => {
+    const variables = singleProduct.querySelectorAll('.variations tbody tr');
+    if (variables.length > 0) {
+      indexAll = 0;
+      variables.forEach((table, index) => {
+        const items = table.querySelectorAll('li.xt_woovs-selected');
+        if (items.length > 0) {
+          indexAll++;
+        } 
+      });
+      if (indexAll == variables.length) {
+        varToggle = true;
+      } else {
+        varToggle = false;
+      }
+    } else {
+      varToggle = true;
+    }
+    checkButton();
+  }
+  singleProduct.addEventListener('click', () => {
+    checkVariables();
+  });
+
+
+  //product order
+  function productData() {
+    const productDataTextarea = document.querySelector('.popup-order #data-product-textarea');
+    const popupDataHTML = document.querySelector('#data-product.data');
+
+
+    const variations = singleProduct.querySelector('.variations');
+    const productTitle = singleProduct.querySelector('.single-product h1.page-title').textContent.trim();
+    const productThumb = singleProduct.querySelector('.slider-wrap .swiper-wrapper .item img').src;
+    const sku = singleProduct.querySelector('.single-product .sku').textContent.trim();
+    const productPriceElement = singleProduct.querySelector('.single-product-bottom .price span bdi');
+    const productCount = singleProduct.querySelector('.single-product-bottom .count');
+
+
+
+
+
+    // Получаем и форматируем цену
+    let productPrice = '';
+    if (productPriceElement) {
+        // Извлекаем цену, убираем пробелы и другие нечисловые символы
+        const priceText = productPriceElement.textContent.replace(/\s+/g, '').match(/\d+(\.\d+)?/g);
+        if (priceText) {
+            productPrice = parseFloat(priceText[0]).toLocaleString('ru-RU') + ' ₽';
+        }
+    }
+    let productData = {};
+    let productDataText = ''; // Для заполнения текстового поля
+
+    if (variations) {
+      const tableRow = variations.querySelectorAll('tr');
+      tableRow.forEach(row => {
+          let name = row.querySelector('.label label').textContent.trim(); // Получаем ключ
+          
+          let valueItem = row.querySelector('.value .xt_woovs-selected span'); // Получаем значение
+          let value;
+          if (valueItem.closest('.swatch-color')) {
+            value = valueItem.closest('.swatch-color').title;
+          } else {
+            value = valueItem.textContent.trim();
+          }
+          
+          // Удаляем двоеточие, если оно присутствует в начале или в конце значения
+          name = name.replace(/:$/, '').trim();
+  
+          if (name && value) {
+              productData[name] = value; // Добавляем в объект productData
+              productDataText += `${name}: ${value}\n`; // Добавляем в текстовую строку
+          }
+      });
+    }
+
+    // Добавляем заголовок, метаданные и цену в текстовое поле
+    if (productDataTextarea) {
+        productDataTextarea.value = `${sku}\nНаименование: ${productTitle}\n${productDataText}\nЦена: ${productPrice}`;
+    }
+    
+    popupDataHTML.innerHTML = '';
+    popupDataHTML.style.display = 'block';
+    popupDataHTML.innerHTML = `
+    <div class="cart-item">
+      <div class="cart-item-thumb">
+        <img src="${productThumb}" alt="product">
+      </div>
+      <div class="cart-item-meta">
+        <b class="roboto">${productTitle}</b>
+        <div class="meta-row">
+          <p>от ${productPrice}</p>
+          <p>${productCount ? productCount.textContent.trim() : ''}</p>
+        </div>
+      </div>
+    </div>
+    `;
+  }
+  const cartPopup = document.querySelector('.popup.popup-order');
+  if (cartPopup) {
+    $('.call-cart').on('click', function() {
+      $('.popup.popup-order').fadeIn(300);
+      $('.popup').removeClass('popup-thx');
+      $('.overlay').fadeIn(300);
+      $('html').addClass('fixed');
+      productData();
+    });
+  }
+  
+  
+  
+
+	
+
+
+
+
+  
+
+ 
+
+
+}); //end

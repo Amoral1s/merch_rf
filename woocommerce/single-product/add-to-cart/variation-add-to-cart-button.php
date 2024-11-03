@@ -11,24 +11,6 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 ?>
-<?php if (get_field('meta')) : ?>
-<div class="meta-vars">
-	<?php if (have_rows('meta')) : while(have_rows('meta')) : the_row(); ?>
-		<div class="meta-vars-item">
-			<b><?php echo get_sub_field('name'); ?></b>
-			<?php $title = get_sub_field('name'); ?>
-			<ul class="meta-vars-item-values">
-				<?php if (have_rows('values')) : while(have_rows('values')) : the_row(); ?>
-					<li class="val" data-val="<?php echo get_sub_field('val'); ?>" data-title="<?php echo $title; ?>">
-						<?php echo get_sub_field('val'); ?>
-					</li>
-				<?php endwhile; endif; ?>
-			</ul>
-			
-		</div>
-	<?php endwhile; endif; ?>
-</div>
-<?php endif; ?>
 
 <!-- <div class="woocommerce-variation-add-to-cart variations_button">
 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>

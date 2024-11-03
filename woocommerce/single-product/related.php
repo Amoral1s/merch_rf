@@ -75,8 +75,8 @@ if ( $all_products->have_posts() ) {
     }
 
     // Если недостаточно, добавляем записи до текущего в обратном порядке
-    if ( count( $related_products ) < 20 ) {
-        for ( $i = $current_index - 1; $i >= 0 && count( $related_products ) < 20; $i-- ) {
+    if ( count( $related_products ) < 10 ) {
+        for ( $i = $current_index - 1; $i >= 0 && count( $related_products ) < 10; $i-- ) {
             array_unshift($related_products, $products_array[$i]);
         }
     }
@@ -85,7 +85,7 @@ if ( !empty( $related_products ) ) : ?>
 
 <section class="related">
 	<?php
-	$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Вам может быть интересно', 'woocommerce' ) );
+	$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Похожие товары', 'woocommerce' ) );
 
 	if ( $heading ) :
 			?>
@@ -94,8 +94,8 @@ if ( !empty( $related_products ) ) : ?>
 	<div class="wrap slider-wrap">
 		<div class="arr arr-prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H20" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 7L4.7071 11.2929C4.3738 11.6262 4.2071 11.7929 4.2071 12C4.2071 12.2071 4.3738 12.3738 4.7071 12.7071L9 17" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12H20" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 7L4.7071 11.2929C4.3738 11.6262 4.2071 11.7929 4.2071 12C4.2071 12.2071 4.3738 12.3738 4.7071 12.7071L9 17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
 		</div>
 		<div class="swiper">
@@ -111,8 +111,8 @@ if ( !empty( $related_products ) ) : ?>
 		</div>
 		<div class="arr arr-next">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H4" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15 7L19.2929 11.2929C19.6262 11.6262 19.7929 11.7929 19.7929 12C19.7929 12.2071 19.6262 12.3738 19.2929 12.7071L15 17" stroke="#885C8C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 12H4" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 7L19.2929 11.2929C19.6262 11.6262 19.7929 11.7929 19.7929 12C19.7929 12.2071 19.6262 12.3738 19.2929 12.7071L15 17" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
 		</div>
 	</div> 

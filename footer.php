@@ -271,6 +271,51 @@
     
   </div>
 
+  <div class="popup popup-sizes" style="display: none">
+    <div class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 5L5 19M5 5L19 19" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wrapper">
+      <b class="roboto"><?php echo get_field('size_title', 'blocks'); ?></b>
+      <p class="subtitle"><?php echo get_field('size_subtitle', 'blocks'); ?></p>
+      <div class="table">
+        <?php
+          $table = get_field( 'size_table', 'blocks');
+          if ( ! empty ( $table ) ) {
+              echo '<table border="0">';
+                if ( ! empty( $table['header'] ) ) {
+                  echo '<thead>';
+                    echo '<tr>';
+                      foreach ( $table['header'] as $th ) {
+                        echo '<th>';
+                          echo $th['c'];
+                        echo '</th>';
+                      }
+                    echo '</tr>';
+                  echo '</thead>';
+                }
+                echo '<tbody>';
+                  foreach ( $table['body'] as $tr ) {
+                    echo '<tr>';
+                      foreach ( $tr as $td ) {
+                        echo '<td>';
+                          echo $td['c'];
+                        echo '</td>';
+                      }
+                    echo '</tr>';
+                  }
+                echo '</tbody>';
+              echo '</table>';
+              echo '<span>'.$table['caption'].'</span>';
+          }
+        ?>
+      </div>
+    </div>
+    
+  </div>
+
   <div class="popup popup-order" style="display: none">
     <div class="close">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -283,11 +328,12 @@
         <p class="subtitle">
           Наш эксперт подготовит смету для вас
         </p>
-        <?php echo do_shortcode('[contact-form-7 id="c338e7d" title="Возникли вопросы? (попап)"]'); ?>
+        <div class="data" id="data-product" style="display: none">
+      
+        </div>
+        <?php echo do_shortcode('[contact-form-7 id="6321e67" title="Заказать расчёт (попап)"]'); ?>
       </div>
-      <div class="data" id="data-product" style="display: none">
-
-      </div>
+      
       <div class="manager">
         <div class="left">
           <div class="avatar">
@@ -364,6 +410,48 @@
       </div>
       <b>Спасибо за заявку!</b>
       <p>Мы получили вашу заявку и свяжемся с вами через несколько минут</p>
+      <div class="button close-button">
+        Понятно
+      </div>
+    </div>
+  </div>
+
+  <div class="popup thanks" id="thx-feed" style="display: none">
+    <div class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 5L5 19M5 5L19 19" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wrapper-thx">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="101" height="100" viewBox="0 0 101 100" fill="none">
+          <rect x="29.6666" y="29.1666" width="45.8333" height="45.8333" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70837 50C5.70837 74.738 25.7623 94.7917 50.5 94.7917C75.238 94.7917 95.2917 74.738 95.2917 50C95.2917 25.2623 75.238 5.20837 50.5 5.20837C25.7623 5.20837 5.70837 25.2623 5.70837 50ZM69.9821 34.4286C71.6784 35.9835 71.793 38.6193 70.2384 40.3156L47.3217 65.3155C46.5534 66.1534 45.4767 66.6409 44.3405 66.6659C43.2042 66.6905 42.1074 66.25 41.3037 65.4463L30.8871 55.0296C29.2599 53.4025 29.2599 50.7642 30.8871 49.1371C32.5143 47.51 35.1525 47.51 36.7797 49.1371L44.1192 56.4767L64.095 34.6845C65.65 32.9882 68.2859 32.8736 69.9821 34.4286Z" fill="#71E69B"/>
+        </svg>
+      </div>
+      <b>Спасибо за отзыв!</b>
+      <p>Ваш отзыв будет опубликован после модерации</p>
+      <div class="button close-button">
+        Понятно
+      </div>
+    </div>
+  </div>
+
+  <div class="popup thanks" id="thx-subscribe" style="display: none">
+    <div class="close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 5L5 19M5 5L19 19" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wrapper-thx">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="101" height="100" viewBox="0 0 101 100" fill="none">
+          <rect x="29.6666" y="29.1666" width="45.8333" height="45.8333" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70837 50C5.70837 74.738 25.7623 94.7917 50.5 94.7917C75.238 94.7917 95.2917 74.738 95.2917 50C95.2917 25.2623 75.238 5.20837 50.5 5.20837C25.7623 5.20837 5.70837 25.2623 5.70837 50ZM69.9821 34.4286C71.6784 35.9835 71.793 38.6193 70.2384 40.3156L47.3217 65.3155C46.5534 66.1534 45.4767 66.6409 44.3405 66.6659C43.2042 66.6905 42.1074 66.25 41.3037 65.4463L30.8871 55.0296C29.2599 53.4025 29.2599 50.7642 30.8871 49.1371C32.5143 47.51 35.1525 47.51 36.7797 49.1371L44.1192 56.4767L64.095 34.6845C65.65 32.9882 68.2859 32.8736 69.9821 34.4286Z" fill="#71E69B"/>
+        </svg>
+      </div>
+      <b>Спасибо за подписку!</b>
+      <p>Мы присылаем только самые важные публикации</p>
       <div class="button close-button">
         Понятно
       </div>

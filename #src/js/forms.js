@@ -1,8 +1,10 @@
 jQuery(document).ready(function ($) {
 		
   $(".wpcf7").on('wpcf7mailsent', function(event){
-		if (event.detail.contactFormId == '813') {
-			$('#thx-faq').fadeIn(200);
+		if (event.detail.contactFormId == '1462' || event.detail.contactFormId == '647') {
+			$('#thx-feed').fadeIn(200);
+		} else if (event.detail.contactFormId == '1177') {
+			$('#thx-subscribe').fadeIn(200);
 		} else {
 			$('#thx').fadeIn(200);
 		}
@@ -55,6 +57,7 @@ jQuery(document).ready(function ($) {
 		$('.overlay').fadeIn(300);
 		$('html').addClass('fixed');
 	});
+
 	$('.call-review-single').on('click', function() {
 		$('.popup.popup-single-review').fadeIn(300);
 		$('.popup').removeClass('popup-thx');

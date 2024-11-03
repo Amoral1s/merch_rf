@@ -18,3 +18,10 @@ function change_pagination_text($args){
     $args['next_text'] = 'Дальше';
     return $args;
 }
+
+function set_products_per_page($query) {
+    if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_category() || is_product_tag())) {
+        $query->set('posts_per_page', 12);
+    }
+}
+add_action('pre_get_posts', 'set_products_per_page');

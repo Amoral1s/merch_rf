@@ -13,7 +13,10 @@ get_header();
   </div>
 </div>
 
-<section  itemscope itemtype="http://schema.org/Blog" class="blog-page news-slider">
+
+
+
+<section  itemscope itemtype="http://schema.org/Blog" class="blog-page">
   <link itemprop="image" href="<?php echo get_template_directory_uri(); ?>/img/logo.svg">
 	<link itemprop="url" href="<?php echo get_permalink(); ?>">
 	<meta itemprop="description" content="<?php the_excerpt(); ?>">
@@ -30,11 +33,15 @@ get_header();
 				}
 			?>
     </h1>
+    <div class="search">
+      <?php echo do_shortcode('[wd_asp id=1]'); ?>
+    </div>
     <div class="wrap">
       <?php
+        $index = 0;
         $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1; // определяем текущую страницу блога
         $args = array(
-          'posts_per_page' => get_option('posts_per_page'), // значение по умолчанию берётся из настроек, но вы можете использовать и собственное
+          'posts_per_page' => 12, // значение по умолчанию берётся из настроек, но вы можете использовать и собственное
           'paged'          => $current_page, // текущая страница
           'post_type'      => 'post',
           'orderby' => 'date',
@@ -45,64 +52,97 @@ get_header();
         $wp_query->is_home = false;
         while(have_posts()): the_post();
       ?>
-      <a itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" itemprop="url" href="<?php the_permalink(); ?>" class="item">
-        <?php if (has_post_thumbnail()) : ?>
-            <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'medium'); ?>" alt="<?php the_title(); ?>">
-        <?php else : ?>
-            <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
-        <?php endif; ?>
+      <a href="<?php echo get_the_permalink(); ?>" class="item">
+        <div class="thumb">
+          <?php if (has_post_thumbnail()) : ?>
+              <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php echo get_the_title(); ?>">
+          <?php else : ?>
+              <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+          <?php endif; ?>
+        </div>
         <div class="meta">
-          <b><?php the_title(); ?></b>
           <div class="date"><?php echo get_the_date('d M Y') ?></div>
+          <b class="roboto"><?php the_title(); ?></b>
+          <?php 
+            $subtitle = get_field('subtitle'); // Получаем значение поля ACF
+            $word_limit = 10; // Указываем количество слов
+
+            // Проверяем, если текст не пустой
+            if ($subtitle) {
+                $words = explode(' ', $subtitle); // Разделяем текст на слова
+                if (count($words) > $word_limit) {
+                    $subtitle = implode(' ', array_slice($words, 0, $word_limit)) . '...'; // Обрезаем текст и добавляем троеточие
+                }
+                echo '<p>'.$subtitle.'</p>'; // Выводим ограниченный текст
+            }
+          ?>
         </div>
       </a>
-      <?php endwhile; ?>
+      <?php if ($index == 5) : ?>
+      <div class="social-banner">
+        <b class="roboto"><?php echo get_field('social_banner_title', 'blocks'); ?></b>
+        <?php if (get_field('banner_social', 'blocks')) : ?>
+        <div class="social">
+          <?php if (have_rows('banner_social', 'blocks')) : while(have_rows('banner_social', 'blocks')) : the_row(); ?>
+            <a href="<?php echo get_sub_field('link'); ?>" target="blank" rel="nofollow" noindex>
+              <img src="<?php echo get_sub_field('icon'); ?>" alt="Соц сеть">
+            </a>
+          <?php endwhile; endif; ?>
+        </div>
+        <?php endif; ?>
+      </div>
+      <?php endif; ?>
+      <?php $index++; endwhile; ?>
     </div>
     <?php if( function_exists('wp_pagenavi') ) wp_pagenavi(); ?>
   </div>
 </section>
 
-<?php if (get_field('subscribe_banner_title', 'options')) : ?>
-<section class="subscribe-banner">
+<?php if (get_field('uni_title', 'blocks')) : ?>
+<section class="unisender-banner">
   <div class="container">
     <div class="wrap">
       <div class="left">
-        <img src="<?php echo get_template_directory_uri(); ?>/img/subscribe/subscribe.png" alt="Подписка на рассылку">
+        <b class="roboto"><?php echo get_field('uni_title', 'blocks'); ?></b>
+        <p><?php echo get_field('uni_subtitle', 'blocks'); ?></p>
       </div>
       <div class="right">
-        <b class="title sub"><?php echo get_field('subscribe_banner_title', 'options'); ?></b>
-        <p class="subtitle"><?php echo get_field('subscribe_banner_subtitle', 'options'); ?></p>
         <div class="form">
-          <?php echo do_shortcode('[contact-form-7 id="92b59f6" title="Подписка на email рассылку (Баннер)"]'); ?>
+          <?php echo do_shortcode('[contact-form-7 id="b0f62b8" title="Подписка на рассылку"]'); ?>
         </div>
       </div>
-    
     </div>
   </div>
 </section>
 <?php endif; ?>
 
-<?php if (get_field('filialy', 'options')) : ?>
-<section class="map">
+<?php if (get_field('banner_title', 'home')) : ?>
+<section class="form-big">
   <div class="container">
     <div class="wrap">
       <div class="left">
-        <?php if (have_rows('filialy', 'options')) : ?>
-          <?php $first = true; ?>
-          <?php while(have_rows('filialy', 'options')) : the_row(); ?>
-          <div class="item<?php echo $first ? ' active' : ''; ?>" data-coordinat="<?php echo get_sub_field('koordinaty'); ?>">
-            <b><?php echo get_sub_field('zagolovok'); ?></b>
-            <p><?php echo get_sub_field('adres'); ?></p>
-            <a href="tel:<?php echo get_sub_field('telefon'); ?>" class="phone" target="blank"><?php echo get_sub_field('telefon'); ?></a>
-            <span><?php echo get_sub_field('rezhim_raboty'); ?></span>
+        <div class="title-block">
+          <b class="title sub"><?php echo get_field('banner_title', 'home') ?></b>
+          <p class="subtitle"><?php echo get_field('banner_subtitle', 'home'); ?></p>
+        </div>
+        <div class="manager">
+          <div class="avatar">
+            <img src="<?php echo get_field('banner_avatar','options'); ?>" alt="<?php echo get_field('banner_name','options'); ?>">
           </div>
-          <?php $first = false; ?>
-          <?php endwhile; ?>
-        <?php endif; ?>
+          <div class="meta">
+            <b class="roboto"><?php echo get_field('banner_name','options'); ?></b>
+            <p><?php echo get_field('banner_place','options'); ?></p>
+          </div>
+        </div>
       </div>
-      <div class="right">
-        <!-- Карта будет выведена здесь -->
-        <div id="yandex-map" style="width: 100%; height: 100%;"></div>
+      <div class="right form form-white">
+        <b class="roboto mini-title">
+          Оставьте заявку
+        </b>
+        <p class="mini-subtitle">
+          Мы свяжемся с вами в течение рабочего дня
+        </p>
+        <?php echo do_shortcode('[contact-form-7 id="4925d8f" title="Оставьте заявку (баннер)"]'); ?>
       </div>
     </div>
   </div>

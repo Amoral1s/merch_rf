@@ -1,6 +1,53 @@
 @import "../reset/_vars"
 
+@media (min-width: 992px)
+  .catalog-main
+    .item
+      &:hover
+        b
+          color: $brand_main
+          transition: .3s
+        .thumb
+          img
+            transform: scale(1.05)
+            transition: 1s
 
+
+.catalog-main
+  margin-bottom: 60px
+  .wrap
+    min-width: calc(100% + 20px)
+  .item
+    width: calc(33.3% - 20px)
+    margin-right: 20px
+    margin-bottom: 40px
+    b
+      font-size: 24px
+      margin-bottom: 8px
+      color: $text
+      transition: .3s
+    p
+      line-height: 1.2
+      color: $gray_500
+      font-weight: 400
+      font-size: 16px
+      transition: .3s
+    .thumb
+      overflow: hidden
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 18px
+      border-radius: $brad24
+      background-color: $gray_50
+      margin-bottom: 20px
+      height: auto
+      aspect-ratio: 1 / 1
+      width: 100%
+      img
+        width: 100%
+        aspect-ratio: 1 / 1
+        transition: 1s
 
 
 

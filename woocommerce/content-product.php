@@ -27,6 +27,15 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 
 <li <?php wc_product_class( 'swiper-slide', $product ); ?>>
     <a class="product-top" href="<?php the_permalink(); ?>">
+				<?php if (get_field('labels')) : ?>
+				<div class="labels">
+					<?php if (have_rows('labels')) : while(have_rows('labels')) : the_row(); ?>
+						<div class="label roboto">
+							<?php echo get_sub_field('label'); ?>
+						</div>
+					<?php endwhile; endif; ?>
+				</div>
+				<?php endif; ?>
         <div class="product-thumb">
             <?php 
             if ( has_post_thumbnail( $product->get_id() ) ) {
@@ -36,7 +45,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
             }
             ?>
         </div>
-        <b class="product-title">
+        <b class="product-title roboto">
             <?php echo $product->get_name(); ?>
         </b>
 				<div class="product-bottom">
@@ -62,12 +71,11 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 								<?php endif; 
 						}
 					?>
+					<div class="product-count">
+						<?php echo get_field('count'); ?>
+					</div>
 				</div>
-				<span class="button button-border">
-					Заказать
-				</span>
     </a>
-		
     <?php
     do_action( 'woocommerce_before_shop_loop_item' );
     do_action( 'woocommerce_before_shop_loop_item_title' );
