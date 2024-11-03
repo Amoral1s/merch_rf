@@ -5,7 +5,7 @@ get_header();
   <div class="container">
     <?php
       if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<p class="breadcrumbs">', '</p>'); }
-    ?>
+    ?>  
   </div>
 </div>
 <?php $current_page = get_query_var('paged') ? get_query_var('paged') : 1; ?>
