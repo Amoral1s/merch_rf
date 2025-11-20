@@ -728,7 +728,7 @@
 }
 
 .feed-form .form small {
-  max-width: 210px;
+  max-width: 410px;
 }
 
 .feed-form .form .mini-title {
@@ -2781,6 +2781,11 @@ div.asp_r.asp_r_1.vertical .item .asp_content h3 a:hover {
   transition: 0.3s;
 }
 
+.slider-wrap.disabled-slider ul.products.swiper-wrapper .product {
+  max-width: calc(25% - 20px);
+  margin-right: 20px;
+}
+
 @media (min-width: 992px) {
   .faq-page .wrap .right .nav-item:hover {
     color: #0C0C0C;
@@ -3740,6 +3745,7 @@ div.asp_r.asp_r_1.vertical .item .asp_content h3 a:hover {
 
   .price-table .wrap table {
     width: max-content;
+    min-width: 800px;
   }
 
   .price-table .wrap table thead {
@@ -3753,23 +3759,31 @@ div.asp_r.asp_r_1.vertical .item .asp_content h3 a:hover {
     font-weight: 400;
     padding: 14px 8px;
     border: none;
-    max-width: 160px;
+    width: max-content;
+    white-space: nowrap;
+    max-width: 100%;
   }
 
   .price-table .wrap table thead tr th:first-child {
-    max-width: 220px;
+    width: max-content;
+    max-width: 200px;
+    min-width: 0;
+    white-space: normal;
   }
 
   .price-table .wrap table tbody tr td {
     font-size: 14px;
     padding: 14px 8px;
+    white-space: nowrap;
     border: none;
     text-align: left;
-    max-width: 160px;
   }
 
   .price-table .wrap table tbody tr td:first-child {
-    max-width: 220px;
+    width: max-content;
+    max-width: 200px;
+    min-width: 0;
+    white-space: normal;
   }
 
   .banner-treb .wrap {
@@ -4592,6 +4606,11 @@ div.asp_r.asp_r_1.vertical .item .asp_content h3 a:hover {
     color: #818793;
     font-size: 14px;
     font-weight: 400;
+  }
+
+  .slider-wrap.disabled-slider ul.products.swiper-wrapper .product {
+    max-width: 100%;
+    margin-right: 8px;
   }
 }
 

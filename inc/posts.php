@@ -93,7 +93,11 @@ function fix_month_abbrev(){
     'Декабрь'   => 'декабря',
 
   ] + $wp_locale->month_abbrev;
-} 
+}
+
+
+
+
 
 function custom_posts_per_page($query) {
     if (!is_admin() && $query->is_main_query() && $query->is_archive()) {
@@ -104,3 +108,5 @@ function custom_posts_per_page($query) {
     }
 }
 add_action('pre_get_posts', 'custom_posts_per_page');
+
+

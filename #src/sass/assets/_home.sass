@@ -1783,16 +1783,20 @@
 @media (max-width: 578px)
   .city
     .wrap
-      columns: 2
-      display: block
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      max-width: 100%
+      width: 100%
+      .item
+        width: calc(50% - 8px)
       &.active
-        max-height: 236px
         overflow: hidden
-        display: block
+        height: 236px
+        columns: 2
 
 @media (min-width: 992px)
   .footer
-    
     a.address
       &:hover
         color: $brand_main

@@ -833,10 +833,8 @@ svg:hover rect {
     border-radius: 16px;
     margin-right: 16px;
     transition: 0.2s;
-  }
-
-  .pc-catalog .wrap .left .item .icon img {
-    width: 40px;
+    padding: 10px;
+    aspect-ratio: 1/1;
   }
 
   .pc-catalog .wrap .left .item p {
@@ -1582,6 +1580,7 @@ svg:hover rect {
     justify-content: center;
     align-items: center;
     background-color: #F6F8FA;
+    padding: 6px;
   }
 
   .mob-catalog .wrap .item-wrapper .item .icon img {

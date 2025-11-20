@@ -190,6 +190,8 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 				<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
+	
+	
 
 	<?php if (!empty($parent_categories)) : ?>
 	<div class="cat-toggles-wrapper">
@@ -216,7 +218,9 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 		</div>
 	</div>
 	<?php endif; ?>
-
+<h2 class="title">
+		Варианты пошива
+	</h2>
 <?php
 	if ( woocommerce_product_loop() ) {
 		/**
@@ -271,6 +275,119 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 </div>
 <?php if (!is_paged() && !is_search()) : ?>
 <!-- after-catalog blocks -->
+
+<?php if (get_field('primery_off', $term_tax .'_'. $term_id) == false) : ?>
+<section class="portfolio-slider">
+  <div class="container">
+    <div class="title-block">
+      <h2 class="title sub">Примеры наших работ</h2>
+      <p class="subtitle">Хотим поделиться с вами интересными решениями, которые разработали наши специалисты</p>
+      <a href="<?php the_permalink(163); ?>" class="link-all">
+        <span>Смотреть все</span>
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+    <?php
+      // Создаем пустой массив для всех категорий
+      $all_categories = [];
+
+      // Запрашиваем все записи портфолио
+      $portfolio_posts = get_posts([
+          'post_type' => 'portfolio',
+          'numberposts' => -1,
+      ]);
+
+      // Проходим по каждой записи и собираем значения из поля filter_type
+      foreach ( $portfolio_posts as $post ) {
+          $filter_types = get_field('filter_type', $post->ID);
+
+          if ( $filter_types ) {
+              // Разделяем строку по запятой и удаляем пробелы после запятых
+              $categories = array_map('trim', explode(',', $filter_types));
+
+              // Добавляем категории в общий массив
+              $all_categories = array_merge($all_categories, $categories);
+          }
+      }
+
+      // Оставляем только уникальные категории
+      $unique_categories = array_unique($all_categories);
+
+      $show_cat = get_field('show_cat', $term_tax .'_'. $term_id); 
+      $show_cat_array = array_map('trim', explode(',', $show_cat));
+      
+      if (!empty($show_cat)) {
+         $all_categories = [];
+         $all_categories = array_merge($all_categories, $show_cat_array);
+         $unique_categories = array_unique($all_categories);
+      }
+    ?>
+    <div class="tabs-wrapper">
+      <div class="tabs">
+          <?php foreach ( $unique_categories as $category ) : ?>
+              <div class="tab"><?php echo esc_html( $category ); ?></div>
+          <?php endforeach; ?>
+      </div>
+    </div>
+    <div class="wrap slider-wrap">
+      <div class="arr arr-prev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12L20 11.9998" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.00004 6.99988L4.70715 11.2928C4.37381 11.6261 4.20715 11.7928 4.20715 11.9999C4.20715 12.207 4.37381 12.3737 4.70715 12.707L9.00004 16.9999" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <?php
+            $args = array(
+              'posts_per_page' => -1, // значение по умолчанию берётся из настроек, но вы можете использовать и собственное
+              'post_type'      => 'portfolio',
+              'orderby' => 'date',
+              'order' => 'DESC'
+            );
+            query_posts( $args );
+
+            $allowed_categories = array_filter(array_map('trim', $unique_categories));
+
+            while(have_posts()): the_post(); 
+              $raw_filter_types = get_field('filter_type');
+              $post_categories = array_filter(array_map('trim', explode(',', (string) $raw_filter_types)));
+
+              // Skip items that do not match the selected category filters.
+              if (!empty($allowed_categories) && empty(array_intersect($post_categories, $allowed_categories))) {
+                continue;
+              }
+          ?>
+          <div class="item portfolio-popup-toggle swiper-slide" data-id="<?php echo get_the_ID(); ?>" data-type="<?php echo get_field('filter_type'); ?>" data-brand="<?php echo get_field('filter_branding'); ?>">
+            <div class="thumb">
+              <?php  if (has_post_thumbnail()) : ?>
+                  <img itemprop="image" src="<?php echo get_the_post_thumbnail_url(null, 'large'); ?>" alt="<?php the_title(); ?>">
+              <?php else : ?>
+                  <img itemprop="image" src="<?php echo wc_placeholder_img_src(); ?>" alt="<?php the_title(); ?>" style="border: 1px solid #F6F8FA">
+              <?php endif; ?>
+            </div>
+            <div class="meta">
+              <a href="<?php the_permalink(); ?>"  class="roboto"><?php the_title(); ?></a>
+              <p><?php echo get_field('excerpt'); ?></p>
+            </div>
+          </div>
+          <?php endwhile; wp_reset_postdata(); ?>
+        </div>
+      </div>
+      <div class="arr arr-next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12L4 12.0002" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 17.0001L19.2928 12.7072C19.6262 12.3739 19.7928 12.2072 19.7928 12.0001C19.7928 11.793 19.6262 11.6263 19.2928 11.293L15 7.0001" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 
 <?php if (get_field('material_title', $term_tax .'_'. $term_id)) : ?>
@@ -723,7 +840,7 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
                 <?php echo get_sub_field('content'); ?>
               </div>
               <?php if (get_sub_field('btn_toggle') == true) : ?>
-              <a href="<?php echo get_sub_field('link'); ?>" class="btn">
+              <a href="<?php echo get_sub_field('btn_link'); ?>" class="btn">
                 <?php if (get_sub_field('btn_icon') == 'yandex') : ?>
                   <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -915,39 +1032,74 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
 </section>
 <?php endif; ?>
 
-<?php if (get_field('faq_toggle', $term_tax .'_'. $term_id) == false) : ?>
-	<section itemtype="https://schema.org/FAQPage"  class="faq">  
-		<div class="container">
-			<div class="title-row">
-				<h2 class="title sub"><?php echo get_field('faq_title','home') ?></h2>  
-				<a href="<?php echo get_the_permalink(318); ?>" class="link-all">
-					<span>Смотреть все</span>
-					<div class="icon">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-					</div>
-				</a>
-			</div>
-			<div class="wrap">
-				<?php if (have_rows('faq','faq')) : while(have_rows('faq','faq')) : the_row(); ?>
-					<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"  class="item">
-						<h3 class="faq-title" itemprop="name">
-							<?php echo get_sub_field('question'); ?>
-							<div class="icon">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path d="M6 9L11.2929 14.2929C11.6262 14.6262 11.7929 14.7929 12 14.7929C12.2071 14.7929 12.3738 14.6262 12.7071 14.2929L18 9" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</div>
-						</h3>
-						<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="content">
-							<?php echo get_sub_field('answer'); ?>
-						</div>
-					</div>
-				<?php endwhile; endif; ?>
-			</div>
-		</div>
-	</section>
+<?php if (get_field('faq_title', $term_tax .'_'. $term_id)) : ?>
+  <?php if (get_field('faq_toggle', $term_tax .'_'. $term_id) == false) : ?>
+    <section itemtype="https://schema.org/FAQPage"  class="faq">  
+      <div class="container">
+        <div class="title-row">
+          <h2 class="title sub"><?php echo get_field('faq_title', $term_tax .'_'. $term_id) ?></h2>  
+          <a href="<?php echo get_the_permalink(318); ?>" class="link-all">
+            <span>Смотреть все</span>
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <div class="wrap">
+          <?php if (have_rows('faq','faq')) : while(have_rows('faq','faq')) : the_row(); ?>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"  class="item">
+              <h3 class="faq-title" itemprop="name">
+                <?php echo get_sub_field('question'); ?>
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L11.2929 14.2929C11.6262 14.6262 11.7929 14.7929 12 14.7929C12.2071 14.7929 12.3738 14.6262 12.7071 14.2929L18 9" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </h3>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="content">
+                <?php echo get_sub_field('answer'); ?>
+              </div>
+            </div>
+          <?php endwhile; endif; ?>
+        </div>
+      </div>
+    </section>
+  <?php else : ?>
+    <section itemtype="https://schema.org/FAQPage"  class="faq">  
+      <div class="container">
+        <div class="title-row">
+          <h2 class="title sub"><?php echo get_field('faq_title', $term_tax .'_'. $term_id) ?></h2>  
+          <a href="<?php echo get_the_permalink(318); ?>" class="link-all">
+            <span>Смотреть все</span>
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L14.2929 12.7071C14.6262 12.3738 14.7929 12.2071 14.7929 12C14.7929 11.7929 14.6262 11.6262 14.2929 11.2929L9 6" stroke="#71E69B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <div class="wrap">
+          <?php if (have_rows('faq', $term_tax .'_'. $term_id)) : while(have_rows('faq', $term_tax .'_'. $term_id)) : the_row(); ?>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"  class="item">
+              <h3 class="faq-title" itemprop="name">
+                <?php echo get_sub_field('question'); ?>
+                <div class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L11.2929 14.2929C11.6262 14.6262 11.7929 14.7929 12 14.7929C12.2071 14.7929 12.3738 14.6262 12.7071 14.2929L18 9" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </h3>
+              <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="content">
+                <?php echo get_sub_field('answer'); ?>
+              </div>
+            </div>
+          <?php endwhile; endif; ?>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php if (get_field('video_on', $term_tax .'_'. $term_id) == true) : ?>
@@ -1100,6 +1252,50 @@ $current_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
     </div>
   </div>
 </section>
+<?php endif; ?>
+
+<?php if (get_field('city_title', $term_tax .'_'. $term_id)) : ?>
+  <?php if (get_field('city_toggle', $term_tax .'_'. $term_id) == false) : ?>
+    <section class="city">
+      <div class="container">
+        <h2 class="title"><?php echo get_field('city_title', $main_post_id) ?></h2>
+        <ul class="wrap">
+          <?php if (have_rows('city', 'home')) : while(have_rows('city', 'home')) : the_row(); ?>
+            <li class="item">
+              <?php if (get_sub_field('link')) : ?>
+                <a href="<?php echo get_sub_field('link'); ?>"><?php echo get_sub_field('name'); ?></a>
+              <?php else : ?>
+                <span><?php echo get_sub_field('name'); ?></span>
+              <?php endif; ?>
+            </li>
+          <?php endwhile; endif; ?>
+        </ul>
+        <div class="moar-btn" style="display: none">
+          Показать все
+        </div>
+      </div>
+    </section>
+  <?php else : ?>
+    <section class="city">
+      <div class="container">
+        <h2 class="title"><?php echo get_field('city_title', $term_tax .'_'. $term_id) ?></h2>
+        <ul class="wrap">
+          <?php if (have_rows('city', $term_tax .'_'. $term_id)) : while(have_rows('city', $term_tax .'_'. $term_id)) : the_row(); ?>
+            <li class="item">
+              <?php if (get_sub_field('link')) : ?>
+                <a href="<?php echo get_sub_field('link'); ?>"><?php echo get_sub_field('name'); ?></a>
+              <?php else : ?>
+                <span><?php echo get_sub_field('name'); ?></span>
+              <?php endif; ?>
+            </li>
+          <?php endwhile; endif; ?>
+        </ul>
+        <div class="moar-btn" style="display: none">
+          Показать все
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php if (get_field('city_toggle', $term_tax .'_'. $term_id) == false) : ?>

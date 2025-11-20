@@ -16,3 +16,17 @@
 @import "./pages/_author"
 @import "./pages/_blog"
 @import "./assets/_search_posts"
+
+
+.slider-wrap.disabled-slider
+  ul.products.swiper-wrapper 
+    .product
+      max-width: calc(25% - 20px)
+      margin-right: 20px
+
+@media (max-width: 992px)
+  .slider-wrap.disabled-slider
+    ul.products.swiper-wrapper 
+      .product
+        max-width: 100%
+        margin-right: 8px

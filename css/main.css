@@ -3136,9 +3136,17 @@ a.link-all span {
 .content ul li {
   margin-bottom: 10px;
   position: relative;
-  padding-left: 30px;
+  padding-left: 20px !important;
+  display: block;
   font-size: 16px;
   line-height: 1.5;
+}
+
+.content ul li p {
+  display: block;
+  margin: 0;
+  padding-left: 0;
+  position: static;
 }
 
 .content ul li::after {
@@ -3148,7 +3156,7 @@ a.link-all span {
   border-radius: 100%;
   background-color: #0C0C0C;
   width: 10px;
-  left: 7px;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -3321,16 +3329,16 @@ a.link-all span {
   border: none;
 }
 
-.content table {
+.content > table {
   table-layout: fixed;
   margin-top: 30px;
 }
 
-.content table tr {
+.content > table tr {
   border: none;
 }
 
-.content table tr th {
+.content > table tr th {
   text-align: left;
   color: #fff;
   margin: 0;
@@ -3342,27 +3350,27 @@ a.link-all span {
   border: none;
 }
 
-.content table tr th:first-child {
+.content > table tr th:first-child {
   border-radius: 16px 0 0 16px;
   width: 200px;
   padding-left: 20px;
 }
 
-.content table tr th:last-child {
+.content > table tr th:last-child {
   border-radius: 0 16px 16px 0;
   padding-right: 20px;
 }
 
-.content table tr:nth-child(even) {
+.content > table tr:nth-child(even) {
   background-color: #fff;
 }
 
-.content table tr:nth-child(odd) {
+.content > table tr:nth-child(odd) {
   background-color: #F6F8FA;
   overflow: hidden;
 }
 
-.content table tr td {
+.content > table tr td {
   font-size: 16px;
   color: #0C0C0C;
   padding: 16px 10px;
@@ -3370,13 +3378,13 @@ a.link-all span {
   text-align: left;
 }
 
-.content table tr td:first-child {
+.content > table tr td:first-child {
   border-radius: 16px 0 0 16px;
   width: 200px;
   padding-left: 20px;
 }
 
-.content table tr td:last-child {
+.content > table tr td:last-child {
   border-radius: 0 16px 16px 0;
   padding-right: 20px;
 }
@@ -6287,6 +6295,115 @@ a.link-all span {
   margin-left: 20px;
 }
 
+.form.form-white small.privacy-item.active::after,
+.privacy-wrap small.privacy-item.active::after {
+  background-color: #0C0C0C;
+}
+
+.form.form-white small.privacy-item::after,
+.privacy-wrap small.privacy-item::after {
+  background-color: #e0dede;
+}
+
+.contacts-page .wrap .right .form .privacy-wrap small.privacy-item.active::after {
+  background-color: #12B76A;
+}
+
+.contacts-page .wrap .right .form .privacy-wrap small.privacy-item::after {
+  background-color: #fff;
+}
+
+.unisender-banner .wrap .form .privacy-wrap {
+  margin-top: 20px;
+}
+
+.unisender-banner .wrap .form .privacy-wrap small.privacy-item {
+  color: #fff;
+}
+
+.unisender-banner .wrap .form .privacy-wrap small.privacy-item a {
+  color: #fff;
+}
+
+.unisender-banner .wrap .form .privacy-wrap small.privacy-item.active::after {
+  background-color: #0C0C0C;
+}
+
+.unisender-banner .wrap .form .privacy-wrap small.privacy-item::after {
+  background-color: #fff;
+}
+
+.privacy-wrap.checkout-privacy {
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.privacy-wrap.checkout-privacy small.privacy-item {
+  color: #000;
+}
+
+.privacy-wrap.checkout-privacy small.privacy-item a {
+  color: #000;
+}
+
+.privacy-wrap.dark small.privacy-item {
+  color: #000;
+}
+
+.privacy-wrap.dark small.privacy-item.active::after {
+  background-color: #71E69B;
+}
+
+.privacy-wrap.dark small.privacy-item::after {
+  background-color: #e0dede;
+}
+
+.privacy-wrap.dark small.privacy-item a {
+  color: #000;
+}
+
+.privacy-wrap small.privacy-item {
+  display: block;
+  padding-left: 34px;
+  position: relative;
+  color: #737373;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 8px;
+  cursor: pointer;
+  user-select: none;
+  min-height: 24px;
+}
+
+.privacy-wrap small.privacy-item.active::after {
+  background-color: #0C0C0C;
+  background-image: url(../img/icons/privacy.svg);
+}
+
+.privacy-wrap small.privacy-item:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-wrap small.privacy-item a {
+  color: #737373;
+  font-size: 14px;
+}
+
+.privacy-wrap small.privacy-item::after {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  border-radius: 8px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 15px 12px;
+  background-position: center;
+}
+
 @media (min-width: 768px) {
   .lg-outer .lg-thumb {
     padding: 10px 0;
@@ -6485,6 +6602,35 @@ a.link-all span {
 
   .footer-bottom-wrap-right a:hover {
     color: #71E69B;
+  }
+}
+
+@media (max-width: 1080px) {
+  .privacy-wrap.checkout-privacy {
+    margin-top: -6px;
+    margin-bottom: 20px;
+  }
+
+  .privacy-wrap.checkout-privacy small.privacy-item {
+    color: #000;
+  }
+
+  .privacy-wrap.checkout-privacy small.privacy-item a {
+    color: #000;
+  }
+
+  .privacy-wrap small.privacy-item {
+    font-size: 12px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .privacy-wrap small.privacy-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .privacy-wrap small.privacy-item a {
+    font-size: 12px;
   }
 }
 
@@ -6755,7 +6901,7 @@ a.link-all span {
 
   .content .wp-block-table table {
     width: max-content;
-    overflow-x: auto;
+    min-width: 800px;
   }
 
   .content .wp-block-table table thead {
@@ -6769,15 +6915,31 @@ a.link-all span {
     font-weight: 400;
     padding: 14px 8px;
     border: none;
-    max-width: 160px;
+    width: max-content;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .content .wp-block-table table thead tr th:first-child {
+    width: max-content;
+    max-width: 200px;
+    min-width: 0;
+    white-space: normal;
   }
 
   .content .wp-block-table table tbody tr td {
     font-size: 14px;
     padding: 14px 8px;
+    white-space: nowrap;
     border: none;
     text-align: left;
-    max-width: 160px;
+  }
+
+  .content .wp-block-table table tbody tr td:first-child {
+    width: max-content;
+    max-width: 200px;
+    min-width: 0;
+    white-space: normal;
   }
 
   .content .wp-block-gallery {
@@ -6856,7 +7018,12 @@ a.link-all span {
     font-weight: 400;
     padding: 12px !important;
     height: auto !important;
-    width: auto !important;
+    width: max-content !important;
+  }
+
+  .content > table tr th:first-child {
+    max-width: 220px;
+    white-space: normal;
   }
 
   .content > table tr td {
@@ -6864,7 +7031,12 @@ a.link-all span {
     padding: 12px !important;
     text-align: left;
     height: auto !important;
-    width: auto !important;
+    width: max-content !important;
+  }
+
+  .content > table tr td:first-child {
+    max-width: 220px;
+    white-space: normal;
   }
 
   .single-post {
@@ -8720,14 +8892,21 @@ a.link-all span {
   }
 
   .city .wrap {
-    columns: 2;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .city .wrap .item {
+    width: calc(50% - 8px);
   }
 
   .city .wrap.active {
-    max-height: 236px;
     overflow: hidden;
-    display: block;
+    height: 236px;
+    columns: 2;
   }
 }
 

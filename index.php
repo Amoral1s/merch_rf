@@ -1091,7 +1091,7 @@
                 <?php echo get_sub_field('content'); ?>
               </div>
               <?php if (get_sub_field('btn_toggle') == true) : ?>
-              <a href="<?php echo get_sub_field('link'); ?>" class="btn">
+              <a href="<?php echo get_sub_field('btn_link'); ?>" class="btn">
                 <?php if (get_sub_field('btn_icon') == 'yandex') : ?>
                   <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1502,7 +1502,7 @@
 
 <!-- Schema org -->
 <div itemscope itemtype="http://schema.org/Organization" style="display: none;">
-  <span itemprop="name">ООО «Принтмастер»</span>
+  <span itemprop="name">ИП Иванова М. В.</span>
   <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
     <span itemprop="streetAddress">вн.тер.г. Муниципальный Округ Академический, ул Ивана Бабушкина, д. 18, к. 2</span>,
     <span itemprop="addressLocality">Г.Москва</span>,
@@ -1511,11 +1511,11 @@
   Телефон: <span itemprop="telephone"><?php the_field('phone','options'); ?></span>
 </div>
 <div itemscope itemtype="http://schema.org/LocalBusiness" style="display: none;">
-  <span itemprop="name">ООО «Принтмастер»</span>
+  <span itemprop="name">ИП Иванова М. В.</span>
   <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-    <span itemprop="streetAddress">вн.тер.г. Муниципальный Округ Академический, ул Ивана Бабушкина, д. 18, к. 2</span>,
+    <span itemprop="streetAddress">вЗолоторожский вал 11с22 офис 242</span>,
     <span itemprop="addressLocality">Г.Москва</span>,
-    <span itemprop="postalCode">117292</span>
+    <span itemprop="postalCode">111033</span>
   </div>
   Телефон: <span itemprop="telephone"><?php the_field('phone','options'); ?></span><br>
   Часы работы: <span itemprop="openingHours">Пн-Пт: 10.00 - 19.00</span><br>

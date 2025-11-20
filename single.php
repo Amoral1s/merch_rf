@@ -149,16 +149,16 @@
 		<?php the_content(); ?>
 	</div>
 	<div class="share-post">
-		<div class="left">
+		<!--<div class="left" style="opacity: 0">
 			<b class="roboto">Оцените статью</b>
 			<div class="share-stars">
 				
 			</div>
-		</div>
+		</div>-->
 		<div class="right">
 			<b class="roboto">Поделитесь в соцсетях</b>
 			<div class="share">
-				<script src="http://yastatic.net/share2/share.js"></script>
+				<script src="https://yastatic.net/share2/share.js"></script>
 				<div class="ya-share2 share-block" data-curtain data-shape="round" data-services="whatsapp,telegram,vkontakte"></div>
 				<div class="share-link">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -169,10 +169,10 @@
 			</div>
 		</div>
 	</div>
-	<div  class="comments">
+	<!--<div  class="comments">
 		<h2 class="title">Комментарии к статье</h2>
-		<?php comments_template(); ?>
-	</div>
+		<?php //comments_template(); ?>
+	</div>-->
 </section>
 
 <?php endwhile; ?>

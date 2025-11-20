@@ -6735,6 +6735,10 @@ jQuery(document).ready(function ($) {
 		if ($('.popup.popup-video').is(':visible')) {
 			history.forward();
 		}
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
 	});
 	$('.popup .close-button').on('click', function() {
 		$('.popup').fadeOut(300);
@@ -6745,6 +6749,10 @@ jQuery(document).ready(function ($) {
 		if ($('.popup.popup-video').is(':visible')) {
 			history.forward();
 		}
+		$('.portfolio-popup').fadeOut(function() {
+      // Очищаем контент внутри .wrapper, чтобы избежать возможных конфликтов
+      $('.portfolio-popup .wrapper').empty();
+    });
 	});
 
 	// Функция для скрытия окна cookie и установки cookie на 1 месяц
@@ -6805,6 +6813,57 @@ jQuery(document).ready(function ($) {
       fileTextDiv.text('Прикрепить файл');
     }
   });
+
+		const privacyWrappers = document.querySelectorAll('.privacy-wrap');
+
+	if (privacyWrappers.length > 0) {
+		privacyWrappers.forEach(form => {
+			const formWrap = form.closest('form');
+			if (!formWrap) return;
+	
+			const checkboxes = formWrap.querySelectorAll('.privacy-item');
+			const submitButtons = formWrap.querySelectorAll('[type="submit"]');
+	
+			// Устанавливаем начальное состояние
+			checkboxes.forEach(checkbox => {
+				if (checkbox.getAttribute('data-active') === 'true') {
+					checkbox.classList.add('active');
+				} else {
+					checkbox.classList.remove('active');
+				}
+			});
+	
+			// Проверка состояния только обязательных чекбоксов (у которых есть data-active)
+			function checkFormValidation() {
+				const requiredCheckboxes = Array.from(checkboxes).filter(cb => cb.hasAttribute('data-active'));
+				const allActive = requiredCheckboxes.every(cb => cb.getAttribute('data-active') === 'true');
+				submitButtons.forEach(btn => {
+					if (allActive) {
+						btn.classList.remove('disabled');
+					} else {
+						btn.classList.add('disabled');
+					}
+				});
+			}
+	
+			// Инициализируем проверку при загрузке
+			checkFormValidation();
+	
+			// Слушатель клика по .privacy-item
+			form.addEventListener('click', function(event) {
+				const toggle = event.target.closest('.privacy-item');
+				if (toggle) {
+					const hasAttr = toggle.hasAttribute('data-active');
+					if (hasAttr) {
+						const isActive = toggle.getAttribute('data-active') === 'true';
+						toggle.setAttribute('data-active', isActive ? 'false' : 'true');
+					}
+					toggle.classList.toggle('active');
+					checkFormValidation();
+				}
+			});
+		});
+	}
 
 }); //end
 
@@ -7295,7 +7354,9 @@ jQuery(document).ready(function ($) {
 			window.addEventListener('resize', updateButtonVisibility)
 	
 			// Инициализация
-			updateButtonVisibility()
+			updateButtonVisibility();
+			scrollRightButton.style.display = 'flex';
+
 		}
 	}
 	

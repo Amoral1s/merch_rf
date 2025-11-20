@@ -24,17 +24,12 @@ get_header();
         <div class="swiper-wrapper">
           <?php $index = 0; $gallery = get_field('feed_gall', 'feed'); if ($gallery) : ?>
           <?php foreach( $gallery as $img ): ?>
-            <?php if ($index < 6) : ?>
-              <div class="swiper-slide item gall-item">
-                <?php 
-                  echo '<img src="' . esc_url($img['sizes']['medium']) . '" alt="Отзыв">';
-                ?>
-              </div>
-            <?php endif; ?>
+            <div class="swiper-slide item gall-item">
+              <?php 
+                echo '<img src="' . esc_url($img['sizes']['medium']) . '" alt="Отзыв">';
+              ?>
+            </div>
           <?php $index++; endforeach; endif; ?>
-          <a href="<?php echo get_the_permalink(256); ?>" class="swiper-slide item link">
-            <?php echo get_field('feed_gall_count', 'feed'); ?>
-          </a>
         </div>
       </div>
     </div>
@@ -105,7 +100,7 @@ get_header();
                 <?php echo get_sub_field('content'); ?>
               </div>
               <?php if (get_sub_field('btn_toggle') == true) : ?>
-              <a href="<?php echo get_sub_field('link'); ?>" class="btn">
+              <a href="<?php echo get_sub_field('btn_link'); ?>" class="btn">
                 <?php if (get_sub_field('btn_icon') == 'yandex') : ?>
                   <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

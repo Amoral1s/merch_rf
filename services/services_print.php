@@ -385,7 +385,7 @@
                 <?php echo get_sub_field('content'); ?>
               </div>
               <?php if (get_sub_field('btn_toggle') == true) : ?>
-              <a href="<?php echo get_sub_field('link'); ?>" class="btn">
+              <a href="<?php echo get_sub_field('btn_link'); ?>" class="btn">
                 <?php if (get_sub_field('btn_icon') == 'yandex') : ?>
                   <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -500,7 +500,7 @@
       <div class="container">
         <h2 class="title"><?php echo get_field('city_title', $main_post_id) ?></h2>
         <ul class="wrap">
-          <?php if (have_rows('city', $term_id)) : while(have_rows('city', $term_id)) : the_row(); ?>
+          <?php if (have_rows('city', 'home')) : while(have_rows('city', 'home')) : the_row(); ?>
             <li class="item">
               <?php if (get_sub_field('link')) : ?>
                 <a href="<?php echo get_sub_field('link'); ?>"><?php echo get_sub_field('name'); ?></a>

@@ -416,6 +416,7 @@
         background-image: url(../img/icons/swipe.svg)
       table
         width: max-content
+        min-width: 800px
         thead
           border-bottom: none
           padding: 0
@@ -426,19 +427,27 @@
               font-weight: 400
               padding: 14px 8px
               border: none
-              max-width: 160px
+              width: max-content
+              white-space: nowrap
+              max-width: 100%
               &:first-child
-                max-width: 220px
+                width: max-content
+                max-width: 200px
+                min-width: 0
+                white-space: normal
         tbody
           tr
             td
               font-size: 14px
               padding: 14px 8px
+              white-space: nowrap
               border: none
               text-align: left
-              max-width: 160px
               &:first-child
-                max-width: 220px
+                width: max-content
+                max-width: 200px
+                min-width: 0
+                white-space: normal
 
 .banner-treb
   .wrap

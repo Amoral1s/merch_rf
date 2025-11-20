@@ -224,7 +224,7 @@ get_header();
                 <?php echo get_sub_field('content'); ?>
               </div>
               <?php if (get_sub_field('btn_toggle') == true) : ?>
-              <a href="<?php echo get_sub_field('link'); ?>" class="btn">
+              <a href="<?php echo get_sub_field('btn_link'); ?>" class="btn">
                 <?php if (get_sub_field('btn_icon') == 'yandex') : ?>
                   <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

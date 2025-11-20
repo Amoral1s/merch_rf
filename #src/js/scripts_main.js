@@ -315,7 +315,9 @@ jQuery(document).ready(function ($) {
 			window.addEventListener('resize', updateButtonVisibility)
 	
 			// Инициализация
-			updateButtonVisibility()
+			updateButtonVisibility();
+			scrollRightButton.style.display = 'flex';
+
 		}
 	}
 	

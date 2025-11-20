@@ -195,7 +195,6 @@
             Политика конфиденциальности
           </span>
         <?php endif; ?>
-        <a href="#">Карта сайта</a>
         <?php if (!is_page(362)) : ?>
           <a href="<?php echo get_the_permalink(362); ?>" target="blank">
             Публичная оферта
@@ -203,6 +202,15 @@
           <?php else : ?>
           <span>
             Публичная оферта
+          </span>
+        <?php endif; ?>
+        <?php if (!is_page(2634)) : ?>
+          <a href="<?php echo get_the_permalink(2634); ?>" target="blank">
+            Согласие на обработку данных "Яндекс.Метрика"
+          </a>
+          <?php else : ?>
+          <span>
+            Согласие на обработку данных "Яндекс.Метрика"
           </span>
         <?php endif; ?>
       </div>
@@ -459,8 +467,21 @@
   </div>
 
   <div class="cookie" style="display: none">
-    <b class="roboto">Используем куки для улучшения работы сайта</b>
-    <p>Оставаясь с нами, вы <span>соглашаетесь</span> на использование файлов куки</p>
+    <b>Используем куки для улучшения работы сайта</b>
+    <p>
+      Вы можете запретить обработку сookies в настройках браузера. 
+      Пожалуйста, ознакомьтесь с 
+      <?php if (is_page(3)) : ?>
+      <span>политикой использования cookies</span>
+      <?php else : ?>
+        <a style="font-size: 14px;text-decoration:underline;" href="<?php the_permalink(3); ?>">политикой использования cookies</a>
+      <?php endif; ?>
+      . <br><br>
+      К сайту подключен сервис Яндекс.Метрика, который также использует файлы cookie 
+      <?php if (!is_page(2634)) : ?>
+      (<a style="font-size: 14px;text-decoration:underline;" href="<?php the_permalink(2634); ?>">подробнее</a>)
+      <?php endif; ?>
+    </p>
     <div class="button"><span>Понятно</span></div>
   </div>
 <!-- Popup's END -->
@@ -653,11 +674,11 @@
     <div class="top">
       <?php if (is_home()) : ?>
         <div class="logo">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="ПринтСреда">
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Мерч.рф">
         </div>
         <?php else : ?>
         <a href="/" class="logo" title="Вернуться на главную">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="ПринтСреда" >
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Мерч.рф" >
         </a>
       <?php endif; ?> 
       <div class="close icon">
@@ -734,11 +755,11 @@
 
 <?php if (/* !is_page(380) &&  */!is_archive() && !is_singular('post')) : ?>
 <div itemscope itemtype="http://schema.org/Organization" style="display: none;">
-  <span itemprop="name">ООО «Принтмастер»</span>
+  <span itemprop="name">ИП Иванова М. В.</span>
   <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-    <span itemprop="streetAddress">вн.тер.г. Муниципальный Округ Академический, ул Ивана Бабушкина, д. 18, к. 2</span>,
+    <span itemprop="streetAddress">Золоторожский вал 11с22 офис 242</span>,
     <span itemprop="addressLocality">Г.Москва</span>,
-    <span itemprop="postalCode">117292Пн-Пт: 10.00 - 19.00</span>
+    <span itemprop="postalCode">111033</span>
   </div>
   Телефон: <span itemprop="telephone"><?php the_field('phone','options'); ?></span>
 </div>

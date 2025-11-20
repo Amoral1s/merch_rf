@@ -23,7 +23,7 @@ function custom_product_gallery() {
                         <!-- Основное изображение товара -->
                         <?php 
                             $image_url = has_post_thumbnail() 
-                            ? get_the_post_thumbnail_url( get_the_ID(), 'woocommerce_thumbnail' ) 
+                            ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) 
                             : wc_placeholder_img_src( 'woocommerce_thumbnail' );
                         ?>
                         <a href="<?php echo esc_url( $image_url ); ?>" class="swiper-slide item">

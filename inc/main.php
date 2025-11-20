@@ -131,6 +131,30 @@ function remove_plugin_updates_SWATCHES($value) {
 }
 add_filter('site_transient_update_plugins', 'remove_plugin_updates_SWATCHES'); 
 
+function bulk_edit_woo($value) {
+  unset($value->response['woocommerce-advanced-bulk-edit/woocommerce-advanced-bulk-edit.php']);
+  return $value; 
+}
+add_filter('site_transient_update_plugins', 'bulk_edit_woo'); 
+
+function remove_plugin_updates_WBW_simple($value) {
+  unset($value->response['woo-product-filter/woo-product-filter.php']);
+  return $value; 
+}
+add_filter('site_transient_update_plugins', 'remove_plugin_updates_WBW_simple'); 
+
+function remove_plugin_updates_all_import($value) {
+  unset($value->response['wp-all-import-pro/wp-all-import-pro.php']);
+  return $value; 
+}
+add_filter('site_transient_update_plugins', 'remove_plugin_updates_all_import'); 
+
+function remove_plugin_updates_seraphine_new($value) {
+  unset($value->response['seraphinite-accelerator-ext/plugin_root.php']);
+  return $value; 
+}
+add_filter('site_transient_update_plugins', 'remove_plugin_updates_seraphine_new'); 
+
 
  
 

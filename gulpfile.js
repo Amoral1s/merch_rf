@@ -76,7 +76,7 @@ function logPaths(done) {
 
 function browserSync() {
     browsersyncInstance.init({
-        proxy: 'http://merch.local', // Убедитесь, что этот прокси соответствует вашему серверу MAMP
+        proxy: 'http://merch.local:8888/', // Убедитесь, что этот прокси соответствует вашему серверу MAMP
         notify: false,
         open: true, // Открыть новое окно браузера при запуске
         codeSync: true, // Включить синхронизацию кода

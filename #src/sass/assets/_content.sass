@@ -79,9 +79,15 @@
     li
       margin-bottom: 10px
       position: relative
-      padding-left: 30px
+      padding-left: 20px!important
+      display: block
       font-size: 16px
       line-height: 1.5
+      p
+        display: block
+        margin: 0
+        padding-left: 0
+        position: static
       &::after
         position: absolute
         content: ''
@@ -89,7 +95,7 @@
         border-radius: 100%
         background-color: $text
         width: 10px
-        left: 7px
+        left: 0
         top: 50%
         transform: translateY(-50%)
   ol
@@ -215,7 +221,7 @@
     width: 100%!important
   .wp-block-table.is-style-stripes
     border: none
-  table
+  &>table
     table-layout: fixed
     margin-top: 30px
     tr
@@ -347,7 +353,7 @@
         background-image: url(../img/icons/swipe.svg)
       table
         width: max-content
-        overflow-x: auto
+        min-width: 800px
         thead
           border-bottom: none
           padding: 0
@@ -358,15 +364,27 @@
               font-weight: 400
               padding: 14px 8px
               border: none
-              max-width: 160px
+              width: max-content
+              white-space: nowrap
+              max-width: 100%
+              &:first-child
+                width: max-content
+                max-width: 200px
+                min-width: 0
+                white-space: normal
         tbody
           tr
             td
               font-size: 14px
               padding: 14px 8px
+              white-space: nowrap
               border: none
               text-align: left
-              max-width: 160px
+              &:first-child
+                width: max-content
+                max-width: 200px
+                min-width: 0
+                white-space: normal
     .wp-block-gallery
       margin-bottom: 20px
       justify-content: space-between!important
@@ -426,13 +444,19 @@
           font-weight: 400
           padding: 12px!important
           height: auto!important
-          width: auto!important
+          width: max-content!important
+          &:first-child
+            max-width: 220px
+            white-space: normal
         td
           font-size: 14px
           padding: 12px!important
           text-align: left
           height: auto!important
-          width: auto!important
+          width: max-content!important
+          &:first-child
+            max-width: 220px
+            white-space: normal
 
 @media (max-width: 578px)
   .content
